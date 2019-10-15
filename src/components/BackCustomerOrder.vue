@@ -49,22 +49,45 @@
                         <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
+
                     <div class="modal-body">
-                        <img :src="product.imageUrl" class="img-fluid" alt="">
+                        <div style="height: 390px; background-size: cover; background-position: center"
+                        :style="{backgroundImage:`url(${product.imageUrl})`}"></div>
+                        <hr>                       
+                        <div>
+                            <div class="col-md-12">
+                                {{product.description}}
+                            </div>                    
+                         </div> 
+                        <hr>
+                        <div>
+                            <div class="col-md-12">
+                                {{product.content}}
+                            </div>                    
+                         </div> 
+                        <hr>
                         <div class="d-flex justify-content-between align-items-baseline">
                             <div class="h4" v-if="!product.price">{{ product.origin_price }} 元</div>
                             <del class="h6" v-if="product.price">原價 {{ product.origin_price }} 元</del>
                             <div class="h4" v-if="product.price">現在只要 {{ product.price }} 元</div>
-                        </div>
+                        </div>                       
+                        <hr>                       
                         <div class="d-flex justify-content-between align-items-baseline">
-                            <div class="col-md-8">
-                                <input type="number" class="form-control" id="buynum"
+                            <div class="col-md-4">
+                                
+                            </div>
+                            <div class="col-md-3">
+                                <span>購買時數</span>
+                            </div>
+                             <div class="col-md-3">
+                               <input type="number" class="form-control" id="buynum"
                                 v-model.number="buynum"             
                                 placeholder="請輸入購買時數">
-                            </div>
-                             <div class="col-md-4">
-                                <span>{{product.unit}}</span>
-                            </div>                           
+                               
+                            </div> 
+                            <div class="col-md-2">
+                                 <span>{{product.unit}}</span>
+                            </div>                          
                          </div>
                     </div>
                     <div class="modal-footer">
