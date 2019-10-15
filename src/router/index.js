@@ -3,7 +3,7 @@ import VueRouter from 'vue-router';
 //官方文件
 
 import FrontIndex from '@/components/FrontIndex';
-import FrontNavbar from '@/components/FrontNavbar';
+//import FrontHeader from '@/components/FrontHeader';
 import Page from '@/components/pages/Page';
 import Menu  from '@/components/pages/Menu';
 import CHild1 from '@/components/pages/Child';
