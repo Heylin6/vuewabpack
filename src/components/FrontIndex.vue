@@ -1,14 +1,19 @@
-<template>
-  
-  <div class="hello">
-    
-   <a href="#" @click.prevent="signout">登出</a>
+<template>  
+  <div class="">    
+      <FrontNavbar/>      
   </div>
 </template>
 
 <script>
+import FrontNavbar from './FrontNavbar';
+import Alert from './AlertMessage';
+
 export default {
-  name: 'HelloWorld',
+  
+  name: 'FrontIndex',
+      components:{
+        FrontNavbar,Alert
+  },
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'
