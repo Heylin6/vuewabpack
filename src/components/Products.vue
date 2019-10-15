@@ -23,8 +23,8 @@
                     <td>{{ item.num }}</td>
                     <td>{{ item.category }}</td>
                     <td>{{ item.title }}</td>
-                    <td class="text-right">{{ item.origin_price }}</td>
-                    <td class="text-right">{{ item.price }}</td>
+                    <td class="text-right">{{ item.origin_price | currency }}</td>
+                    <td class="text-right">{{ item.price | currency }}</td>
                     <td>{{ item.num }}</td>
 
                     <td>
@@ -67,7 +67,7 @@
                 </li>
             </ul>
         </nav> 
-        
+
         -->
         
         <Pagin @postPage="getProducts" :getpagin="pagination"></Pagin>

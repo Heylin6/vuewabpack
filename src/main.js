@@ -5,6 +5,7 @@ import App from './App';
 import router from './router';
 
 import './bus';
+import currencyFilter from './filters/currency.js';
 
 import axios from 'axios'
 import VueAxios from 'vue-axios';
@@ -21,6 +22,7 @@ Vue.config.productionTip = false;
 Vue.use(VueAxios, axios);
 //所有組件自動載入
 Vue.component('Loading',Loading);
+Vue.filter('currency',currencyFilter);
 
 /* eslint-disable no-new */
 new Vue({

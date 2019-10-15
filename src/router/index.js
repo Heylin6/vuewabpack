@@ -38,6 +38,7 @@ export default new VueRouter({
             components:{
                 default:Page,
                 menu:Menu,
+                meta:{requiresAuth : true},
             },
             children:[
                 {
@@ -60,7 +61,8 @@ export default new VueRouter({
         {
             name:'dashboard',//呈現的名稱
             path:'/admin',//對應的虛擬路徑
-            component:Dashboard,//對應元件            
+            component:Dashboard,//對應元件
+            meta:{requiresAuth : true},            
             children:[
                 {
                     name:'productsdefault',//呈現的名稱
