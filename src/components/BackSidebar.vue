@@ -11,15 +11,21 @@
         <ul class="nav flex-column">
           <li class="nav-item">
             <a class="nav-link active" href="#">
-              <span data-feather="home"></span>
-              產品列表 <span class="sr-only">(current)</span>
+               <router-link class="nav-link" to="/admin/products" >
+                     <i class="fab fa-product-hunt"></i>
+                     <span data-feather="file-text"></span>
+                      產品列表
+               </router-link>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="file"></span>
-              訂單列表
-            </a>
+            <a class="nav-link" href="#">            
+               <router-link class="nav-link" to="/" >
+                     <i class="fas fa-border-style"></i>
+                     <span data-feather="file-text"></span>
+                      訂單列表
+               </router-link>
+             </a>              
           </li>
         </ul>
 
@@ -32,8 +38,11 @@
         <ul class="nav flex-column mb-2">
           <li class="nav-item">
             <a class="nav-link" href="#">
-              <span data-feather="file-text"></span>
-              模擬訂單
+               <router-link class="nav-link" to="/customerorder" >
+                      <i class="fas fa-shopping-cart"></i>
+                     <span data-feather="file-text"></span>
+                      模擬訂單
+               </router-link>
             </a>
           </li>        
         </ul>
