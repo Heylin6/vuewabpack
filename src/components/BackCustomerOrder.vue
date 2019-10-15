@@ -1,6 +1,9 @@
 <template>
     <div>
         <loading :active.sync="isLoading"></loading>
+
+         <Pagin @postPage="getProducts" :getpagin="pagination"></Pagin>
+
         <div class="row mt-4">
             <div class="col-md-4 mb-4" v-for="(item) in products" :key="item.id">
             <div class="card border-0 shadow-sm">
@@ -21,7 +24,9 @@
                 </div>
                 </div>
                 <div class="card-footer d-flex">
-                <button type="button" class="btn btn-outline-secondary btn-sm">
+                <button type="button" 
+                        class="btn btn-outline-secondary btn-sm"
+                        @click="getProduct(item.id)">
                     <i class="fas fa-arrow-down"></i>
                     查看更多
                 </button>
@@ -32,8 +37,52 @@
                 </div>
             </div>
             </div>
+        </div>       
+
+         <div class="modal fade" id="productModal" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">{{ product.title }}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <img :src="product.imageUrl" class="img-fluid" alt="">
+                        <div class="d-flex justify-content-between align-items-baseline">
+                            <div class="h4" v-if="!product.price">{{ product.origin_price }} 元</div>
+                            <del class="h6" v-if="product.price">原價 {{ product.origin_price }} 元</del>
+                            <div class="h4" v-if="product.price">現在只要 {{ product.price }} 元</div>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-baseline">
+                            <div class="col-md-8">
+                                <input type="number" class="form-control" id="buynum"
+                                v-model.number="buynum"             
+                                placeholder="請輸入購買時數">
+                            </div>
+                             <div class="col-md-4">
+                                <span>{{product.unit}}</span>
+                            </div>                           
+                         </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="text-muted text-nowrap mr-3">
+                            小計 <strong>{{ buynum * product.price }}</strong> 元
+                        </div>
+                        <button type="button" class="btn btn-primary"
+                        @click="addtoCart(product.id, product.num)">
+                            <i class="fas fa-spinner fa-spin" v-if="product.id === status.loadingItem"></i>
+                            加到購物車
+                        </button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button>
+                    </div>
+                </div> 
+            </div> 
         </div>
-    </div>
+        
+    </div>    
 </template>
 
 <script>
@@ -46,7 +95,9 @@ export default {
     },
     data(){
         return {
+            buynum:1,
             products:[],
+            product:{},
             tempProduct:{},
             pagination:{},
             isNew:false,
@@ -72,6 +123,20 @@ export default {
             vm.pagination=response.data.pagination;
           });
         },
+        getProduct(pid){
+          const api = `https://vue-course-api.hexschool.io/api/heylin/product/${pid}`;
+          const vm = this;
+
+          vm.isLoading=true;
+          this.$http.get(api).then((response) => {
+            console.log('=========');
+            console.log(response.data);
+            console.log('=========');
+             $('#productModal').modal('show');
+            vm.isLoading=false;
+            vm.product=response.data.product;            
+          });
+        },
         openModal(isNew,item){
 
             //用vue的方式開啟modal
@@ -86,88 +151,7 @@ export default {
                 this.isNew=false;
             }
             $('#productModal').modal('show');
-        },
-        updateProduct(){
-          let api = 'https://vue-course-api.hexschool.io/api/heylin/admin/product';
-          let httpMethod ='post';
-          const vm = this;
-          
-            if(!vm.isNew){
-                //假設不是新增 則為修改
-                api = 'https://vue-course-api.hexschool.io/api/heylin/admin/product/'+vm.tempProduct.id;
-                httpMethod ='put';
-            }
-
-          this.$http[httpMethod](api,{data:vm.tempProduct}).then((response) => {
-            console.log('=========');
-            console.log(response.data);
-            console.log('=========');
-
-            if(response.data.success){
-                $('#productModal').modal('hide');
-                vm.getProducts();
-            }
-            else{
-                vm.getProducts();
-                console.log('新增失敗');
-            }
-          });
-        },
-        deleteProduct(item){
-
-            const api = 'https://vue-course-api.hexschool.io/api/heylin/products';
-            const vm = this;
-
-            var del=confirm("確定刪除?");
-            if(del){
-                //  this.$http.delete(api).then((response) => {
-                //  console.log('=========');
-                //  console.log(response.data);
-                //  console.log('=========');
-
-                //  vm.products=response.data.products;
-                // });
-            }
-            else{
-
-            }
-
-        },
-        uploadFile(){
-            //console.log(this);
-            const uploadedfile = this.$refs.files.files[0];
-            const vm = this;
-            //模擬表單送出形式
-            const formData = new FormData();
-            //塞入檔案
-            formData.append('file-to-upload',uploadedfile);
-            const url ='https://vue-course-api.hexschool.io/api/heylin/admin/upload';
-
-            //執行上傳時 開啟讀取icon
-            vm.status.fileUploading=true;
-            //傳遞時修正他的header
-            this.$http.post(url,formData,{
-                headers:{
-                    'Content-Type':'multpart/form-data'
-                }
-            }).then((response) => {
-                console.log('=========');
-                console.log(response.data);
-                console.log('=========');
-
-                //上傳完畢時 關閉讀取icon
-                vm.status.fileUploading=false;
-
-                if(response.data.success){
-                    //vm.tempProduct.imageUrl = response.data.imageUrl;
-                    //強制寫入圖片名稱的欄位
-                    vm.$set(vm.tempProduct,'imageUrl',response.data.imageUrl);
-                }
-                else{
-                     this.$bus.$emit('message:push',response.data.message.message,'danger');
-                }
-            });
-        }
+        },        
     },
     created() {
         this.getProducts();
