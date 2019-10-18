@@ -5,8 +5,14 @@ import App from './App';
 import router from './router';
 
 import './bus';
+//語系
+import VueI18n from 'vue-i18n';
 import currencyFilter from './filters/currency.js';
-
+//驗證工具
+import VeeValidate, { Validator } from 'vee-validate';
+//驗證工具(中文化))
+import zhTW_VeeValidate from 'vee-validate/dist/locale/zh_TW';
+//抓API
 import axios from 'axios'
 import VueAxios from 'vue-axios';
 //Loading效果套件
@@ -19,13 +25,30 @@ axios.defaults.withCredentials=true;
 
 
 Vue.config.productionTip = false;
+
+
+
 Vue.use(VueAxios, axios);
 //所有組件自動載入
 Vue.component('Loading',Loading);
 Vue.filter('currency',currencyFilter);
 
+Vue.use(VueI18n);
+const i18n = new VueI18n({
+  locale: 'zhTW'
+});
+
+Vue.use(VeeValidate, {
+  i18n,
+  dictionary: {
+    zhTW_VeeValidate
+  }
+});
+Validator.localize('zh-TW', zhTW_VeeValidate);
+
 /* eslint-disable no-new */
 new Vue({
+  i18n,
   el: '#app',
   components: { App },
   template: '<App/>',

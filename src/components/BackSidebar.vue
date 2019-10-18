@@ -20,7 +20,7 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">            
-               <router-link class="nav-link" to="/" >
+               <router-link class="nav-link" to="/admin/orders" >
                      <i class="fas fa-border-style"></i>
                      <span data-feather="file-text"></span>
                       訂單列表

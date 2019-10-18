@@ -13,6 +13,7 @@ import CHild3 from '@/components/pages/Child3';
 import BackLogin from '@/components/pages/BackLogin';
 import BackDashboard from '@/components/BackDashboard';
 import BackProducts from '@/components/BackProducts';
+import BackOrders from '@/components/BackOrders';
 import BackCustomerOrder from '@/components/BackCustomerOrder';
 
 Vue.use(VueRouter);
@@ -81,6 +82,12 @@ export default new VueRouter({
                     name:'products',//呈現的名稱
                     path:'products',//對應的虛擬路徑
                     component:BackProducts,//對應元件
+                    meta:{requiresAuth : true},
+                },
+                {
+                    name:'orders',//呈現的名稱
+                    path:'orders',//對應的虛擬路徑
+                    component:BackOrders,//對應元件
                     meta:{requiresAuth : true},
                 },
 
