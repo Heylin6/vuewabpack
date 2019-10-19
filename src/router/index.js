@@ -14,6 +14,7 @@ import BackLogin from '@/components/pages/BackLogin';
 import BackDashboard from '@/components/BackDashboard';
 import BackProducts from '@/components/BackProducts';
 import BackOrders from '@/components/BackOrders';
+import BackCoupons from '@/components/BackCoupons';
 import BackCustomerOrder from '@/components/BackCustomerOrder';
 import BackCustomerCheckOut from '@/components/BackCustomerCheckOut';
 
@@ -89,6 +90,12 @@ export default new VueRouter({
                     name:'orders',//呈現的名稱
                     path:'orders',//對應的虛擬路徑
                     component:BackOrders,//對應元件
+                    meta:{requiresAuth : true},
+                },
+                {
+                    name:'coupons',//呈現的名稱
+                    path:'coupons',//對應的虛擬路徑
+                    component:BackCoupons,//對應元件
                     meta:{requiresAuth : true},
                 },
 

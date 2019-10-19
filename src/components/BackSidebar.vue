@@ -27,6 +27,15 @@
                </router-link>
              </a>              
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">            
+               <router-link class="nav-link" to="/admin/coupons" >
+                     <i class="fab fa-cuttlefish"></i>                     
+                     <span data-feather="file-text"></span>
+                      優惠券列表
+               </router-link>
+             </a>              
+          </li>
         </ul>
 
         <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">

@@ -12,9 +12,9 @@
                     <th>編號</th>
                     <th>分類</th>
                     <th>標題</th>
-                    <th>原價</th>     
-                    <th>售價</th>
-                    <th>小時</th>
+                    <th class="text-right">原價</th>     
+                    <th class="text-right">售價</th>
+                    <th class="text-right">單位</th>
                     <th>功能</th>    
                 </tr>                                                                                     
             </thead>
@@ -25,7 +25,7 @@
                     <td>{{ item.title }}</td>
                     <td class="text-right">{{ item.origin_price | currency }}</td>
                     <td class="text-right">{{ item.price | currency }}</td>
-                    <td>{{ item.num }}</td>
+                    <td class="text-right">{{ item.unit }}</td>
 
                     <td>
                         <button class="btn btn-outline-primary btn-sm" @click="openModal(false,item)">編輯</button>
