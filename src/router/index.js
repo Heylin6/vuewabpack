@@ -15,6 +15,7 @@ import BackDashboard from '@/components/BackDashboard';
 import BackProducts from '@/components/BackProducts';
 import BackOrders from '@/components/BackOrders';
 import BackCustomerOrder from '@/components/BackCustomerOrder';
+import BackCustomerCheckOut from '@/components/BackCustomerCheckOut';
 
 Vue.use(VueRouter);
 
@@ -104,6 +105,11 @@ export default new VueRouter({
                     path:'customerorder',//對應的虛擬路徑
                     component:BackCustomerOrder,//對應元件       
                 },  
+                {
+                    name:'customercheckout',//呈現的名稱
+                    path:'customercheckout/:orderId',//對應的虛擬路徑
+                    component:BackCustomerCheckOut,//對應元件       
+                }, 
             ],
         },
 

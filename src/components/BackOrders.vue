@@ -6,25 +6,86 @@
         <table class="table mt-4">
             <thead>
                 <tr>
-                    <th>建立日期</th>
-                    <th>買家信箱</th>
-                    <th>買家</th>
-                    <th>總價</th>
-                    <th>買家訊息</th>     
-                    <th>是否付款</th>
-                    <th>功能</th>    
+                    <th 
+                    @click="mode='create_at',mode_sec='',isReverse=!isReverse"
+                    >購買時間
+                    <span class="icon isReverse"
+                             :class="{'inverse' : isReverse}"
+                             v-if="mode === 'create_at'"                
+                            >
+                        <i class=" fas fa-angle-up text-success"></i> 
+                    </span>
+                    </th>
+                    <th 
+                    @click="mode='user',mode_sec='name',isReverse=!isReverse"
+                    >聯絡人
+                    <span class="icon isReverse"
+                             :class="{'inverse' : isReverse}"
+                             v-if="mode === 'user' && mode_sec==='name'"                
+                            >
+                        <i class=" fas fa-angle-up text-success"></i> 
+                    </span>                    
+                    </th>
+                    <th 
+                    @click="mode='user',mode_sec='email',isReverse=!isReverse"
+                    >E-Mail
+                    <span class="icon isReverse"
+                             :class="{'inverse' : isReverse}"
+                             v-if="mode === 'user' && mode_sec==='email'"              
+                            >
+                        <i class=" fas fa-angle-up text-success"></i> 
+                    </span>
+                    </th>
+                    <th
+                    >購買款項
+                    </th>
+                    <th 
+                    @click="mode='total',mode_sec='',isReverse=!isReverse"
+                    >結帳金額
+                    <span class="icon isReverse"
+                             :class="{'inverse' : isReverse}"
+                             v-if="mode === 'total'"                
+                            >
+                        <i class=" fas fa-angle-up text-success"></i> 
+                    </span>
+                    </th>
+                    <th
+                    >買家訊息
+                    </th>     
+                    <th 
+                    @click="mode='is_paid',mode_sec='',isReverse=!isReverse"
+                    >是否付款
+                    <span class="icon isReverse"
+                             :class="{'inverse' : isReverse}"
+                             v-if="mode === 'is_paid'"                
+                            >
+                        <i class=" fas fa-angle-up text-success"></i> 
+                    </span>
+                    </th>
+                    <th
+                    >功能</th>    
                 </tr>                                                                                     
             </thead>
             <tbody>
-                <tr v-for="(item) in Orders" :key="item.id">
-                    <td>{{ item.create_at }}</td>
-                    <td>{{ item.user.email }}</td>
+                <tr v-for="(item) in sortdata" :key="item.id">
+                    <td>{{ item.create_at | date }}</td>
                     <td>{{ item.user.name }}</td>
-                    <td>{{ item.total }}</td>
+                    <td>{{ item.user.email }}</td>
+                    <th><button class="btn btn-outline-primary btn-sm" @click="openModal(item)">訂單細項</button></th>                    
+                    <td>{{ item.total | currency }}</td>
                     <td>{{ item.message }}</td>
-                    <td>{{ item.is_paid }}</td>
                     <td>
-                        <button class="btn btn-outline-primary btn-sm" @click="openModal(item)">編輯</button>
+                        <span v-if="item.is_paid" class="badge badge-success">付款完成</span>
+                        <span v-else class="badge badge-secondary">尚未付款</span>
+                        
+                    </td>
+                    <td>
+                        <!-- <button class="btn btn-outline-primary btn-sm" @click="openModal(item)">編輯</button> -->
+                        
+                        <a class="btn btn-sm" :class="btnColors(item.is_paid)" href="#" @click.prevent="gocheckout(item.id)">                                             
+                                    <span v-if="item.is_paid">查看訂單</span>
+                                    <span v-else>進行付款</span>    
+                        </a>  
                     </td>
                 </tr>
             </tbody>
@@ -79,77 +140,39 @@
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <div class="col-sm-4">
-                    </div>
-                    <div class="col-sm-8">
-                                <!-- <div class="form-group">
-                                        <label for="title">建立日期</label>
-                                        <input type="text" class="form-control" id="title"
-                                            v-model="tempOrder.title"
-                                            placeholder="請輸入標題">
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-group col-md-6">
-                                        <label for="category">分類</label>
-                                        <input type="text" class="form-control" id="category"
-                                        v-model="tempOrder.category"
-                                        placeholder="請輸入分類">
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <label for="price">單位</label>
-                                        <input type="unit" class="form-control" id="unit"
-                                        v-model="tempOrder.unit"
-                                        placeholder="請輸入單位">
-                                    </div>
-                                </div>
-                                <div class="form-row">
-                                <div class="form-group col-md-6">
-                                        <label for="origin_price">原價</label>
-                                        <input type="number" class="form-control" id="origin_price"
-                                        v-model="tempProduct.origin_price"
-                                        placeholder="請輸入原價">
-                                </div>
-                                <div class="form-group col-md-6">
-                                        <label for="price">售價</label>
-                                        <input type="number" class="form-control" id="price"
-                                        v-model="tempProduct.price"
-                                        placeholder="請輸入售價">
-                                </div>
-                                </div>
-                                <hr>
-                                <div class="form-group">
-                                        <label for="description">產品描述</label>
-                                        <textarea type="text" class="form-control" id="description"
-                                            v-model="tempProduct.description"
-                                            placeholder="請輸入產品描述"></textarea>
-                                </div>
-                                <div class="form-group">
-                                        <label for="content">說明內容</label>
-                                        <textarea type="text" class="form-control" id="content"
-                                            v-model="tempProduct.content"
-                                            placeholder="請輸入產品說明內容"></textarea>
-                                </div>
-                                <div class="form-group">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox"
-                                            v-model="tempProduct.is_enabled"
-                                            :true-value="1"
-                                            :false-value="0"
-                                            id="is_enabled">
-                                            <label class="form-check-label" for="is_enabled">
-                                            是否啟用
-                                            </label>
-                                        </div>
-                                </div> -->
+
+                    <div class="col-sm-12">
+                            <table class="table">
+                            <thead>
+                                <th>品名</th>
+                                <th>數量</th>
+                                <th>單價</th>
+                            </thead>
+                            <tbody>
+                                <tr v-for="(item) in tempOrder.products" :key="item.id">
+                                    <td class="align-middle">{{item.product.category}}</td>
+                                    <td class="align-middle">{{item.qty}}/{{item.product.unit}}</td>
+                                    <td class="align-middle">{{item.final_total}}</td>                                                                    
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                <td colspan="2" class="text-right">總計</td>
+                                <td class="text-right">{{ tempOrder.total }}</td> 
+                                </tr>
+                            </tfoot>
+                            </table>
                      </div>
                 </div>                
             </div>
             <div class="modal-footer">            
+                <!-- 
                 <button type="button" class="btn btn-primary"
                 @click="updateOrder">
-                Save changes
-                </button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                儲存
+                </button> 
+                -->
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button>
             </div>
             </div>
         </div>
@@ -170,8 +193,12 @@ export default {
         return {
             Orders:[],
             tempOrder:{},
+            tempOrderProducts:{},
             pagination:{},
             isLoading:false,
+            mode:'',
+            mode_sec:'',
+            isReverse:'true',
         }
     },
     methods:{
@@ -184,10 +211,12 @@ export default {
             console.log('=========');
             console.log(response.data);
             console.log('=========');
+            
 
             vm.isLoading=false;
             vm.Orders=response.data.orders;
-            vm.pagination=response.data.pagination;
+            vm.pagination=response.data.pagination;           
+
           });
         },
         openModal(item){
@@ -195,8 +224,16 @@ export default {
             //用vue的方式開啟modal
             //傳入參數判斷新增還是修改            
             //Object.assign這寫法要估狗一下
-            this.tempOrder=Object.assign({},item);
+            this.tempOrder=Object.assign({},item);//.filter(a=>a.id==item.id)
+            this.tempOrderProducts=Object.assign({},item.products);
             this.isNew=false;
+
+            console.log('item -> ',item);
+            console.log('vm.tempOrder -> ',this.tempOrder);
+            console.log('vm.tempOrder -> id',this.tempOrder.id);
+            console.log('vm.tempOrder -> total',this.tempOrder.total);
+            
+            //console.log('vm.tempOrder -> title',vm.Orders[0].products["-LrXue5xhQshlnH0X7Ah"].product.title);
             
             $('#OrdersModal').modal('show');
         },
@@ -220,6 +257,41 @@ export default {
                 console.log('修改失敗');
             }
           });
+        },
+        gocheckout(oid){
+            const vm = this;
+            vm.$router.push(`/customercheckout/${oid}`);
+        },
+        btnColors(is_paid){
+            return is_paid ? 'btn-outline-success':'btn-outline-danger';
+        }
+    },
+    computed: {
+        sortdata:function(){
+            
+            const vm = this;
+            
+            if(vm.isReverse){               
+                return vm.Orders.sort(function (a, b) {
+                    if(vm.mode==='user'){
+                        //console.log('a[vm.mode][vm.mode_sec]',a[vm.mode][vm.mode_sec]);
+                        return ('' + a[vm.mode][vm.mode_sec]).localeCompare(b[vm.mode][vm.mode_sec]);
+                        //a[vm.mode][vm.mode_sec] - b[vm.mode][vm.mode_sec];
+                    }
+                    else{
+                        return ('' + a[vm.mode]).localeCompare(b[vm.mode]);
+                        //return a[vm.mode] - b[vm.mode];
+                    }
+                   
+                });
+            }
+            else{
+                return vm.Orders.reverse(function (a, b) {
+                    return ('' + b[vm.mode]).localeCompare(a[vm.mode]);
+                    //return b[vm.mode] - a[vm.mode];
+                });
+            }
+
         }
     },
     created() {

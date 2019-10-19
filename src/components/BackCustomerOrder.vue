@@ -380,14 +380,17 @@ export default {
             const vm = this;
             const form = vm.form;
             
-            this.$validator.validate().them((result)=>{
+            this.$validator.validate().then((result)=>{
                 if(result){
                     vm.isLoading=true;
                     this.$http.post(api,{data:form}).then((response) => {
                         console.log('=========');
                         console.log('訂單已建立',response);
                         console.log('=========');
-
+                        if(response.data.success)
+                        {
+                            vm.$router.push(`customercheckout/${response.data.orderId}`);
+                        }
                         //刪除完畢後重整購物車
                         vm.getCart();
                         vm.isLoading=false;                                    
