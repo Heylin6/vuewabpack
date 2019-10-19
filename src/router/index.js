@@ -55,16 +55,19 @@ export default new VueRouter({
                     name:'卡片1',//呈現的名稱
                     path:'',//對應的虛擬路徑
                     component:CHild1,//對應元件
+                    meta:{requiresAuth : true},
                 },        
                 {
                     name:'卡片2',//呈現的名稱
                     path:'child2',//對應的虛擬路徑
                     component:CHild2,//對應元件
+                    meta:{requiresAuth : true},
                 },
                 {
                     name:'卡片3',//呈現的名稱
                     path:'child/:id',//對應的虛擬路徑
                     component:CHild3,//對應元件
+                    meta:{requiresAuth : true},
                 },
             ],
         },
