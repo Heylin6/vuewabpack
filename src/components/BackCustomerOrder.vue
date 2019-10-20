@@ -2,9 +2,20 @@
     <div>
         <loading :active.sync="isLoading"></loading>
 
-        <Pagin @postPage="getProducts" :getpagin="pagination"></Pagin>
-        <!--產品列表畫面-->  
+        <Pagin 
+            @postPage="getProducts" 
+            :getpagin="pagination">
+        </Pagin>
+        <!--產品列表畫面-->          
+        <OrderCard 
+            @postPid="getProduct" 
+            @postCartPid="addtoCart"
+            :getordercard="products">
+        </OrderCard>
         <div class="row mt-4">
+            <!-- 
+            未元件化的card
+            <div class="row mt-4">
             <div class="col-md-4 mb-4" v-for="(item) in products" :key="item.id">
             <div class="card border-0 shadow-sm">
                 <div style="height: 150px; background-size: cover; background-position: center"
@@ -17,8 +28,7 @@
                     <a href="#" class="text-dark">{{ item.title }}</a>
                 </h5>
                 <p class="card-text">{{ item.description }}</p>
-                <div class="d-flex justify-content-between align-items-baseline">
-                    <!-- <div class="h5">2,800 元</div> -->
+                <div class="d-flex justify-content-between align-items-baseline">                
                     <del class="h6">原價 {{ item.origin_price | currency }} 元</del>
                     <div class="h5">現在只要 {{ item.price | currency }} 元</div>
                 </div>
@@ -37,8 +47,10 @@
                 </button>
                 </div>
             </div>
+            </div> 
             </div>
-        </div> 
+            -->
+        </div>
         <!--產品列表畫面-->               
         <!--產品內容畫面--> 
          <div class="modal fade" id="productModal" tabindex="-1" role="dialog"
@@ -223,10 +235,11 @@
 <script>
 import $ from 'jquery';
 import Pagin from './Pagin';
+import OrderCard from './OrderCard';
 
 export default {
     components: {
-        Pagin
+        Pagin,OrderCard
     },
     data(){
         return {
