@@ -12,7 +12,7 @@
             @postCartPid="addtoCart"
             :getordercard="products">
         </OrderCard>
-
+        <div class="row mt-4">
             <!-- 
             未元件化的card
             <div class="row mt-4">
@@ -50,7 +50,7 @@
             </div>
             </div>
             --> 
-            
+        </div>
         <!--產品列表畫面-->               
         <!--產品內容畫面--> 
          <div class="modal fade" id="productModal" tabindex="-1" role="dialog"
