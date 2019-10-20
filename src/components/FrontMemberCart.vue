@@ -389,7 +389,7 @@ export default {
                         console.log('=========');
                         if(response.data.success)
                         {
-                            vm.$router.push(`customercheckout/${response.data.orderId}`);
+                            vm.$router.push(`membercheckout/${response.data.orderId}`);
                         }
                         //刪除完畢後重整購物車
                         vm.getCart();

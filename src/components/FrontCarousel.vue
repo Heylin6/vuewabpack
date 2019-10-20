@@ -6,33 +6,51 @@
                 <li data-target="#myCarousel" data-slide-to="2"></li>
             </ol>
             <div class="carousel-inner">
-                <div class="carousel-item active">
-                <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"><rect width="100%" height="100%" fill="#777"/></svg>
+                <div class="carousel-item active" >
+                <img class="bd-placeholder-img" height="100%" src="https://images.unsplash.com/photo-1464207687429-7505649dae38?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1903&&h=512&q=80" alt="xmas_orchestra">
+                <svg class="bd-placeholder-img" width="100%" height="100%" 
+                        xmlns="http://www.w3.org/2000/svg" 
+                        preserveAspectRatio="xMidYMid slice" focusable="false" role="img"><rect width="100%" height="100%" fill="#777"/></svg>
                 <div class="container">
                     <div class="carousel-caption text-left">
-                    <h1>Example headline.</h1>
+                    <h1 style="font-size:1.2cm;font-weight:bold;">一同成長</h1>
                     <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                    <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>
+                    <p>
+                        <router-link class="btn btn-lg btn-primary" to="/membercart" > 
+                         查看詳情
+                        </router-link>                        
+                    </p>
                     </div>
                 </div>
                 </div>
                 <div class="carousel-item">
-                <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"><rect width="100%" height="100%" fill="#777"/></svg>
+                <img class="bd-placeholder-img" height="100%" src="https://images.unsplash.com/photo-1486589503730-6b8cb43a2d71?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1903&h=512&q=80" alt="xmas_orchestra">
+                <svg class="bd-placeholder-img" width="100%" height="100%" 
+                        xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"><rect width="100%" height="100%" fill="#777"/></svg>
                 <div class="container">
                     <div class="carousel-caption">
-                    <h1>Another example headline.</h1>
+                    <h1 style="font-size:1.2cm;font-weight:bold;">人生催燦的當下</h1>
                     <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                    <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
+                    <p>
+                        <router-link class="btn btn-lg btn-primary" to="/membercart" > 
+                         查看詳情
+                        </router-link>                        
+                    </p>
                     </div>
                 </div>
                 </div>
                 <div class="carousel-item">
+                <img class="bd-placeholder-img" height="100%" src="https://images.unsplash.com/photo-1537365587684-f490102e1225?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1903&h=512&q=80" alt="xmas_orchestra">
                 <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"><rect width="100%" height="100%" fill="#777"/></svg>
                 <div class="container">
                     <div class="carousel-caption text-right">
-                    <h1>One more for good measure.</h1>
+                    <h1 style="font-size:1.2cm;font-weight:bold;">無可取代的羈絆</h1>
                     <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                    <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
+                     <p>
+                        <router-link class="btn btn-lg btn-primary" to="/membercart" > 
+                         我想知道
+                        </router-link>                        
+                    </p>
                     </div>
                 </div>
                 </div>

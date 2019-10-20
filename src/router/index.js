@@ -19,6 +19,10 @@ import BackCustomerOrder from '@/components/BackCustomerOrder';
 import BackCustomerCheckOut from '@/components/BackCustomerCheckOut';
 
 import FrontMarketing from '@/components/FrontMarketing';
+import FrontMemberCart from '@/components/FrontMemberCart';
+import FrontTeacher from '@/components/FrontTeacher';
+import FrontDivider from '@/components/FrontDivider';
+import FrontMemberCheckOut from '@/components/FrontMemberCheckOut';
 
 Vue.use(VueRouter);
 
@@ -38,6 +42,31 @@ export default new VueRouter({
                     path:'',//對應的虛擬路徑
                     component:FrontMarketing,//對應元件      
                 },
+                // {
+                //     name:'陣容師資',//呈現的名稱
+                //     path:'/trainer',//對應的虛擬路徑
+                //     component:FrontTeacher,//對應元件      
+                // },
+                // {
+                //     name:'提供內容',//呈現的名稱
+                //     path:'/divider',//對應的虛擬路徑
+                //     component:FrontDivider,//對應元件      
+                // },
+                {
+                    name:'前台會員購物車',//呈現的名稱
+                    path:'membercart',//對應的虛擬路徑
+                    component:FrontMemberCart,//對應元件      
+                },
+                {
+                    name:'前台會員購物細項',//呈現的名稱
+                    path:'membercart/:productid',//對應的虛擬路徑
+                    component:FrontMarketing,//對應元件      
+                },
+                {
+                    name:'前台會員結帳',//呈現的名稱
+                    path:'membercheckout/:orderId',//對應的虛擬路徑
+                    component:FrontMemberCheckOut,//對應元件      
+                },
             ],            
         },
         {
@@ -49,6 +78,31 @@ export default new VueRouter({
                     name:'首頁',//呈現的名稱
                     path:'',//對應的虛擬路徑
                     component:FrontMarketing,//對應元件       
+                },
+                // {
+                //     name:'陣容師資',//呈現的名稱
+                //     path:'/trainer',//對應的虛擬路徑
+                //     component:FrontTeacher,//對應元件      
+                // },
+                // {
+                //     name:'提供內容',//呈現的名稱
+                //     path:'/divider',//對應的虛擬路徑
+                //     component:FrontDivider,//對應元件      
+                // },
+                {
+                    name:'前台會員購物車',//呈現的名稱
+                    path:'membercart',//對應的虛擬路徑
+                    component:FrontMemberCart,//對應元件      
+                },
+                {
+                    name:'前台會員購物細項',//呈現的名稱
+                    path:'membercart/:productid',//對應的虛擬路徑
+                    component:FrontMarketing,//對應元件      
+                },
+                {
+                    name:'前台會員結帳',//呈現的名稱
+                    path:'membercheckout/:orderId',//對應的虛擬路徑
+                    component:FrontMemberCheckOut,//對應元件      
                 },
             ],            
         },

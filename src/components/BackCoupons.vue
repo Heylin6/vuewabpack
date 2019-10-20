@@ -20,14 +20,14 @@
                 <tr v-for="(item) in coupons" :key="item.id">
                     <td>{{ item.title }}</td>
                     <td class="text-right">{{ item.percent }}</td>
-                    <td>{{ item.due_date | date }}</td>
+                    <td>{{ item.due_date }}</td>
                     <td>
                         <span v-if="item.is_enabled === 1" class="text-success">啟用</span>
                         <span v-else class="text-muted">未起用</span>
                     </td>
                     <td>
                         <button class="btn btn-outline-primary btn-sm" @click="openModal(false,item)">編輯</button>
-                        <button class="btn btn-outline-danger btn-sm" @click="deleteProduct(item)">刪除</button>
+                        <!-- <button class="btn btn-outline-danger btn-sm" @click="deleteCoupons(item)">刪除</button> -->
                     </td>
                 </tr>
             </tbody>
@@ -104,8 +104,9 @@
                                 </div>
                                 <div class="form-group">
                                 <label for="price">折扣百分比</label>
-                                <input type="number" class="form-control" id="price"
-                                    v-model="tempCoupon.percent" placeholder="請輸入折扣百分比">
+                                <input type="number" class="form-control" id="price" min="1"
+                                    v-model="tempCoupon.percent" 
+                                    placeholder="請輸入折扣百分比">
                                 </div>
                                 <hr>
                                 <div class="form-group">
@@ -171,7 +172,7 @@ export default {
             console.log('=========');
 
             vm.isLoading=false;
-            vm.coupons=response.data.products;
+            vm.coupons=response.data.coupons;
             vm.pagination=response.data.pagination;
           });
         },
@@ -193,14 +194,16 @@ export default {
         updateCoupon() {
             const vm = this;
             if (vm.isNew) {
-                const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/admin/coupon`;
+                //const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/admin/coupon`;
+                const url ='https://vue-course-api.hexschool.io/api/heylin/admin/coupon';
                 this.$http.post(url, { data: vm.tempCoupon }).then((response) => {
                 console.log(response, vm.tempCoupon);
                 $('#couponModal').modal('hide');
                 this.getCoupons();
                 });
             } else {
-                const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/admin/coupon/${vm.tempCoupon.id}`;
+                //const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/admin/coupon/${vm.tempCoupon.id}`;
+                const url = `https://vue-course-api.hexschool.io/api/heylin/admin/coupon/${vm.tempCoupon.id}`;
                 vm.due_date = new Date(vm.tempCoupon.due_date * 1000);
                 this.$http.put(url, { data: vm.tempCoupon }).then((response) => {
                 console.log(response);

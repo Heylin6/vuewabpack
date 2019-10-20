@@ -9,25 +9,40 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                <a class="nav-link" href="#">首頁 <span class="sr-only">(current)</span></a>
+                  <router-link class="nav-link" to="/" > 
+                         首頁
+                  </router-link>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link" href="#trainer">陣容師資</a>
+                 <a class="nav-link" href="#">            
+                  <router-link to="/" > 
+                         陣容師資
+                  </router-link>
+                </a>  
                 </li>
                 <li class="nav-item">
-                <a class="nav-link" href="#divider">提供內容</a>
+                <a class="nav-link" href="#">            
+                  <router-link to="/" > 
+                         提供內容
+                  </router-link>
+                </a>   
+                
                 </li>                               
                 <li class="nav-item">
-                <a class="nav-link" href="#">項目購買</a>
+                <a class="nav-link" href="#">            
+                  <router-link to="/membercart" > 
+                         項目購買
+                  </router-link>
+                </a>    
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                 <a class="nav-link" href="#">會員登入</a>
-                </li>            
+                </li>             -->
             </ul>
-            <form class="form-inline mt-2 mt-md-0">
+            <!-- <form class="form-inline mt-2 mt-md-0">
                 <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>
+            </form> -->
             </div>
         </nav>
     </div>
