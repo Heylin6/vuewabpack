@@ -1,4 +1,6 @@
 <template>
+    <div id="trainer" 
+         class="frontpadding">
          <!-- Three columns of text below the carousel -->
           <div class="row">
             <div class="col-lg-4">
@@ -20,4 +22,5 @@
               <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
             </div><!-- /.col-lg-4 -->
           </div><!-- /.row -->
+    </div>
 </template>

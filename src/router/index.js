@@ -18,6 +18,8 @@ import BackCoupons from '@/components/BackCoupons';
 import BackCustomerOrder from '@/components/BackCustomerOrder';
 import BackCustomerCheckOut from '@/components/BackCustomerCheckOut';
 
+import FrontMarketing from '@/components/FrontMarketing';
+
 Vue.use(VueRouter);
 
 export default new VueRouter({
@@ -28,14 +30,27 @@ export default new VueRouter({
         },
         {
             name:'首頁',//呈現的名稱
-            path:'/',//對應的虛擬路徑
+            path:'/index',//對應的虛擬路徑
             component:FrontIndex,//對應元件
-            meta:{requiresAuth : true},
+            children:[
+                {
+                    name:'首頁',//呈現的名稱
+                    path:'',//對應的虛擬路徑
+                    component:FrontMarketing,//對應元件      
+                },
+            ],            
         },
         {
             name:'首頁',//呈現的名稱
-            path:'/index',//對應的虛擬路徑
-            component:FrontIndex,//對應元件            
+            path:'',//對應的虛擬路徑
+            component:FrontIndex,//對應元件
+            children:[
+                {
+                    name:'首頁',//呈現的名稱
+                    path:'',//對應的虛擬路徑
+                    component:FrontMarketing,//對應元件       
+                },
+            ],            
         },
         {
             name:'login',//呈現的名稱

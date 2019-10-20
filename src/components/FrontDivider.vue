@@ -1,5 +1,6 @@
 <template>
-    <div>
+    <div id="divider"
+         class="frontpadding">
            <div class="row featurette">
             <div class="col-md-7">
               <h2 class="featurette-heading">First featurette heading. <span class="text-muted">It’ll blow your mind.</span></h2>

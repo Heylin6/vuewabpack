@@ -12,23 +12,17 @@
                 <a class="nav-link" href="#">首頁 <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link" href="#">陣容師資</a>
+                <a class="nav-link" href="#trainer">陣容師資</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link" href="#">提供內容</a>
+                <a class="nav-link" href="#divider">提供內容</a>
                 </li>                               
                 <li class="nav-item">
                 <a class="nav-link" href="#">項目購買</a>
                 </li>
                 <li class="nav-item">
                 <a class="nav-link" href="#">會員登入</a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link" href="#">企業會員登入</a>
-                </li>               
-                <li class="nav-item">
-                <a class="nav-link disabled" href="#">Disabled</a>
-                </li>
+                </li>            
             </ul>
             <form class="form-inline mt-2 mt-md-0">
                 <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
