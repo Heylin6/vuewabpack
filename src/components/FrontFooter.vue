@@ -2,7 +2,7 @@
     <div>
          <footer class="container">
           <p class="float-right"><a href="#">Back to top</a></p>
-          <p>&copy; 2017-2019 Company, Inc. &middot; <a href="#">Privacy</a> 
+          <p>&copy; 2017-2019 Company, Inc. 
           &middot; 
             <a href="#">
                <router-link to="/login" >                     
@@ -11,6 +11,11 @@
                </router-link>
               
             </a>
+          &middot; 
+          <a href="https://github.com/Heylin6/vuewabpack" 
+              target="_blank">
+              github原始碼
+          </a>
           </p>
         </footer>
     </div>
