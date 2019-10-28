@@ -1,0 +1,28 @@
+{
+    "data":{
+        "devide":
+        [
+            {   
+                "id":1,
+                "heading": "探索真實的自我",
+                "content": "Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.",
+                "img":"https://images.unsplash.com/19/nomad.JPG?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=688&q=80",
+                "position":" -5px -40px"
+            },
+            {
+                "id":2,
+                "heading": "你也是優秀的分享者",
+                "content": "Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.",
+                "img":"https://images.unsplash.com/photo-1528605105345-5344ea20e269?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80",
+                "position":" -385px -20px"
+            },
+            {
+                "id":3,
+                "heading": "發掘內在的無限可能",
+                "content": "Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.",
+                "img":"https://images.unsplash.com/photo-1495767771383-e68aa78249f5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=749&q=80",
+                "position":" -143px -21px"
+            }
+        ]
+    }
+}

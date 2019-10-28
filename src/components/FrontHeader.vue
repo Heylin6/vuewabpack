@@ -72,3 +72,11 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+
+#navbarCollapse > ul > li > a > a {
+  color:white;
+}
+
+</style>

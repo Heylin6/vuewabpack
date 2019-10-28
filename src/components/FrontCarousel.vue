@@ -14,7 +14,7 @@
                 <div class="container">
                     <div class="carousel-caption text-left">
                     <h1 style="font-size:1.2cm;font-weight:bold;">一同成長</h1>
-                    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                    <p>人生的道路上有你有我 , 從發芽到茁壯 , 從青澀到成熟</p>
                     <p>
                         <router-link class="btn btn-lg btn-primary" to="/membercart" > 
                          查看詳情
@@ -30,7 +30,7 @@
                 <div class="container">
                     <div class="carousel-caption">
                     <h1 style="font-size:1.2cm;font-weight:bold;">人生催燦的當下</h1>
-                    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                    <p>讓你的努力成為往後人生的刻印 , 記錄下在人生中有輝煌而值得品味的一刻</p>
                     <p>
                         <router-link class="btn btn-lg btn-primary" to="/membercart" > 
                          查看詳情
@@ -45,7 +45,7 @@
                 <div class="container">
                     <div class="carousel-caption text-right">
                     <h1 style="font-size:1.2cm;font-weight:bold;">無可取代的羈絆</h1>
-                    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                    <p>與夥伴一同學習 , 一同面對 , 一同分享這當中的笑與淚</p>
                      <p>
                         <router-link class="btn btn-lg btn-primary" to="/membercart" > 
                          我想知道
@@ -65,3 +65,18 @@
             </a>
         </div>
 </template>
+
+<script>
+import $ from 'jquery';
+
+export default {
+    components: {
+        
+    },
+    data(){
+        return {
+            Carousels:[],
+        }
+    },
+}
+</script>
