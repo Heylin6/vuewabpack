@@ -13,7 +13,7 @@
                          首頁
                   </router-link>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                  <a class="nav-link" href="#">            
                   <router-link to="/" > 
                          陣容師資
@@ -27,7 +27,7 @@
                   </router-link>
                 </a>   
                 
-                </li>                               
+                </li>                                -->
                 <li class="nav-item">
                 <a class="nav-link" href="#">            
                   <router-link to="/membercart" > 
