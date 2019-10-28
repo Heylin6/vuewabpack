@@ -1,0 +1,35 @@
+{
+    "data":{
+        "user":        
+            {
+                "name":"admin",
+                "logintime":""
+            }
+        ,
+        "modules":
+        [
+            {   
+                "id":1,
+                "name":"產品列表",
+                "url":"/admin/orders"
+            },
+            {
+                "id":2,
+                "name":"訂單列表",
+                "url":"/admin/orders"
+            },
+            {
+                "id":3,
+                "name":"優惠券列表",
+                "url":"/admin/coupons"
+            }
+        ],
+        "simulations":[
+            {
+                "id":1,
+                "name":"模擬訂單",
+                "url":"/customerorder"
+            }
+        ]
+    }
+}

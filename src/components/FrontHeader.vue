@@ -50,7 +50,7 @@
 
 <script>
 export default {
-  name: 'BackSidebar',
+  name: 'FrontHeader',
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'

@@ -20,8 +20,6 @@ import BackCustomerCheckOut from '@/components/BackCustomerCheckOut';
 
 import FrontMarketing from '@/components/FrontMarketing';
 import FrontMemberCart from '@/components/FrontMemberCart';
-import FrontTeacher from '@/components/FrontTeacher';
-import FrontDivider from '@/components/FrontDivider';
 import FrontMemberCheckOut from '@/components/FrontMemberCheckOut';
 
 Vue.use(VueRouter);
