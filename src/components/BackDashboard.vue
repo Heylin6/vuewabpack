@@ -6,8 +6,7 @@
 <Alert></Alert>
 <div class="container-fluid">
   <div class="row">  
-    <BackSidebar :getmodules="modules" 
-                 :getsimulations="simulations"/>
+    <BackSidebar :getpermissionmodules="PermissionModules" />
     <main role="main" 
           class="col-md-9 ml-sm-auto col-lg-10 px-4">
         <router-view></router-view>
@@ -34,21 +33,19 @@ export default {
     data(){
         return {
             user:{},
-            modules:{},
-            simulations:{}
+            PermissionModules:{}
+            
         }
     },
     methods:{
         getuser(){
             this.user=BackUser.data.user;
-            this.modules=BackUser.data.modules;
-            this.simulations=BackUser.data.simulations;
-            console.log('user : ',this.user);
-            console.log('modules : ',this.modules);
-            console.log('simulations : ',this.simulations);
+            this.PermissionModules=BackUser.data;
+            console.log('userdata : ',this.userdata);
+
         }
     },
-    create(){
+    created(){
         this.getuser();       
     }
 }

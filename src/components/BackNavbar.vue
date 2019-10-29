@@ -3,7 +3,9 @@
        <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
             <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Company name</a>
             <!-- <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search"> -->
-            <span class="navbar-brand col-sm-9 text-right">{{getuser}} , 您好!</span>
+              <span class="navbar-brand col-sm-9 text-right">
+                  {{getuser.name}} , 您好!
+              </span>
             <ul class="navbar-nav px-3">               
                 <li class="nav-item text-nowrap">
                     <a class="nav-link"
@@ -18,11 +20,11 @@
 
 <script>
 export default {
-  name: 'BackSidebar',
+  name: 'BackNavbar',
   props:['getuser'],
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+     
     }
   },
   methods:{

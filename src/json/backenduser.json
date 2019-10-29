@@ -11,24 +11,28 @@
             {   
                 "id":1,
                 "name":"產品列表",
-                "url":"/admin/orders"
+                "url":"/admin/products",
+                "icon":"fab fa-product-hunt"
             },
             {
                 "id":2,
                 "name":"訂單列表",
-                "url":"/admin/orders"
+                "url":"/admin/orders",
+                "icon":"fas fa-border-style"
             },
             {
                 "id":3,
                 "name":"優惠券列表",
-                "url":"/admin/coupons"
+                "url":"/admin/coupons",
+                "icon":"fab fa-cuttlefish"
             }
         ],
         "simulations":[
             {
                 "id":1,
                 "name":"模擬訂單",
-                "url":"/customerorder"
+                "url":"/customerorder",
+                "icon":"fas fa-shopping-cart"
             }
         ]
     }

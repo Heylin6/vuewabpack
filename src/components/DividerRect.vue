@@ -5,7 +5,10 @@
                   <div class="col-md-7" 
                       :class="{'order-md-2' : item.id % 2 == 0}">
                     <h2 class="featurette-heading"> <span class="text-muted">{{ item.heading }}</span></h2>
-                    <p class="lead">{{ item.content }}</p>
+                    <p class="lead">
+                      <br>
+                      {{ item.content }}
+                    </p>
                   </div>
                 <div class="col-md-5"
                     :class="{'order-md-1' : item.id % 2 == 0}">

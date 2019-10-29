@@ -1,6 +1,6 @@
 <template>
     <div id="divider"
-         class="frontpadding">
+         class="frontpadding">            
             <DividerRect :getdividers="Dividers"></DividerRect>
     </div>    
 </template>

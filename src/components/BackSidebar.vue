@@ -9,32 +9,16 @@
           </a>
         </h6>
         <ul class="nav flex-column">
-          <li class="nav-item">
+          <li v-for="(item) in getuserdata.modules" 
+              :key="item.id" 
+               class="nav-item">
             <a class="nav-link active" href="#">
-               <router-link class="nav-link" to="/admin/products" >
-                     <i class="fab fa-product-hunt"></i>
+               <router-link class="nav-link" :to="item.url" >
+                     <i :class="item.icon"></i>
                      <span data-feather="file-text"></span>
-                      產品列表
+                      {{item.name}}
                </router-link>
             </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">            
-               <router-link class="nav-link" to="/admin/orders" >
-                     <i class="fas fa-border-style"></i>
-                     <span data-feather="file-text"></span>
-                      訂單列表
-               </router-link>
-             </a>              
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">            
-               <router-link class="nav-link" to="/admin/coupons" >
-                     <i class="fab fa-cuttlefish"></i>                     
-                     <span data-feather="file-text"></span>
-                      優惠券列表
-               </router-link>
-             </a>              
           </li>
         </ul>
 
@@ -44,18 +28,32 @@
             <span data-feather="plus-circle"></span>
           </a>
         </h6>
-        <ul class="nav flex-column mb-2">
-          <li class="nav-item">
+         <ul class="nav flex-column mb-2">
+          <li v-for="(item) in getuserdata.simulations" 
+              :key="item.id" 
+               class="nav-item">
             <a class="nav-link" href="#">
-               <router-link class="nav-link" to="/customerorder" >
-                      <i class="fas fa-shopping-cart"></i>
+               <router-link class="nav-link" :to="item.url">
+                      <i :class="item.icon"></i>
                      <span data-feather="file-text"></span>
-                      模擬訂單
+                      {{item.name}}
                </router-link>
             </a>
-          </li>        
+          </li>  
         </ul>
       </div>
     </nav>
     </div>
 </template>
+
+<script>
+export default {
+  name: 'BackSidebar',
+  props:['getpermissionmodules'],
+  data () {
+    return {
+     
+    }
+  }
+}
+</script>
