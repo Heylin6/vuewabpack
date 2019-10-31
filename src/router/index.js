@@ -22,6 +22,8 @@ import FrontMarketing       from '@/components/frontend/pages/FrontMarketing';
 import FrontMemberCart      from '@/components/frontend/pages/FrontMemberCart';
 import FrontMemberCheckOut  from '@/components/frontend/pages/FrontMemberCheckOut';
 import FrontCart            from '@/components/frontend/pages/FrontCart';
+import FrontTeacherDetail   from '@/components/frontend/pages/FrontTeacherDetail';
+import FrontContactUs       from '@/components/frontend/pages/FrontContactUs'; 
 
 
 Vue.use(VueRouter);
@@ -47,11 +49,21 @@ export default new VueRouter({
                 //     path:'/trainer',//對應的虛擬路徑
                 //     component:FrontTeacher,//對應元件      
                 // },
+                {
+                    name:'陣容師資',//呈現的名稱
+                    path:'trainer/:id',//對應的虛擬路徑
+                    component:FrontTeacherDetail,//對應元件      
+                },                
                 // {
                 //     name:'提供內容',//呈現的名稱
                 //     path:'/divider',//對應的虛擬路徑
                 //     component:FrontDivider,//對應元件      
                 // },
+                {
+                    name:'聯絡我們',//呈現的名稱
+                    path:'contactus',//對應的虛擬路徑
+                    component:FrontContactUs,//對應元件      
+                },
                 {
                     name:'前台會員購物車',//呈現的名稱
                     path:'fcart',//對應的虛擬路徑
@@ -89,11 +101,21 @@ export default new VueRouter({
                 //     path:'/trainer',//對應的虛擬路徑
                 //     component:FrontTeacher,//對應元件      
                 // },
+                {
+                    name:'陣容師資',//呈現的名稱
+                    path:'/trainer/:id',//對應的虛擬路徑
+                    component:FrontTeacherDetail,//對應元件      
+                },
                 // {
                 //     name:'提供內容',//呈現的名稱
                 //     path:'/divider',//對應的虛擬路徑
                 //     component:FrontDivider,//對應元件      
                 // },
+                {
+                    name:'聯絡我們',//呈現的名稱
+                    path:'contactus',//對應的虛擬路徑
+                    component:FrontContactUs,//對應元件      
+                },
                 {
                     name:'前台會員購物車',//呈現的名稱
                     path:'fcart',//對應的虛擬路徑

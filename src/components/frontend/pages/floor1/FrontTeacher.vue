@@ -21,8 +21,7 @@ export default {
         }
     },
     methods:{
-        getTeachers(){
-          
+        getTeachers(){          
            this.Teachers=teachers.data.teacher;
           // this.$http.get('../json/divide.json').then(response => {
           //     console.log("json資料為:" + response);

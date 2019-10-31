@@ -37,7 +37,7 @@
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="#">            
-                    <router-link to="/" > 
+                    <router-link to="/contactus" > 
                           聯絡我們
                     </router-link>
                   </a>    

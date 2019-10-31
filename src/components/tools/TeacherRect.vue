@@ -7,8 +7,10 @@
                         :alt="item.heading">
                   <h2>{{ item.heading }}</h2>
                   <p>{{ item.content }}</p>
-                  <p>
-                      <a class="btn btn-heylin" href="#" role="button">查看詳情 &raquo;</a>
+                  <p>                     
+                      <router-link class="btn btn-heylin" :to="'/trainer/'+item.id">
+                            查看詳情 &raquo;
+                      </router-link>                   
                   </p>
          </div>
     </div>
