@@ -1,27 +1,38 @@
 <template>
     <div>
-        <form class="form-signin" @submit.prevent="signin">
+        <form class="form-signin" 
+              @submit.prevent="signin">
                 <div class="text-center mb-4">
-                    <h1 class="h3 mb-3 font-weight-normal">Floating labels</h1>
-                    <p>Build form controls with floating labels via the <code>:placeholder-shown</code> pseudo-element. <a href="https://caniuse.com/#feat=css-placeholder-shown">Works in latest Chrome, Safari, and Firefox.</a></p>
+                    <h1 class="h3 mb-3 font-weight-normal">後台登入介面</h1>
+                    <p></p>
                 </div>
 
                 <div class="form-label-group">
-                    <input type="email" id="inputEmail" class="form-control" placeholder="Email address" v-model="user.username" required autofocus>
+                    <input type="email" 
+                            id="inputEmail" 
+                            class="form-control" 
+                            placeholder="Email address" 
+                            v-model="user.username" 
+                            required autofocus>
                     <label for="inputEmail">Email address</label>
                 </div>
 
                 <div class="form-label-group">
-                    <input type="password" id="inputPassword" class="form-control" placeholder="Password" v-model="user.password" required>
+                    <input type="password" 
+                            id="inputPassword" 
+                            class="form-control" 
+                            placeholder="Password" 
+                            v-model="user.password" 
+                            required>
                     <label for="inputPassword">Password</label>
                 </div>
 
                 <div class="checkbox mb-3">
                     <label>
-                    <input type="checkbox" value="remember-me"> Remember me
+                    <input type="checkbox" value="remember-me"> 記得我
                     </label>
                 </div>
-                <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">登入</button>
                 <p class="mt-5 mb-3 text-muted text-center">&copy; 2017-2019</p>
         </form>
     </div>

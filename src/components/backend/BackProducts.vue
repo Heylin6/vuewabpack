@@ -185,7 +185,7 @@
 
 <script>
 import $ from 'jquery';
-import Pagin from './tools/Pagin';
+import Pagin from '../tools/Pagin';
 
 export default {
     components: {

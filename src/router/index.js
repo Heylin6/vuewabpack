@@ -3,26 +3,25 @@ import VueRouter from 'vue-router';
 //官方文件
 
 
+import Page                 from '@/components/pages/Page';
+import Menu                 from '@/components/pages/Menu';
+import CHild1               from '@/components/pages/Child';
+import CHild2               from '@/components/pages/Child2';
+import CHild3               from '@/components/pages/Child3';
 
-import Page from '@/components/pages/Page';
-import Menu  from '@/components/pages/Menu';
-import CHild1 from '@/components/pages/Child';
-import CHild2 from '@/components/pages/Child2';
-import CHild3 from '@/components/pages/Child3';
+import BackLogin            from '@/components/backend/BackLogin';
+import BackDashboard        from '@/components/backend/BackDashboard';
+import BackProducts         from '@/components/backend/BackProducts';
+import BackOrders           from '@/components/backend/BackOrders';
+import BackCoupons          from '@/components/backend/BackCoupons';
+import BackCustomerOrder    from '@/components/backend/BackCustomerOrder';
+import BackCustomerCheckOut from '@/components/backend/BackCustomerCheckOut';
 
-import BackLogin from '@/components/pages/BackLogin';
-import BackDashboard from '@/components/BackDashboard';
-import BackProducts from '@/components/BackProducts';
-import BackOrders from '@/components/BackOrders';
-import BackCoupons from '@/components/BackCoupons';
-import BackCustomerOrder from '@/components/BackCustomerOrder';
-import BackCustomerCheckOut from '@/components/BackCustomerCheckOut';
-
-import FrontIndex from '@/components/frontend/FrontIndex';
-import FrontMarketing from '@/components/frontend/FrontMarketing';
-import FrontMemberCart from '@/components/frontend/FrontMemberCart';
-import FrontMemberCheckOut from '@/components/frontend/FrontMemberCheckOut';
-import FrontCart from '@/components/frontend/FrontCart';
+import FrontIndex           from '@/components/frontend/FrontIndex';
+import FrontMarketing       from '@/components/frontend/pages/FrontMarketing';
+import FrontMemberCart      from '@/components/frontend/pages/FrontMemberCart';
+import FrontMemberCheckOut  from '@/components/frontend/pages/FrontMemberCheckOut';
+import FrontCart            from '@/components/frontend/pages/FrontCart';
 
 
 Vue.use(VueRouter);

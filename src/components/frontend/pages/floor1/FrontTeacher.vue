@@ -1,13 +1,15 @@
 <template>
+    <!-- from FrontMarketing -->
+    <!-- 師資陣容 -->
     <div id="trainer" 
-         class="frontpadding">
+         class="container frontpadding">
             <TeacherRect :getteachers="Teachers"></TeacherRect>
     </div>
 </template>
 <script>
 import $ from 'jquery';
-import teachers from '../../json/teacher.json';
-import TeacherRect from '../tools/TeacherRect';
+import teachers from '../../../../json/teacher.json';
+import TeacherRect from '../../../tools/TeacherRect';
 
 export default {
     components: {

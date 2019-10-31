@@ -1,14 +1,16 @@
 <template>
+    <!-- from FrontMarketing -->
+    <!-- 聽我吹牛 -->
     <div id="divider"
-         class="frontpadding">            
+         class="container frontpadding">            
             <DividerRect :getdividers="Dividers"></DividerRect>
     </div>    
 </template>
 
 <script>
 import $ from 'jquery';
-import deviders from '../../json/divide.json';
-import DividerRect from '../tools//DividerRect';
+import deviders from '../../../../json/divide.json';
+import DividerRect from '../../../tools//DividerRect';
 
 export default {
     components: {

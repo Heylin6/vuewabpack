@@ -92,9 +92,9 @@
 </template>
 
 <script>
-import $ from 'jquery';
-import Pagin from '../tools/Pagin';
-import OrderCard from '../tools/OrderCard';
+import $            from 'jquery';
+import Pagin        from '../../tools/Pagin';
+import OrderCard    from '../../tools/OrderCard';
 
 export default {
     components: {
