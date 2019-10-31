@@ -2,8 +2,8 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 //官方文件
 
-import FrontIndex from '@/components/FrontIndex';
-//import FrontHeader from '@/components/FrontHeader';
+
+
 import Page from '@/components/pages/Page';
 import Menu  from '@/components/pages/Menu';
 import CHild1 from '@/components/pages/Child';
@@ -18,9 +18,12 @@ import BackCoupons from '@/components/BackCoupons';
 import BackCustomerOrder from '@/components/BackCustomerOrder';
 import BackCustomerCheckOut from '@/components/BackCustomerCheckOut';
 
-import FrontMarketing from '@/components/FrontMarketing';
-import FrontMemberCart from '@/components/FrontMemberCart';
-import FrontMemberCheckOut from '@/components/FrontMemberCheckOut';
+import FrontIndex from '@/components/frontend/FrontIndex';
+import FrontMarketing from '@/components/frontend/FrontMarketing';
+import FrontMemberCart from '@/components/frontend/FrontMemberCart';
+import FrontMemberCheckOut from '@/components/frontend/FrontMemberCheckOut';
+import FrontCart from '@/components/frontend/FrontCart';
+
 
 Vue.use(VueRouter);
 
@@ -50,6 +53,11 @@ export default new VueRouter({
                 //     path:'/divider',//對應的虛擬路徑
                 //     component:FrontDivider,//對應元件      
                 // },
+                {
+                    name:'前台會員購物車',//呈現的名稱
+                    path:'fcart',//對應的虛擬路徑
+                    component:FrontCart,//對應元件      
+                },
                 {
                     name:'前台會員購物車',//呈現的名稱
                     path:'membercart',//對應的虛擬路徑
@@ -87,6 +95,11 @@ export default new VueRouter({
                 //     path:'/divider',//對應的虛擬路徑
                 //     component:FrontDivider,//對應元件      
                 // },
+                {
+                    name:'前台會員購物車',//呈現的名稱
+                    path:'fcart',//對應的虛擬路徑
+                    component:FrontCart,//對應元件      
+                },               
                 {
                     name:'前台會員購物車',//呈現的名稱
                     path:'membercart',//對應的虛擬路徑

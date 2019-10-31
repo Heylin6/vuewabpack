@@ -22,7 +22,7 @@
 
 import BackNavbar from './BackNavbar';
 import BackSidebar from './BackSidebar';
-import Alert from './AlertMessage';
+import Alert from './tools/AlertMessage';
 
 import BackUser from '../json/backenduser.json';
 

@@ -16,7 +16,7 @@
                   <h2>{{ item.heading }}</h2>
                   <p>{{ item.content }}</p>
                   <p>
-                      <a class="btn btn-secondary" href="#" role="button">View details &raquo;</a>
+                      <a class="btn btn-heylin" href="#" role="button">查看詳情 &raquo;</a>
                   </p>
          </div>
 

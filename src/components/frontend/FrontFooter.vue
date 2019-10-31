@@ -1,7 +1,7 @@
 <template>
     <div>
          <footer class="container">
-          <p class="float-right"><a href="#">Back to top</a></p>
+          <p class="float-right"><a href="#">回上層</a></p>
           <p>&copy; 2017-2019 Company, Inc. 
           &middot; 
             <a href="#">

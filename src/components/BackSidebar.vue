@@ -9,7 +9,7 @@
           </a>
         </h6>
         <ul class="nav flex-column">
-          <li v-for="(item) in getuserdata.modules" 
+          <li v-for="(item) in getpermissionmodules.modules" 
               :key="item.id" 
                class="nav-item">
             <a class="nav-link active" href="#">
@@ -29,7 +29,7 @@
           </a>
         </h6>
          <ul class="nav flex-column mb-2">
-          <li v-for="(item) in getuserdata.simulations" 
+          <li v-for="(item) in getpermissionmodules.simulations" 
               :key="item.id" 
                class="nav-item">
             <a class="nav-link" href="#">

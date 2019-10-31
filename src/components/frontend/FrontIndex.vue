@@ -21,7 +21,7 @@ import FrontHeader from './FrontHeader';
 import FrontFooter from './FrontFooter';
 import FrontMarketing from './FrontMarketing';
 import FrontCarousel from './FrontCarousel';
-import Alert from './AlertMessage';
+import Alert from '../tools/AlertMessage';//'../../tools/AlertMessage';
 
 export default {
   

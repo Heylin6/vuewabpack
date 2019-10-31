@@ -26,7 +26,7 @@
                         <p>{{item.content}}</p>
                         <p>
                             <router-link 
-                                class="btn btn-lg btn-primary" 
+                                class="btn btn-lg btn-heylin" 
                                 :to="item.routerurl" > 
                             {{item.btnname}}
                             </router-link>                        
@@ -58,7 +58,7 @@
 
 <script>
 import $ from 'jquery';
-import CarouselData from '../json/carousel.json';
+import CarouselData from '../../json/carousel.json';
 
 export default {
     components: {

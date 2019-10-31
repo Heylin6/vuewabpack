@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import FrontIndex from './components/FrontIndex'
+import FrontIndex from './components/frontend/FrontIndex'
 
 export default {
   name: 'App',

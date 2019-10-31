@@ -7,8 +7,8 @@
 
 <script>
 import $ from 'jquery';
-import deviders from '../json/divide.json';
-import DividerRect from './DividerRect'
+import deviders from '../../json/divide.json';
+import DividerRect from '../tools//DividerRect';
 
 export default {
     components: {

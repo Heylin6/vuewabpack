@@ -1,7 +1,7 @@
 <template>
     <div>
-       <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-            <a class="navbar-brand" href="#">Carousel</a>
+       <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-heylin">
+            <a class="navbar-brand" href="#"><i class="fas fa-democrat"></i> L.T.K.F </a>
             <button class="navbar-toggler" type="button" 
                     data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -29,11 +29,32 @@
                 
                 </li>                                -->
                 <li class="nav-item">
-                <a class="nav-link" href="#">            
-                  <router-link to="/membercart" > 
-                         項目購買
-                  </router-link>
-                </a>    
+                  <a class="nav-link" href="#">            
+                    <router-link to="/membercart" > 
+                          項目購買
+                    </router-link>
+                  </a>    
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">            
+                    <router-link to="/" > 
+                          聯絡我們
+                    </router-link>
+                  </a>    
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">            
+                    <router-link to="/" > 
+                          行事曆
+                    </router-link>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">
+                    <router-link to="/fcart" > 
+                          <i class="fas fa-cart-arrow-down"></i>
+                    </router-link>
+                  </a>      
                 </li>
                 <!-- <li class="nav-item">
                 <a class="nav-link" href="#">會員登入</a>
