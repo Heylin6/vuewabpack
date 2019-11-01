@@ -73,7 +73,7 @@
                     </tr>
                     <tr v-if="cart.final_total !== cart.total">
                     <td colspan="3" class="text-right text-success">折扣價</td>
-                    <td class="text-right text-success"</td>
+                    <td class="text-right text-success"></td>
                     </tr>
                 </tfoot>
                 </table>

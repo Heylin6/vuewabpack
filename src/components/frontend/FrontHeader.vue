@@ -42,13 +42,13 @@
                     </router-link>
                   </a>    
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                   <a class="nav-link" href="#">            
-                    <router-link to="/" > 
+                    <router-link to="/calendar" > 
                           行事曆
                     </router-link>
                   </a>
-                </li>
+                </li> -->
                 <li class="nav-item">
                   <a class="nav-link" href="#">
                     <router-link to="/fcart" > 

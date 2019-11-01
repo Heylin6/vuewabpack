@@ -24,7 +24,7 @@ import FrontMemberCheckOut  from '@/components/frontend/pages/FrontMemberCheckOu
 import FrontCart            from '@/components/frontend/pages/FrontCart';
 import FrontTeacherDetail   from '@/components/frontend/pages/FrontTeacherDetail';
 import FrontContactUs       from '@/components/frontend/pages/FrontContactUs'; 
-
+import FrontCalendar        from '@/components/frontend/FrontCalendar'; 
 
 Vue.use(VueRouter);
 
@@ -52,8 +52,13 @@ export default new VueRouter({
                 {
                     name:'陣容師資',//呈現的名稱
                     path:'trainer/:id',//對應的虛擬路徑
-                    component:FrontTeacherDetail,//對應元件      
-                },                
+                    component:FrontTeacherDetail,//對應元件     
+                },
+                {
+                    name:'行事曆',//呈現的名稱
+                    path:'calendar',//對應的虛擬路徑
+                    component:FrontCalendar,//對應元件   
+                },                  
                 // {
                 //     name:'提供內容',//呈現的名稱
                 //     path:'/divider',//對應的虛擬路徑
@@ -106,6 +111,11 @@ export default new VueRouter({
                     path:'/trainer/:id',//對應的虛擬路徑
                     component:FrontTeacherDetail,//對應元件      
                 },
+                {
+                    name:'行事曆',//呈現的名稱
+                    path:'calendar',//對應的虛擬路徑
+                    component:FrontCalendar,//對應元件   
+                },                     
                 // {
                 //     name:'提供內容',//呈現的名稱
                 //     path:'/divider',//對應的虛擬路徑
