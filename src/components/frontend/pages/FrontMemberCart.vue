@@ -1,15 +1,19 @@
 <template>
     <div class="container">
         <loading :active.sync="isLoading"></loading>
-        <Pagin 
-            @postPage="getProducts" 
-            :getpagin="pagination">
-        </Pagin>
+        <!--產品類別畫面-->
+        <OrderItems
+            v-model="filterStr"
+            :getproductitem="productitem"
+            :getfilter="filterStr"
+            @filterChange="setfilterStr">
+        </OrderItems>
+        <!--產品類別畫面-->
         <!--產品列表畫面-->
         <OrderCard 
             @postPid="getProduct" 
             @postCartPid="addtoCart"
-            :getordercard="products">
+            :getordercard="productinit">
         </OrderCard>
         <div class="row mt-4">
         </div>
@@ -88,26 +92,40 @@
         </div>        
         <!--產品內容畫面--> 
         <Pagin @postPage="getProducts" :getpagin="pagination"></Pagin>
+        <hr class="featurette-divider">
+        <div class="container">
+            選好了嗎 結帳去
+        </div>    
     </div>    
 </template>
 
 <script>
-import $            from 'jquery';
-import Pagin        from '../../tools/Pagin';
-import OrderCard    from '../../tools/OrderCard';
+import $                from 'jquery';
+import Pagin            from '../../tools/Pagin';
+import OrderCard        from '../../tools/OrderCard';
+import OrderItems       from '../../tools/Items';
+import _productitem     from '../../../json/productsitem.json';
 
 export default {
     components: {
-        Pagin,OrderCard
+        Pagin,OrderCard,OrderItems
     },
     data(){
         return {
             //購買數量
             buynum:1,
+            //搜尋字串
+            filterStr:'all',
+             //暫存產品列表
+            tempproducts:[],           
+            //所有產品列表
+            allproducts:[],          
             //產品列表
             products:[],
             //單項產品資料
             product:{},
+            //單項產品類別
+            productitem:{},
             //購物車
             cart: {},
             //分頁            
@@ -129,6 +147,30 @@ export default {
         }
     },
     methods:{
+        setfilterStr(item){
+            let vm=this;
+            this.filterStr = item.code;
+            //console.log('out item',item);
+        },
+        getProductItem(){
+            //未來後端可抓取商品類別時
+            //可用這段進行Api的抓取
+            this.productitem=_productitem.data.productitem;            
+            //console.log(this.productitem);
+        },
+        getAllProducts(){
+          const api = 'https://vue-course-api.hexschool.io/api/heylin/products/all';
+          const vm = this;
+
+          vm.isLoading=true;
+          this.$http.get(api).then((response) => {
+            console.log('=========');
+            console.log(response.data);
+            console.log('=========');            
+            vm.allproducts=response.data.products;
+          });
+          vm.isLoading=false;
+        },
         getProducts(pagenum =1){
           const api = 'https://vue-course-api.hexschool.io/api/heylin/products?page='+pagenum;
           const vm = this;
@@ -141,6 +183,7 @@ export default {
 
             vm.isLoading=false;
             vm.products=response.data.products;
+            vm.tempproducts=response.data.products;
             vm.pagination=response.data.pagination;
           });
         },
@@ -277,11 +320,31 @@ export default {
         }
     },
     computed: {
-
+        productinit(){
+            let vm = this;            
+            if(vm.filterStr === 'all'){
+                //console.log('vm.filterStr',vm.filterStr);
+                vm.tempproducts=vm.products;
+                $('.pagination').show();
+                return vm.tempproducts;
+            }
+            else{
+                //console.log('vm.filterStr',vm.filterStr);
+                //正常來說頁數跟資料要在後端做篩選
+                //但本範例專案無法對 pagination 做修正
+                //故改用分類搜尋時分頁隱藏
+                //vm.getAllProducts();
+                vm.tempproducts=vm.allproducts;
+                $('.pagination').hide();                
+                return vm.tempproducts.filter(item => item.category === vm.filterStr );
+            }
+        }
     },
     created() {
+        this.getProductItem();
         this.getProducts();
-        this.getCart();
+        this.getAllProducts()
+        this.getCart();       
         //測試警告視窗
         //this.$bus.$emit('message:push','測試','success');
     },

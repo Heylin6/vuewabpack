@@ -159,7 +159,7 @@ export default {
         }
     },
     methods:{
-                getCart(){
+        getCart(){
                 const api = `https://vue-course-api.hexschool.io/api/heylin/cart`;
                 const vm = this;
                 vm.isLoading=true;
@@ -246,7 +246,6 @@ export default {
 
     },
     created() {
-
         this.getCart();
         //測試警告視窗
         //this.$bus.$emit('message:push','測試','success');

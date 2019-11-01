@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <!--師資陣容 個人介紹-->
+        <!--優惠快訊-->
         頁面建置中
     </div>
 </template>
