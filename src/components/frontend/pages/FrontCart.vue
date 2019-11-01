@@ -9,7 +9,7 @@
                     <th></th>
                     <th>品名</th>
                     <th>數量</th>
-                    <th>單價</th>
+                    <th class="text-right">單價</th>
                 </thead>
                 <tbody>
                     <tr v-for="item in cart.carts" :key="item.id" >
@@ -31,12 +31,12 @@
                 </tbody>
                 <tfoot>
                     <tr>
-                    <td colspan="3" class="text-right">總計</td>
-                    <td class="text-right">{{ cart.total }}</td>
+                    <td colspan="3" class="text-right"><h2>總計</h2></td>
+                    <td class="text-right"><h2>{{ cart.total }}</h2></td>
                     </tr>
                     <tr v-if="cart.final_total !== cart.total">
-                    <td colspan="3" class="text-right text-success">折扣價</td>
-                    <td class="text-right text-success">{{ cart.final_total }}</td>
+                    <td colspan="3" class="text-right text-success"><h2>折扣價</h2></td>
+                    <td class="text-right text-success"><h2>{{ cart.final_total }}</h2></td>
                     </tr>
                 </tfoot>
                 </table>
