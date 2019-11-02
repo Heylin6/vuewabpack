@@ -25,7 +25,9 @@ import FrontCart            from '@/components/frontend/pages/FrontCart';
 import FrontTeacherDetail   from '@/components/frontend/pages/FrontTeacherDetail';
 import FrontContactUs       from '@/components/frontend/pages/FrontContactUs'; 
 import FrontCalendar        from '@/components/frontend/FrontCalendar'; 
+
 import FrontProductDetail   from '@/components/tools/OrderCard2/OrderCard2Detail'; 
+import FrontCart2           from '@/components/tools/Cart2/FrontCart2';
 
 Vue.use(VueRouter);
 
@@ -140,7 +142,7 @@ export default new VueRouter({
                 {
                     name:'前台會員購物車',//呈現的名稱
                     path:'fcart',//對應的虛擬路徑
-                    component:FrontCart,//對應元件      
+                    component:FrontCart2,//對應元件      
                 },               
                 {
                     name:'前台會員購物車',//呈現的名稱
