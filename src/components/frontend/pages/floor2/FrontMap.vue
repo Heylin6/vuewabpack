@@ -2,8 +2,10 @@
     <div class="row featurette">
             <div class="col-md-5 order-md-2">
                 <h2 class="featurette-heading"></h2> 
-                <p class="lead"><br data-v-246c042e="">
-                  聯絡地址,電話 近期提供                  
+                <p class="lead">
+                  近期本部搬遷中
+                    <br><br> 
+                  聯絡地址,電話 往後提供                  
                 </p>
             </div> 
             <div class="col-md-7 order-md-1">

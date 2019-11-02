@@ -10,11 +10,11 @@
         </OrderItems>
         <!--產品類別畫面-->
         <!--產品列表畫面-->
-        <OrderCard 
+        <OrderCard2 
             @postPid="getProduct" 
             @postCartPid="addtoCart"
             :getordercard="productinit">
-        </OrderCard>
+        </OrderCard2>
         <!--產品列表畫面-->               
         <!--產品內容畫面--> 
          <div class="modal fade" id="productModal" tabindex="-1" role="dialog"
@@ -113,13 +113,13 @@
 <script>
 import $                from 'jquery';
 import Pagin            from '../../tools/Pagin';
-import OrderCard        from '../../tools/OrderCard';
+import OrderCard2        from '../../tools/OrderCard2/OrderCard2';
 import OrderItems       from '../../tools/Items';
 import _productitem     from '../../../json/productsitem.json';
 
 export default {
     components: {
-        Pagin,OrderCard,OrderItems
+        Pagin,OrderCard2,OrderItems
     },
     data(){
         return {
