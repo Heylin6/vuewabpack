@@ -2,24 +2,28 @@
     <div id='main' class="container">
       <div>
         <div class="calendar"> 
-          <div class="top">
-            <div class="title"></div>
+          <div class="top">               
+            <div class="title">{{this.setYear}} 年 {{this.setMonth}} 月</div>
             <div class="btns">
-              <button class="today">本月</button>
-              <button class="icon-keyboard_arrow_left prev"></button>
-              <button class="icon-keyboard_arrow_right next"></button>
+              <button class="today" 
+                      @click.prevent="gonowmonth()">本月</button>
+              <button @click.prevent="gopreventmonth()">
+                      <i class="fas fa-backward"></i>
+                      </button>
+              <button @click.prevent="gonextmonth()">
+                      <i class="fas fa-forward"></i>
+                      </button>
             </div>
           </div>
-
           <div class="month">
                 <div class="weeks">
                     <div v-for="(item, index) in weeks" :key="index">{{item}}</div>
                 </div>
-                <div class="days" v-for="(item, index) in this._montharr" :key="index">
+                <div class="days" v-for="(item, index) in MonthArrInit" :key="index">
                     
                           <div 
-                            v-for="(item2, index) in item" 
-                            :key="index"
+                            v-for="(item2, index2) in item" 
+                            :key="index2"
                             :class="[item2.l ?'':'next-prev-month',item2.t ? 'today' : null]"
                             :data-y="item2.y"
                             :data-m="item2.m"
@@ -38,40 +42,60 @@ import $ from 'jquery';
 export default {
   data(){
     return {
+        mode:'now',
+        setYear:0,
+        setMonth:0,
         _prevmonth:{},
+        _prevyearNum:0,
+        _prevmonthNum:0,
         _nextmonth:{},
+        _nextyearNum:0,
+        _nextmonthNum:0,
         weeks:['日', '一', '二', '三', '四', '五', '六'],
         _monthDayCount:0,
         montharr:[]
     }
   },
   methods:{
+    gonowmonth(){
+        this.mode='now';        
+    },
+    gopreventmonth(){
+        this.mode='prev';        
+    },
+    gonextmonth(){
+        this.mode='next';        
+    },
+    getYearAndMonth(){
+        var dt = new Date();
+        this.setYear = dt.getFullYear();
+        this.setMonth = dt.getMonth()+1;
+    },
     monthDayCount(y, m){
         this._monthDayCount = (--m == 1) ? ((y % 4) === 0) && ((y % 100) !== 0) || ((y % 400) === 0) ? 29 : 28 : [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31][m];
-        console.log('_monthDayCount',this._monthDayCount);
     },
     prevMonth(y, m) {
         this._prevmonth = { y: m == 1 ? y - 1 : y, m: m == 1 ? 12 : (m - 1) };
-        console.log('_prevMonth',this._prevmonth);
+        this._prevyearNum=this._prevmonth.y;
+        this._prevmonthNum=this._prevmonth.m;
     },
     nextMonth(y, m) {
         this._nextmonth = { y: m == 12 ? y + 1 : y, m: m == 12 ? 1 : (m + 1) };
-        console.log('_nextmonth',this._prevmonth);
+        this._nextyearNum=this._nextmonth.y;
+        this._nextmonthNum=this._nextmonth.m;
     },
     createMonthArr (y, m){
+
         var firstDayWeek = new Date(y, m - 1, 1).getDay();
         var monthCount = this._monthDayCount;
-        var weekCount = parseInt ((firstDayWeek + monthCount) / 7, 10) + (((firstDayWeek + monthCount) % 7) ? 1 : 0);      
-        console.log('weekCount',weekCount);     
+        var weekCount = parseInt ((firstDayWeek + monthCount) / 7, 10) + (((firstDayWeek + monthCount) % 7) ? 1 : 0);
 
         var p = this._prevmonth;
         var prevMonthCount = this._monthDayCount;
         var n = this._nextmonth;
 
-        var date = new Date();
-        console.log('date',date);
-
-        this._montharr = Array.apply (null, Array (weekCount)).map (function (_, i) {
+        var date = new Date(); 
+        this.montharr = Array.apply (null, Array (weekCount)).map (function (_, i) {
         return Array.apply (null, Array (7)).map (function (_, j) {
               var d = i * 7 + j - firstDayWeek + 1;
               var m2 = m;
@@ -97,26 +121,60 @@ export default {
               };
             });
           }); 
-          
-          console.log('montharr',this._montharr);
     },
-    renderMonth (y, m){
-         var monthArr = this._montharr;
-    }
   },   
   computed: {
+      MonthArrInit(){
+          let vm = this;    
+          switch(vm.mode){
+            case 'now':
+              this.getYearAndMonth();
+              var _year  = this.setYear;
+              var _month = this.setMonth;
 
+              this.monthDayCount(_year,_month);    
+              this.prevMonth(_year,_month);
+              this.nextMonth(_year,_month);
+              this.createMonthArr(_year,_month);              
+              return this.montharr;
+            case 'prev':              
+              var y = parseInt(this._prevyearNum, 10);
+              var m = parseInt(this._prevmonthNum, 10);
+
+              this.setYear  = this._prevyearNum;
+              this.setMonth = this._prevmonthNum;
+
+              this.monthDayCount(y,m);    
+              this.prevMonth(y,m);
+              this.nextMonth(y,m);
+              this.createMonthArr(y,m);
+              this.mode='none';
+              return this.montharr;
+            case 'next':              
+              var y = parseInt(this._nextyearNum, 10);
+              var m = parseInt(this._nextmonthNum, 10);
+
+              this.setYear  = this._nextyearNum;
+              this.setMonth = this._nextmonthNum;
+
+              this.monthDayCount(y,m);    
+              this.prevMonth(y,m);
+              this.nextMonth(y,m);
+              this.createMonthArr(y,m);
+              this.mode='none';
+              return this.montharr;
+          }     
+      }
   },
   created() {
-    var dt = new Date();
-    //console.log("getYear() : " , dt.getFullYear()); 
-    //console.log("getMonth() : " , dt.getMonth()); 
-    var _year = dt.getFullYear();
-    var _month = dt.getMonth()+1;
+    this.getYearAndMonth();
+    var _year = this.setYear;
+    var _month = this.setMonth;
+
     this.monthDayCount(_year,_month);    
     this.prevMonth(_year,_month);
     this.nextMonth(_year,_month);
-    this.createMonthArr(2019,_month);
+    this.createMonthArr(_year,_month);
   },
 }
 </script>
@@ -150,9 +208,9 @@ export default {
   .calendar .top .title{
       width:calc(100% - 200px)
   }
-  .calendar .top .title:after{
+  /* .calendar .top .title:after{
       content:attr(data-y) "年 " attr(data-m) "月"
-  }  
+  }   */
   .calendar .top .btns{
       width:200px;
       text-align:right
@@ -213,4 +271,6 @@ export default {
     .calendar .month .days>div[data-y][data-m][data-d]:after{top:4px;right:4px}
     .calendar .month .days>div.next-prev-month{display:none}
   }
+
+  
 </style>
