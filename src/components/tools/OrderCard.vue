@@ -45,7 +45,7 @@ export default {
     //從老爸傳來的資料
     //老爸那邊 :getordercard='getProducts'
     //所以整包資料在這邊變成getordercard
-    props:['getordercard','getproductitem'],
+    props:['getordercard'],
     data(){
         return {
             //購買數量

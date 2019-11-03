@@ -74,7 +74,7 @@ export default new VueRouter({
                 },
                 {
                     name:'商品詳細內容',//呈現的名稱
-                    path:'product/:id',//對應的虛擬路徑
+                    path:'product/:productid',//對應的虛擬路徑
                     component:FrontProductDetail,//對應元件      
                 },
                 {
@@ -136,7 +136,7 @@ export default new VueRouter({
                 },
                 {
                     name:'商品詳細內容',//呈現的名稱
-                    path:'product/:id',//對應的虛擬路徑
+                    path:'product/:productid',//對應的虛擬路徑
                     component:FrontProductDetail,//對應元件      
                 },
                 {

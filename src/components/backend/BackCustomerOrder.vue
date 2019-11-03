@@ -9,8 +9,7 @@
         <OrderCard 
             @postPid="getProduct" 
             @postCartPid="addtoCart"
-            :getordercard="products"
-            :getproductitem="productitem">
+            :getordercard="products">
         </OrderCard>
         <!--產品列表畫面-->               
         <!--產品內容畫面--> 
@@ -58,8 +57,7 @@
                              <div class="col-md-3">
                                <input type="number" class="form-control" id="buynum"
                                 v-model.number="buynum" :min="1"                                  
-                                placeholder="請輸入購買時數">
-                               
+                                placeholder="請輸入購買時數">                               
                             </div> 
                             <div class="col-md-2">
                                  <span>{{product.unit}}</span>
