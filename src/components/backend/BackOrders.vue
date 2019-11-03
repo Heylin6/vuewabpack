@@ -203,7 +203,7 @@ export default {
     },
     methods:{
         getOrders(pagenum =1){
-          const api = 'https://vue-course-api.hexschool.io/api/heylin/orders?page='+pagenum;
+          const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/products/?page=${pagenum}`;
           const vm = this;
 
           vm.isLoading=true;
@@ -238,7 +238,7 @@ export default {
             $('#OrdersModal').modal('show');
         },
         updateOrder(oid){
-          let api = `https://vue-course-api.hexschool.io/api/heylin/admin/order/${oid}`;
+          let api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/admin/order/${oid}`;
           let httpMethod ='put';
           const vm = this;
 

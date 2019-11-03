@@ -5,7 +5,11 @@
             <h1 class="projTitle">MyCART<span>-THE LESSONS</span> 我的購物車</h1>
             <div class="heading cf">
                 <h1>結帳清單</h1>
-                <a href="#" style="background: #bb8d66;" class="continue">繼續購買</a>
+                 <router-link class="continue" style="background: #bb8d66;" to="/membercart" > 
+                            <span>
+                                　　繼續購買　　
+                            </span> 
+                </router-link>
             </div>
             <div class="cart">
                 <ul class="cartWrap">
@@ -241,39 +245,14 @@ export default {
 </script>
 <style scoped>
     @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,400italic|Montserrat:400,700);
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font: inherit;
-  font-size: 100%;
-  vertical-align: baseline;
-}
 
-html {
-  line-height: 1;
-}
+
 
 ol, ul {
   list-style: none;
 }
 
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
-}
+
 
 caption, th, td {
   text-align: left;

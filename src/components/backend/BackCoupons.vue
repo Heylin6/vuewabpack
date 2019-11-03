@@ -132,7 +132,7 @@ export default {
     },
     methods:{
         getCoupons(){
-          const api = 'https://vue-course-api.hexschool.io/api/heylin/admin/coupons';
+          const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/admin/coupons`;
           const vm = this;
 
           vm.isLoading=true;
@@ -164,16 +164,16 @@ export default {
         updateCoupon() {
             const vm = this;
             if (vm.isNew) {
-                //const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/admin/coupon`;
-                const url ='https://vue-course-api.hexschool.io/api/heylin/admin/coupon';
+               
+                const url =`${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/admin/coupon`;
                 this.$http.post(url, { data: vm.tempCoupon }).then((response) => {
                 console.log(response, vm.tempCoupon);
                 $('#couponModal').modal('hide');
                 this.getCoupons();
                 });
             } else {
-                //const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/admin/coupon/${vm.tempCoupon.id}`;
-                const url = `https://vue-course-api.hexschool.io/api/heylin/admin/coupon/${vm.tempCoupon.id}`;
+                
+                const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/admin/coupon/${vm.tempCoupon.id}`;
                 vm.due_date = new Date(vm.tempCoupon.due_date * 1000);
                 this.$http.put(url, { data: vm.tempCoupon }).then((response) => {
                 console.log(response);

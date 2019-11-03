@@ -13,7 +13,7 @@ import currencyFilter from './filters/currency.js';
 import dateConvert from './filters/date.js';
 //驗證工具
 import VeeValidate, { Validator } from 'vee-validate';
-//驗證工具(中文化))
+//驗證工具(中文化)
 import zhTW_VeeValidate from 'vee-validate/dist/locale/zh_TW';
 //抓API
 import axios from 'axios'
@@ -22,6 +22,8 @@ import VueAxios from 'vue-axios';
 import Loading from 'vue-loading-overlay';
 import 'vue-loading-overlay/dist/vue-loading.css';
 import 'bootstrap';
+
+
 
 //自動帶入session
 axios.defaults.withCredentials=true;

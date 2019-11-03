@@ -205,7 +205,7 @@ export default {
     },
     methods:{
         getProducts(pagenum =1){
-          const api = 'https://vue-course-api.hexschool.io/api/heylin/products?page='+pagenum;
+          const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/products/?page=${pagenum}`;
           const vm = this;
 
           vm.isLoading=true;
@@ -235,13 +235,13 @@ export default {
             $('#productModal').modal('show');
         },
         updateProduct(){
-          let api = 'https://vue-course-api.hexschool.io/api/heylin/admin/product';
+          let api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/admin/product`;
           let httpMethod ='post';
           const vm = this;
           
             if(!vm.isNew){
                 //假設不是新增 則為修改
-                api = 'https://vue-course-api.hexschool.io/api/heylin/admin/product/'+vm.tempProduct.id;
+                api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/admin/product/${vm.tempProduct.id}`;
                 httpMethod ='put';
             }
 
@@ -262,7 +262,7 @@ export default {
         },
         deleteProduct(item){
 
-            const api = 'https://vue-course-api.hexschool.io/api/heylin/products';
+            const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/products`;
             const vm = this;
 
             var del=confirm("確定刪除?");
@@ -288,7 +288,7 @@ export default {
             const formData = new FormData();
             //塞入檔案
             formData.append('file-to-upload',uploadedfile);
-            const url ='https://vue-course-api.hexschool.io/api/heylin/admin/upload';
+            const url =`${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/admin/upload`;
 
             //執行上傳時 開啟讀取icon
             vm.status.fileUploading=true;

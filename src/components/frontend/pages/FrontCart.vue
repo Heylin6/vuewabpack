@@ -160,7 +160,7 @@ export default {
     },
     methods:{
         getCart(){
-                const api = `https://vue-course-api.hexschool.io/api/heylin/cart`;
+                const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/cart`;
                 const vm = this;
                 vm.isLoading=true;
 
@@ -178,7 +178,7 @@ export default {
 
             var del=confirm("確定刪除該項目?");
             if(del){
-                const api = `https://vue-course-api.hexschool.io/api/heylin/cart/${pid}`;
+                const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/cart/${pid}`;
                 const vm = this;
                 vm.isLoading=true;
 
@@ -198,7 +198,7 @@ export default {
 
         },
         addCouponCode(){
-            const api = `https://vue-course-api.hexschool.io/api/heylin/coupon`;
+            const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/coupon`;
             const vm = this;
             const coupon = {
                 code:vm.coupon_code
@@ -216,7 +216,7 @@ export default {
             });
         },
         createOrder(){
-            const api = `https://vue-course-api.hexschool.io/api/heylin/order`;
+            const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/order`;
             const vm = this;
             const form = vm.form;
             
