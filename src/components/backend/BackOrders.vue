@@ -203,7 +203,7 @@ export default {
     },
     methods:{
         getOrders(pagenum =1){
-          const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/products/?page=${pagenum}`;
+          const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/orders/?page=${pagenum}`;
           const vm = this;
 
           vm.isLoading=true;
