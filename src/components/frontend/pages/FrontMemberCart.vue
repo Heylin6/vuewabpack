@@ -29,7 +29,6 @@
                         <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-
                     <div class="modal-body">
                         <div style="height: 390px; background-size: cover; background-position: center"
                         :style="{backgroundImage:`url(${product.imageUrl})`}"></div>
@@ -111,11 +110,11 @@
 </template>
 
 <script>
-import $                from 'jquery';
-import Pagin            from '../../tools/Pagin';
-import OrderCard2        from '../../tools/OrderCard2/OrderCard2';
-import OrderItems       from '../../tools/Items';
-import _productitem     from '../../../json/productsitem.json';
+import $                    from 'jquery';
+import Pagin                from '../../tools/Pagin';
+import OrderCard2           from '../../tools/OrderCard2/OrderCard2';
+import OrderItems           from '../../tools/Items';
+import _productitem         from '../../../json/productsitem.json';
 
 export default {
     components: {
@@ -172,12 +171,11 @@ export default {
         getAllProducts(){
           const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/products/all`;
           const vm = this;
-
           vm.isLoading=true;
           this.$http.get(api).then((response) => {
-            console.log('=========');
-            console.log(response.data);
-            console.log('=========');            
+            // console.log('=========');
+            // console.log(response.data);
+            // console.log('=========');            
             vm.allproducts=response.data.products;
           });
           vm.isLoading=false;
@@ -185,13 +183,11 @@ export default {
         getProducts(pagenum =1){
           const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/products/?page=${pagenum}`;
           const vm = this;
-
           vm.isLoading=true;
           this.$http.get(api).then((response) => {
-            console.log('=========');
-            console.log(response.data);
-            console.log('=========');
-
+            // console.log('=========');
+            // console.log(response.data);
+            // console.log('=========');
             vm.isLoading=false;
             vm.products=response.data.products;
             vm.tempproducts=response.data.products;
@@ -201,12 +197,11 @@ export default {
         getProduct(pid){
           const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/product/${pid}`;
           const vm = this;
-
           vm.isLoading=true;
           this.$http.get(api).then((response) => {
-            console.log('=========');
-            console.log(response.data);
-            console.log('=========');
+            // console.log('=========');
+            // console.log(response.data);
+            // console.log('=========');
              $('#productModal').modal('show');
             vm.isLoading=false;
             vm.product=response.data.product;            
@@ -218,29 +213,23 @@ export default {
             $('#productModal').modal('hide');
         },   
         addtoCart(pid,qty=1){
-
-             console.log('qty : '+qty);
+             //console.log('qty : '+qty);
             if(qty<=0){
                  this.$bus.$emit('message:push','數量錯誤,不得為零或負數','danger');
             }
             else{
-
                 const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/cart`;
                 const vm = this;
                 vm.isLoading=true;
-
                 const cart = { product_id:pid, qty };
-
                 this.$http.post(api,{data: cart}).then((response) => {
-                    console.log('=========');
-                    console.log(response.data);
-                    console.log('=========');
-                    
+                    // console.log('=========');
+                    // console.log(response.data);
+                    // console.log('=========');                    
                     vm.buynum=1;
                     vm.getCart();
                     $('#productModal').modal('hide');
-                    vm.isLoading=false;
-                        
+                    vm.isLoading=false;                        
                 });
             }
 
@@ -249,15 +238,12 @@ export default {
                 const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/cart`;
                 const vm = this;
                 vm.isLoading=true;
-
                 this.$http.get(api).then((response) => {
-                    console.log('=========');
-                    console.log(response.data);
-                    console.log('=========');
-                    
+                    // console.log('=========');
+                    // console.log(response.data);
+                    // console.log('=========');                    
                     vm.cart = response.data.data;
-                    vm.isLoading=false;
-                        
+                    vm.isLoading=false;                        
                 });
         },
         removeCartItem(pid){
@@ -267,15 +253,13 @@ export default {
                 const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/cart/${pid}`;
                 const vm = this;
                 vm.isLoading=true;
-
                 this.$http.delete(api).then((response) => {
-                    console.log('=========');
-                    console.log(response.data);
-                    console.log('=========');
+                    // console.log('=========');
+                    // console.log(response.data);
+                    // console.log('=========');
                     //刪除完畢後重整購物車
                     vm.getCart();
-                    vm.isLoading=false;
-                        
+                    vm.isLoading=false;                        
                 });
             }
             else{
@@ -289,30 +273,27 @@ export default {
             const coupon = {
                 code:vm.coupon_code
             }
-
             vm.isLoading=true;
             this.$http.post(api,{data:coupon}).then((response) => {
-                console.log('=========');
-                console.log(response.data);
-                console.log('=========');
+                // console.log('=========');
+                // console.log(response.data);
+                // console.log('=========');
                 //刪除完畢後重整購物車
                 vm.getCart();
-                vm.isLoading=false;
-                        
+                vm.isLoading=false;                        
             });
         },
         createOrder(){
             const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/order`;
             const vm = this;
-            const form = vm.form;
-            
+            const form = vm.form;            
             this.$validator.validate().then((result)=>{
                 if(result){
                     vm.isLoading=true;
                     this.$http.post(api,{data:form}).then((response) => {
-                        console.log('=========');
-                        console.log('訂單已建立',response);
-                        console.log('=========');
+                        // console.log('=========');
+                        // console.log('訂單已建立',response);
+                        // console.log('=========');
                         if(response.data.success)
                         {
                             vm.$router.push(`membercheckout/${response.data.orderId}`);

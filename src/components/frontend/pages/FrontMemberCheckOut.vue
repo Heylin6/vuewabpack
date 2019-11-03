@@ -23,7 +23,6 @@
                 </tr>
             </tfoot>
             </table>
-
             <table class="table">
             <tbody>
                 <tr>
@@ -61,10 +60,8 @@
                          回首頁
             </router-link>
         </div>
-
     </div>
 </template>
-
 <script>
 export default {
     data(){
@@ -82,12 +79,10 @@ export default {
                 const vm = this;
                 const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/order/${vm.orderId}`;
                 vm.isLoading=true;
-
                 this.$http.get(api).then((response) => {
-                    console.log('=========');
-                    console.log(response.data);
-                    console.log('=========');                    
-                    
+                    // console.log('=========');
+                    // console.log(response.data);
+                    // console.log('========='); 
                     vm.order = response.data.order;
                     vm.isLoading=false;
                         
@@ -97,28 +92,25 @@ export default {
                 const vm = this;
                 const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/pay/${vm.orderId}`;
                 vm.isLoading=true;
-
                 this.$http.post(api).then((response) => {
-                    console.log('=========');
-                    console.log(response.data);
-                    console.log('=========');
+                    // console.log('=========');
+                    // console.log(response.data);
+                    // console.log('=========');
                     if(response.data.success){
                         this.getOrder();
                     }                    
-                    
                     vm.order = response.data.order;
-                    vm.isLoading=false;
-                        
+                    vm.isLoading=false;                        
                 });
         }
     },
     created(){
-        //orderId為querystring的參數 
-        //BackCustomerOrder的router 傳的 :orderId 這部分
-        //兩邊參數要一樣才抓的到值
-        this.orderId = this.$route.params.orderId;
-        console.log('this.orderId : ',this.orderId);
-        this.getOrder();
+            //orderId為querystring的參數 
+            //BackCustomerOrder的router 傳的 :orderId 這部分
+            //兩邊參數要一樣才抓的到值
+            this.orderId = this.$route.params.orderId;
+            //console.log('this.orderId : ',this.orderId);
+            this.getOrder();
     },
 }
 </script>

@@ -80,8 +80,7 @@
             </div>
         </div>
         <!--購物車 else -->
-                <!--結帳FORM-->
-        
+        <!--結帳FORM-->        
         <div class="my-5 row justify-content-center">
             <form class="col-md-6" @submit.prevent="createOrder">
                 <div class="form-group">
@@ -94,7 +93,6 @@
                     {{ errors.first('email') }}
                 </span>
                 </div>
-
                 <div class="form-group">
                 <label for="username">收件人姓名</label>
                 <input type="text" class="form-control" name="name" id="username" required
@@ -102,13 +100,11 @@
                     v-model="form.user.name" v-validate="'required'" placeholder="輸入姓名">
                 <span class="text-danger" v-if="errors.has('name')">姓名必須輸入</span>
                 </div>
-
                 <div class="form-group">
                 <label for="usertel">收件人電話</label>
                 <input type="tel" class="form-control" id="usertel"
                     v-model="form.user.tel" placeholder="請輸入電話">
                 </div>
-
                 <div class="form-group">
                 <label for="useraddress">收件人地址</label>
                 <input type="address" class="form-control" name="address"
@@ -117,7 +113,6 @@
                     placeholder="請輸入地址">
                 <span class="text-danger" v-if="errors.has('address')">地址欄位不得留空</span>
                 </div>
-
                 <div class="form-group">
                 <label for="useraddress">留言</label>
                 <textarea name="" id="" class="form-control" cols="30" rows="10"
@@ -127,8 +122,7 @@
                 <button class="btn btn-danger">送出訂單</button>
                 </div>
             </form>
-        </div>
-        
+        </div>        
         <!--結帳FORM-->     
     </div>
 </template>
@@ -137,7 +131,6 @@
 import $ from 'jquery';
 
 export default {
-
     data(){
         return {
             //購物車
@@ -163,39 +156,32 @@ export default {
                 const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/cart`;
                 const vm = this;
                 vm.isLoading=true;
-
                 this.$http.get(api).then((response) => {
-                    console.log('=========');
-                    console.log(response.data);
-                    console.log('=========');
-                    
+                    // console.log('=========');
+                    // console.log(response.data);
+                    // console.log('=========');                    
                     vm.cart = response.data.data;
-                    vm.isLoading=false;
-                        
+                    vm.isLoading=false;                        
                 });
         },
         removeCartItem(pid){
-
             var del=confirm("確定刪除該項目?");
             if(del){
                 const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/cart/${pid}`;
                 const vm = this;
                 vm.isLoading=true;
-
                 this.$http.delete(api).then((response) => {
-                    console.log('=========');
-                    console.log(response.data);
-                    console.log('=========');
+                    // console.log('=========');
+                    // console.log(response.data);
+                    // console.log('=========');
                     //刪除完畢後重整購物車
                     vm.getCart();
-                    vm.isLoading=false;
-                        
+                    vm.isLoading=false;                        
                 });
             }
             else{
 
             }
-
         },
         addCouponCode(){
             const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/coupon`;
@@ -203,30 +189,27 @@ export default {
             const coupon = {
                 code:vm.coupon_code
             }
-
             vm.isLoading=true;
             this.$http.post(api,{data:coupon}).then((response) => {
-                console.log('=========');
-                console.log(response.data);
-                console.log('=========');
+                // console.log('=========');
+                // console.log(response.data);
+                // console.log('=========');
                 //刪除完畢後重整購物車
                 vm.getCart();
-                vm.isLoading=false;
-                        
+                vm.isLoading=false;                        
             });
         },
         createOrder(){
             const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/order`;
             const vm = this;
-            const form = vm.form;
-            
+            const form = vm.form;            
             this.$validator.validate().then((result)=>{
                 if(result){
                     vm.isLoading=true;
                     this.$http.post(api,{data:form}).then((response) => {
-                        console.log('=========');
-                        console.log('訂單已建立',response);
-                        console.log('=========');
+                        // console.log('=========');
+                        // console.log('訂單已建立',response);
+                        // console.log('=========');
                         if(response.data.success)
                         {
                             vm.$router.push(`membercheckout/${response.data.orderId}`);

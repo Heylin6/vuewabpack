@@ -10,13 +10,11 @@
       </main>      
   </div>
 </template>
-
 <script>
 import Alert          from '../tools/AlertMessage';
 import FrontHeader    from './FrontHeader';
 import FrontFooter    from './FrontFooter';
 import FrontCarousel  from './FrontCarousel';
-
 export default {  
   name: 'FrontIndex',
       components:{
@@ -26,28 +24,16 @@ export default {
         Alert
   },
   data () {
-    return {
-     
-    }
+      return {
+      
+      }
   },
   methods:{
-    signout(){
-        const api = 'https://vue-course-api.hexschool.io/logout';
-        const vm = this;
-        this.$http.post(api).then((response) => {
-            //console.log(response.data);
-            if(response.data.success){
-                vm.$router.push('/login');
-            }
-        });
-    }
+
   }
 }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
 h1, h2 {
   font-weight: normal;
 }
@@ -70,11 +56,9 @@ a {
   -ms-user-select: none;
   user-select: none;
 }
-
 @media (min-width: 768px) {
   .bd-placeholder-img-lg {
       font-size: 3.5rem;
    }
 }
-
 </style>

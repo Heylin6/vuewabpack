@@ -1,7 +1,6 @@
 <template>
     <div>
         <loading :active.sync="isLoading"></loading>
-
         <Pagin 
             @postPage="getProducts" 
             :getpagin="pagination">
@@ -27,7 +26,6 @@
                         <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-
                     <div class="modal-body">
                         <div style="height: 390px; background-size: cover; background-position: center"
                         :style="{backgroundImage:`url(${product.imageUrl})`}"></div>
@@ -138,8 +136,7 @@
             </div>
         </div>
         <!--購物車-->   
-        <!--結帳FORM-->
-        
+        <!--結帳FORM-->        
         <div class="my-5 row justify-content-center">
             <form class="col-md-6" @submit.prevent="createOrder">
                 <div class="form-group">
@@ -185,19 +182,15 @@
                 <button class="btn btn-danger">送出訂單</button>
                 </div>
             </form>
-        </div>
-        
+        </div>        
         <!--結帳FORM-->
-
-
-
     </div>    
 </template>
 
 <script>
-import $ from 'jquery';
-import Pagin from '../tools/Pagin';
-import OrderCard from '../tools/OrderCard';
+import $            from 'jquery';
+import Pagin        from '../tools/Pagin';
+import OrderCard    from '../tools/OrderCard';
 
 export default {
     components: {
@@ -238,10 +231,9 @@ export default {
 
           vm.isLoading=true;
           this.$http.get(api).then((response) => {
-            console.log('=========');
-            console.log(response.data);
-            console.log('=========');
-
+            // console.log('=========');
+            // console.log(response.data);
+            // console.log('=========');
             vm.isLoading=false;
             vm.products=response.data.products;
             vm.pagination=response.data.pagination;
@@ -253,9 +245,9 @@ export default {
 
           vm.isLoading=true;
           this.$http.get(api).then((response) => {
-            console.log('=========');
-            console.log(response.data);
-            console.log('=========');
+            // console.log('=========');
+            // console.log(response.data);
+            // console.log('=========');
              $('#productModal').modal('show');
             vm.isLoading=false;
             vm.product=response.data.product;            
@@ -273,64 +265,51 @@ export default {
                  this.$bus.$emit('message:push','數量錯誤,不得為零或負數','danger');
             }
             else{
-
                 const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/cart`;
                 const vm = this;
                 vm.isLoading=true;
-
                 const cart = { product_id:pid, qty };
-
                 this.$http.post(api,{data: cart}).then((response) => {
-                    console.log('=========');
-                    console.log(response.data);
-                    console.log('=========');
-                    
+                    // console.log('=========');
+                    // console.log(response.data);
+                    // console.log('=========');                    
                     vm.buynum=1;
                     vm.getCart();
                     $('#productModal').modal('hide');
-                    vm.isLoading=false;
-                        
+                    vm.isLoading=false;                        
                 });
             }
-
         },
         getCart(){
                 const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/cart`;
                 const vm = this;
                 vm.isLoading=true;
-
                 this.$http.get(api).then((response) => {
-                    console.log('=========');
-                    console.log(response.data);
-                    console.log('=========');
-                    
+                    // console.log('=========');
+                    // console.log(response.data);
+                    // console.log('=========');                    
                     vm.cart = response.data.data;
-                    vm.isLoading=false;
-                        
+                    vm.isLoading=false;                        
                 });
         },
         removeCartItem(pid){
-
             var del=confirm("確定刪除該項目?");
             if(del){
                 const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/cart/${pid}`;
                 const vm = this;
                 vm.isLoading=true;
-
                 this.$http.delete(api).then((response) => {
-                    console.log('=========');
-                    console.log(response.data);
-                    console.log('=========');
+                    // console.log('=========');
+                    // console.log(response.data);
+                    // console.log('=========');
                     //刪除完畢後重整購物車
                     vm.getCart();
-                    vm.isLoading=false;
-                        
+                    vm.isLoading=false;                        
                 });
             }
             else{
 
             }
-
         },
         addCouponCode(){
             const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/coupon`;
@@ -338,30 +317,27 @@ export default {
             const coupon = {
                 code:vm.coupon_code
             }
-
             vm.isLoading=true;
             this.$http.post(api,{data:coupon}).then((response) => {
-                console.log('=========');
-                console.log(response.data);
-                console.log('=========');
+                // console.log('=========');
+                // console.log(response.data);
+                // console.log('=========');
                 //刪除完畢後重整購物車
                 vm.getCart();
-                vm.isLoading=false;
-                        
+                vm.isLoading=false;                        
             });
         },
         createOrder(){
             const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/order`;
             const vm = this;
-            const form = vm.form;
-            
+            const form = vm.form;            
             this.$validator.validate().then((result)=>{
                 if(result){
                     vm.isLoading=true;
                     this.$http.post(api,{data:form}).then((response) => {
-                        console.log('=========');
-                        console.log('訂單已建立',response);
-                        console.log('=========');
+                        // console.log('=========');
+                        // console.log('訂單已建立',response);
+                        // console.log('=========');
                         if(response.data.success)
                         {
                             vm.$router.push(`customercheckout/${response.data.orderId}`);
@@ -375,8 +351,6 @@ export default {
                     console.log('欄位不完整');
                 }
             });
-
-
         }
     },
     computed: {

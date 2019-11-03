@@ -26,7 +26,6 @@
                     <td class="text-right">{{ item.origin_price | currency }}</td>
                     <td class="text-right">{{ item.price | currency }}</td>
                     <td class="text-right">{{ item.unit }}</td>
-
                     <td>
                         <button class="btn btn-outline-primary btn-sm" @click="openModal(false,item)">編輯</button>
                         <button class="btn btn-outline-danger btn-sm" @click="deleteProduct(item)">刪除</button>
@@ -34,44 +33,7 @@
                 </tr>
             </tbody>
         </table>
-
-        <!-- 
-
-        未元件化的分頁
-
-        <nav aria-label="...">
-            <ul class="pagination">
-                <li class="page-item" 
-                    :class="{'disabled':!pagination.has_pre}"
-                >
-                    <a class="page-link" href="#"
-                    @click.prevent="getProducts(pagination.current_page-1)"
-                    >Previous</a>
-                </li>
-                <li class="page-item" 
-                    :class="{'active': pagination.current_page === page}"
-                    v-for="(page) in pagination.total_pages" :key="page"
-                    >
-                    <a class="page-link" href="#"
-                        @click.prevent="getProducts(page)"
-                    >
-                        {{page}}
-                    </a>
-                </li>                
-                <li class="page-item"
-                    :class="{'disabled':!pagination.has_next}"
-                    >
-                    <a class="page-link" href="#"
-                     @click.prevent="getProducts(pagination.current_page+1)"
-                    >Next</a>
-                </li>
-            </ul>
-        </nav> 
-
-        -->
-        
         <Pagin @postPage="getProducts" :getpagin="pagination"></Pagin>
-
         <!-- productModal -->
         <div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -179,13 +141,12 @@
             </div>
         </div>
         </div>
-
     </div>
 </template>
 
 <script>
-import $ from 'jquery';
-import Pagin from '../tools/Pagin';
+import $        from 'jquery';
+import Pagin    from '../tools/Pagin';
 
 export default {
     components: {
@@ -207,20 +168,17 @@ export default {
         getProducts(pagenum =1){
           const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/products/?page=${pagenum}`;
           const vm = this;
-
           vm.isLoading=true;
           this.$http.get(api).then((response) => {
-            console.log('=========');
-            console.log(response.data);
-            console.log('=========');
-
+            // console.log('=========');
+            // console.log(response.data);
+            // console.log('=========');
             vm.isLoading=false;
             vm.products=response.data.products;
             vm.pagination=response.data.pagination;
           });
         },
         openModal(isNew,item){
-
             //用vue的方式開啟modal
             //傳入參數判斷新增還是修改            
             if(isNew){
@@ -235,50 +193,43 @@ export default {
             $('#productModal').modal('show');
         },
         updateProduct(){
-          let api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/admin/product`;
-          let httpMethod ='post';
-          const vm = this;
-          
-            if(!vm.isNew){
-                //假設不是新增 則為修改
-                api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/admin/product/${vm.tempProduct.id}`;
-                httpMethod ='put';
-            }
-
-          this.$http[httpMethod](api,{data:vm.tempProduct}).then((response) => {
-            console.log('=========');
-            console.log(response.data);
-            console.log('=========');
-
-            if(response.data.success){
-                $('#productModal').modal('hide');
-                vm.getProducts();
-            }
-            else{
-                vm.getProducts();
-                console.log('新增失敗');
-            }
-          });
+            let api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/admin/product`;
+            let httpMethod ='post';
+            const vm = this;          
+                if(!vm.isNew){
+                    //假設不是新增 則為修改
+                    api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/admin/product/${vm.tempProduct.id}`;
+                    httpMethod ='put';
+                }
+                this.$http[httpMethod](api,{data:vm.tempProduct}).then((response) => {
+                    // console.log('=========');
+                    // console.log(response.data);
+                    // console.log('=========');
+                    if(response.data.success){
+                        $('#productModal').modal('hide');
+                        vm.getProducts();
+                    }
+                    else{
+                        vm.getProducts();
+                        console.log('新增失敗');
+                    }
+            });
         },
         deleteProduct(item){
-
             const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/products`;
             const vm = this;
-
             var del=confirm("確定刪除?");
             if(del){
                 //  this.$http.delete(api).then((response) => {
                 //  console.log('=========');
                 //  console.log(response.data);
                 //  console.log('=========');
-
                 //  vm.products=response.data.products;
                 // });
             }
             else{
 
             }
-
         },
         uploadFile(){
             //console.log(this);
@@ -289,7 +240,6 @@ export default {
             //塞入檔案
             formData.append('file-to-upload',uploadedfile);
             const url =`${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/admin/upload`;
-
             //執行上傳時 開啟讀取icon
             vm.status.fileUploading=true;
             //傳遞時修正他的header
@@ -301,14 +251,12 @@ export default {
                 console.log('=========');
                 console.log(response.data);
                 console.log('=========');
-
                 //上傳完畢時 關閉讀取icon
                 vm.status.fileUploading=false;
-
                 if(response.data.success){
-                    //vm.tempProduct.imageUrl = response.data.imageUrl;
-                    //強制寫入圖片名稱的欄位
-                    vm.$set(vm.tempProduct,'imageUrl',response.data.imageUrl);
+                     //vm.tempProduct.imageUrl = response.data.imageUrl;
+                     //強制寫入圖片名稱的欄位
+                     vm.$set(vm.tempProduct,'imageUrl',response.data.imageUrl);
                 }
                 else{
                      this.$bus.$emit('message:push',response.data.message.message,'danger');

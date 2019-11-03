@@ -21,13 +21,13 @@
                 </a>  
                 </li>
                 <li class="nav-item">
-                <a class="nav-link" href="#">            
-                  <router-link to="/" > 
-                         提供內容
-                  </router-link>
-                </a>   
-                
-                </li>                                -->
+                  <a class="nav-link" href="#">            
+                    <router-link to="/" > 
+                          提供內容
+                    </router-link>
+                  </a>                
+                </li>                                
+                -->
                 <li class="nav-item">
                   <a class="nav-link" href="#">            
                     <router-link to="/membercart" > 
@@ -56,19 +56,17 @@
                     </router-link>
                   </a>      
                 </li>
-                <!-- <li class="nav-item">
-                <a class="nav-link" href="#">會員登入</a>
-                </li>             -->
             </ul>
-            <!-- <form class="form-inline mt-2 mt-md-0">
+            <!-- 
+              <form class="form-inline mt-2 mt-md-0">
                 <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form> -->
+              </form> 
+            -->
             </div>
         </nav>
     </div>
 </template>
-
 <script>
 export default {
   name: 'FrontHeader',
@@ -78,12 +76,11 @@ export default {
     }
   },
   methods:{
-    signout(){
-          const api = 'https://vue-course-api.hexschool.io/logout';
+    signout(){      
+          const api = `${process.env.APIPATH}/logout`;
           const vm = this;
           this.$http.post(api).then((response) => {
-            console.log(response.data);
-
+            //console.log(response.data);
             if(response.data.success)
             {
               vm.$router.push('/login');
@@ -93,11 +90,8 @@ export default {
   }
 }
 </script>
-
 <style scoped>
-
-#navbarCollapse > ul > li > a > a {
-  color:white;
-}
-
+  #navbarCollapse > ul > li > a > a {
+    color:white;
+  }
 </style>

@@ -7,9 +7,9 @@
     </div>
 </template>
 <script>
-import $ from 'jquery';
-import teachers from '../../../../json/teacher.json';
-import TeacherRect from '../../../tools/TeacherRect';
+import $            from 'jquery';
+import teachers     from '../../../../json/teacher.json';
+import TeacherRect  from '../../../tools/TeacherRect';
 
 export default {
     components: {

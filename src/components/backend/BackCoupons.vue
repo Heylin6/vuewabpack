@@ -108,8 +108,8 @@
 </template>
 
 <script>
-import $ from 'jquery';
-import Pagin from '../tools/Pagin';
+import $        from 'jquery';
+import Pagin    from '../tools/Pagin';
 
 export default {
     components: {
@@ -137,17 +137,15 @@ export default {
 
           vm.isLoading=true;
           this.$http.get(api).then((response) => {
-            console.log('=========');
-            console.log(response.data);
-            console.log('=========');
-
+            // console.log('=========');
+            // console.log(response.data);
+            // console.log('=========');
             vm.isLoading=false;
             vm.coupons=response.data.coupons;
             vm.pagination=response.data.pagination;
           });
         },
         openModal(isNew,item){
-
             //用vue的方式開啟modal
             //傳入參數判斷新增還是修改            
             if(isNew){
@@ -163,20 +161,18 @@ export default {
         },
         updateCoupon() {
             const vm = this;
-            if (vm.isNew) {
-               
+            if (vm.isNew) {               
                 const url =`${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/admin/coupon`;
                 this.$http.post(url, { data: vm.tempCoupon }).then((response) => {
-                console.log(response, vm.tempCoupon);
+                //console.log(response, vm.tempCoupon);
                 $('#couponModal').modal('hide');
                 this.getCoupons();
                 });
-            } else {
-                
+            } else {                
                 const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/admin/coupon/${vm.tempCoupon.id}`;
                 vm.due_date = new Date(vm.tempCoupon.due_date * 1000);
                 this.$http.put(url, { data: vm.tempCoupon }).then((response) => {
-                console.log(response);
+                //console.log(response);
                 $('#couponModal').modal('hide');
                 this.getCoupons();
                 });

@@ -8,9 +8,9 @@
 </template>
 
 <script>
-import $ from 'jquery';
-import deviders from '../../../../json/divide.json';
-import DividerRect from '../../../tools//DividerRect';
+import $            from 'jquery';
+import deviders     from '../../../../json/divide.json';
+import DividerRect  from '../../../tools//DividerRect';
 
 export default {
     components: {
@@ -22,8 +22,7 @@ export default {
         }
     },
     methods:{
-        getDividers(){
-          
+        getDividers(){          
            this.Dividers=deviders.data.devide;
           // this.$http.get('../json/divide.json').then(response => {
           //     console.log("json資料為:" + response);

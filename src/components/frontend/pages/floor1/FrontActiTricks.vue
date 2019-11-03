@@ -38,7 +38,6 @@
                           </div></a>
                       </div>
                     </div>
-
                     <div class="col-lg-3 col-sm-6 col-xs-12">
                       <div class="card card-block">
                         <a href="#"><img alt="" src="https://bootstrapmade.com/demo/themes/Bell/img/porf-3.jpg">
@@ -55,7 +54,6 @@
                           </div></a>
                       </div>
                     </div>
-
                     <div class="col-lg-3 col-sm-6 col-xs-12">
                       <div class="card card-block">
                         <a href="#"><img alt="" src="https://bootstrapmade.com/demo/themes/Bell/img/porf-4.jpg">

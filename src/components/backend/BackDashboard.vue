@@ -13,14 +13,11 @@
     </div>
 </div>
 </template>
-
 <script>
-
-import BackNavbar from './BackNavbar';
-import BackSidebar from './BackSidebar';
-import Alert from '../tools/AlertMessage';
-
-import BackUser from '../../json/backenduser.json';
+import BackNavbar           from './BackNavbar';
+import BackSidebar          from './BackSidebar';
+import Alert                from '../tools/AlertMessage';
+import BackUser             from '../../json/backenduser.json';
 
 export default {
     components:{

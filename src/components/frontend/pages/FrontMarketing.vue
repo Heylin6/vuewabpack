@@ -13,11 +13,11 @@
     </div>
 </template>
 <script>
-import FrontTeacher from './floor1/FrontTeacher';
-import FrontDivider from './floor1/FrontDivider';
-import FrontActiTricks from './floor1/FrontActiTricks';
-import FrontSlogan from './floor1/FrontSlogan';
-import FrontLeaveMail from './floor1/FrontLeaveMail';
+import FrontTeacher     from './floor1/FrontTeacher';
+import FrontDivider     from './floor1/FrontDivider';
+import FrontActiTricks  from './floor1/FrontActiTricks';
+import FrontSlogan      from './floor1/FrontSlogan';
+import FrontLeaveMail   from './floor1/FrontLeaveMail';
 export default {
       name: 'FrontMarketing',
       components:{

@@ -25,7 +25,6 @@ export default {
     },
     methods:{
         updateMessage(message,status){
-
             const timestamp = Math.floor(new Date()/1000);
             this.messages.push({
                 message,
@@ -50,7 +49,6 @@ export default {
     },
     created() {
         const vm = this;
-
         // 自定義名稱 'messsage:push'
         // message: 傳入參數
         // status: 樣式，預設值為 warning

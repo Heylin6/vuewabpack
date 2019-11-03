@@ -22,8 +22,7 @@
 </template>
 <script>
 export default {
-    name:'OrderCard2',
-    //background-image: url('https://images.pexels.com/photos/1368382/pexels-photo-1368382.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
+    name:'OrderCard2',    
     //從老爸傳來的資料
     //老爸那邊 :getordercard='getProducts'
     //所以整包資料在這邊變成getordercard
@@ -45,11 +44,6 @@ export default {
         }
     },
     methods:{
-        getProduct(pid){
-            //丟資料回給老爸
-            //給老爸時的名稱叫postPid
-            this.$emit('postPid',pid);
-        },
         addtoCart(pid){
             //丟資料回給老爸
             //給老爸時的名稱叫postCartPid

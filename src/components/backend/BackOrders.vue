@@ -80,8 +80,7 @@
                         
                     </td>
                     <td>
-                        <!-- <button class="btn btn-outline-primary btn-sm" @click="openModal(item)">編輯</button> -->
-                        
+                        <!-- <button class="btn btn-outline-primary btn-sm" @click="openModal(item)">編輯</button> -->                        
                         <a class="btn btn-sm" :class="btnColors(item.is_paid)" href="#" @click.prevent="gocheckout(item.id)">                                             
                                     <span v-if="item.is_paid">查看訂單</span>
                                     <span v-else>進行付款</span>    
@@ -91,43 +90,7 @@
             </tbody>
         </table>
 
-        <!-- 
-
-        未元件化的分頁
-
-        <nav aria-label="...">
-            <ul class="pagination">
-                <li class="page-item" 
-                    :class="{'disabled':!pagination.has_pre}"
-                >
-                    <a class="page-link" href="#"
-                    @click.prevent="getOrders(pagination.current_page-1)"
-                    >Previous</a>
-                </li>
-                <li class="page-item" 
-                    :class="{'active': pagination.current_page === page}"
-                    v-for="(page) in pagination.total_pages" :key="page"
-                    >
-                    <a class="page-link" href="#"
-                        @click.prevent="getOrders(page)"
-                    >
-                        {{page}}
-                    </a>
-                </li>                
-                <li class="page-item"
-                    :class="{'disabled':!pagination.has_next}"
-                    >
-                    <a class="page-link" href="#"
-                     @click.prevent="getOrders(pagination.current_page+1)"
-                    >Next</a>
-                </li>
-            </ul>
-        </nav> 
-
-        -->
-        
         <Pagin @postPage="getOrders" :getpagin="pagination"></Pagin>
-
         <!-- OrdersModal -->
         <div class="modal fade" id="OrdersModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -140,7 +103,6 @@
             </div>
             <div class="modal-body">
                 <div class="row">
-
                     <div class="col-sm-12">
                             <table class="table">
                             <thead>
@@ -166,24 +128,18 @@
                 </div>                
             </div>
             <div class="modal-footer">            
-                <!-- 
-                <button type="button" class="btn btn-primary"
-                @click="updateOrder">
-                儲存
-                </button> 
-                -->
+                <!-- <button type="button" class="btn btn-primary" @click="updateOrder">儲存</button> -->
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button>
             </div>
             </div>
         </div>
         </div>
-
     </div>
 </template>
 
 <script>
-import $ from 'jquery';
-import Pagin from '../tools/Pagin';
+import $        from 'jquery';
+import Pagin    from '../tools/Pagin';
 
 export default {
     components: {
@@ -205,49 +161,37 @@ export default {
         getOrders(pagenum =1){
           const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/orders/?page=${pagenum}`;
           const vm = this;
-
           vm.isLoading=true;
           this.$http.get(api).then((response) => {
-            console.log('=========');
-            console.log(response.data);
-            console.log('=========');
-            
-
+            // console.log('=========');
+            // console.log(response.data);
+            // console.log('=========');           
             vm.isLoading=false;
             vm.Orders=response.data.orders;
-            vm.pagination=response.data.pagination;           
-
+            vm.pagination=response.data.pagination;
           });
         },
         openModal(item){
-
             //用vue的方式開啟modal
             //傳入參數判斷新增還是修改            
             //Object.assign這寫法要估狗一下
             this.tempOrder=Object.assign({},item);//.filter(a=>a.id==item.id)
             this.tempOrderProducts=Object.assign({},item.products);
             this.isNew=false;
-
-            console.log('item -> ',item);
-            console.log('vm.tempOrder -> ',this.tempOrder);
-            console.log('vm.tempOrder -> id',this.tempOrder.id);
-            console.log('vm.tempOrder -> total',this.tempOrder.total);
-            
-            //console.log('vm.tempOrder -> title',vm.Orders[0].products["-LrXue5xhQshlnH0X7Ah"].product.title);
-            
+            // console.log('item -> ',item);
+            // console.log('vm.tempOrder -> ',this.tempOrder);
+            // console.log('vm.tempOrder -> id',this.tempOrder.id);
+            // console.log('vm.tempOrder -> total',this.tempOrder.total);
             $('#OrdersModal').modal('show');
         },
         updateOrder(oid){
           let api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/admin/order/${oid}`;
           let httpMethod ='put';
           const vm = this;
-
-
           this.$http[httpMethod](api,{data:vm.tempOrder}).then((response) => {
-            console.log('=========');
-            console.log(response.data);
-            console.log('=========');
-
+            // console.log('=========');
+            // console.log(response.data);
+            // console.log('=========');
             if(response.data.success){
                 $('#OrdersModal').modal('hide');
                 vm.getOrders();
@@ -267,31 +211,23 @@ export default {
         }
     },
     computed: {
-        sortdata:function(){
-            
-            const vm = this;
-            
+        sortdata:function(){            
+            const vm = this;            
             if(vm.isReverse){               
                 return vm.Orders.sort(function (a, b) {
-                    if(vm.mode==='user'){
-                        //console.log('a[vm.mode][vm.mode_sec]',a[vm.mode][vm.mode_sec]);
-                        return ('' + a[vm.mode][vm.mode_sec]).localeCompare(b[vm.mode][vm.mode_sec]);
-                        //a[vm.mode][vm.mode_sec] - b[vm.mode][vm.mode_sec];
+                    if(vm.mode==='user'){                        
+                        return ('' + a[vm.mode][vm.mode_sec]).localeCompare(b[vm.mode][vm.mode_sec]);                        
                     }
                     else{
-                        return ('' + a[vm.mode]).localeCompare(b[vm.mode]);
-                        //return a[vm.mode] - b[vm.mode];
-                    }
-                   
+                        return ('' + a[vm.mode]).localeCompare(b[vm.mode]);                        
+                    }                   
                 });
             }
             else{
                 return vm.Orders.reverse(function (a, b) {
-                    return ('' + b[vm.mode]).localeCompare(a[vm.mode]);
-                    //return b[vm.mode] - a[vm.mode];
+                    return ('' + b[vm.mode]).localeCompare(a[vm.mode]);                   
                 });
             }
-
         }
     },
     created() {

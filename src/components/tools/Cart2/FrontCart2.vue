@@ -125,9 +125,7 @@
 
 <script>
 import $ from 'jquery';
-
 export default {
-
     data(){
         return {
             //購物車
@@ -150,36 +148,30 @@ export default {
     },
     methods:{
         getCart(){
-                const api = `https://vue-course-api.hexschool.io/api/heylin/cart`;
+                const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/cart`;
                 const vm = this;
                 vm.isLoading=true;
-
                 this.$http.get(api).then((response) => {
-                    console.log('=========');
-                    console.log(response.data);
-                    console.log('=========');
-                    
+                    // console.log('=========');
+                    // console.log(response.data);
+                    // console.log('=========');                    
                     vm.cart = response.data.data;
-                    vm.isLoading=false;
-                        
+                    vm.isLoading=false;                        
                 });
         },
         removeCartItem(pid){
-
             var del=confirm("確定刪除該項目?");
             if(del){
-                const api = `https://vue-course-api.hexschool.io/api/heylin/cart/${pid}`;
+                const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/cart/${pid}`;
                 const vm = this;
                 vm.isLoading=true;
-
                 this.$http.delete(api).then((response) => {
-                    console.log('=========');
-                    console.log(response.data);
-                    console.log('=========');
+                    // console.log('=========');
+                    // console.log(response.data);
+                    // console.log('=========');
                     //刪除完畢後重整購物車
                     vm.getCart();
-                    vm.isLoading=false;
-                        
+                    vm.isLoading=false;                        
                 });
             }
             else{
@@ -188,35 +180,32 @@ export default {
 
         },
         addCouponCode(){
-            const api = `https://vue-course-api.hexschool.io/api/heylin/coupon`;
+            const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/coupon`;
             const vm = this;
             const coupon = {
                 code:vm.coupon_code
             }
-
             vm.isLoading=true;
             this.$http.post(api,{data:coupon}).then((response) => {
-                console.log('=========');
-                console.log(response.data);
-                console.log('=========');
+                // console.log('=========');
+                // console.log(response.data);
+                // console.log('=========');
                 //刪除完畢後重整購物車
                 vm.getCart();
-                vm.isLoading=false;
-                        
+                vm.isLoading=false;                        
             });
         },
         createOrder(){
-            const api = `https://vue-course-api.hexschool.io/api/heylin/order`;
+            const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/order`;
             const vm = this;
-            const form = vm.form;
-            
+            const form = vm.form;            
             this.$validator.validate().then((result)=>{
                 if(result){
                     vm.isLoading=true;
                     this.$http.post(api,{data:form}).then((response) => {
-                        console.log('=========');
-                        console.log('訂單已建立',response);
-                        console.log('=========');
+                        // console.log('=========');
+                        // console.log('訂單已建立',response);
+                        // console.log('=========');
                         if(response.data.success)
                         {
                             vm.$router.push(`membercheckout/${response.data.orderId}`);
@@ -246,13 +235,9 @@ export default {
 <style scoped>
     @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,400italic|Montserrat:400,700);
 
-
-
 ol, ul {
   list-style: none;
 }
-
-
 
 caption, th, td {
   text-align: left;

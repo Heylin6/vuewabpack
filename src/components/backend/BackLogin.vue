@@ -6,7 +6,6 @@
                     <h1 class="h3 mb-3 font-weight-normal">後台登入介面</h1>
                     <p></p>
                 </div>
-
                 <div class="form-label-group">
                     <input type="email" 
                             id="inputEmail" 
@@ -16,7 +15,6 @@
                             required autofocus>
                     <label for="inputEmail">Email address</label>
                 </div>
-
                 <div class="form-label-group">
                     <input type="password" 
                             id="inputPassword" 
@@ -26,7 +24,6 @@
                             required>
                     <label for="inputPassword">Password</label>
                 </div>
-
                 <div class="checkbox mb-3">
                     <label>
                     <input type="checkbox" value="remember-me"> 記得我
@@ -37,10 +34,8 @@
         </form>
     </div>
 </template>
-
 <script>
 export default {
-
   data () {
     return {
       user:{
@@ -50,25 +45,21 @@ export default {
     }
   },
   methods:{
-    signin(){
-          const api = `${process.env.APIPATH}/admin/signin`;
-          const vm = this;
-          this.$http.post(api,vm.user).then((response) => {
-            console.log(response.data);
-
-            if(response.data.success)
-            {
-              vm.$router.push('/admin/products');
-            }
-          });
-    }
+      signin(){
+            const api = `${process.env.APIPATH}/admin/signin`;
+            const vm = this;
+            this.$http.post(api,vm.user).then((response) => {
+                //console.log(response.data);
+                if(response.data.success)
+                {
+                  vm.$router.push('/admin/products');
+                }
+            });
+      }
   }
 }
 </script>
-
 <style scoped>
-
-
 body {
   display: -ms-flexbox;
   display: flex;

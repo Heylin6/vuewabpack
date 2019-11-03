@@ -12,7 +12,6 @@
                     {{ errors.first('email') }}
                 </span>
                 </div>
-
                 <div class="form-group">
                 <label for="username">收件人姓名</label>
                 <input type="text" class="form-control" name="name" id="username" required
@@ -20,13 +19,11 @@
                     v-model="form.user.name" v-validate="'required'" placeholder="輸入姓名">
                 <span class="text-danger" v-if="errors.has('name')">姓名必須輸入</span>
                 </div>
-
                 <div class="form-group">
                 <label for="usertel">收件人電話</label>
                 <input type="tel" class="form-control" id="usertel"
                     v-model="form.user.tel" placeholder="請輸入電話">
                 </div>
-
                 <div class="form-group">
                 <label for="useraddress">收件人地址</label>
                 <input type="address" class="form-control" name="address"

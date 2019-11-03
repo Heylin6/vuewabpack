@@ -57,7 +57,7 @@
 </template>
 
 <script>
-import $ from 'jquery';
+import $            from 'jquery';
 import CarouselData from '../../json/carousel.json';
 
 export default {
