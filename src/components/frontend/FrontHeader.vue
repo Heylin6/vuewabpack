@@ -1,7 +1,7 @@
 <template>
     <div>
        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-heylin">
-            <a class="navbar-brand" href="#"><i class="fas fa-democrat"></i> L.T.K.F </a>
+            <a class="navbar-brand" href="#">♣︎ L.T.K.F </a>
             <button class="navbar-toggler" type="button" 
                     data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

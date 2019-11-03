@@ -248,9 +248,9 @@ export default {
                     'Content-Type':'multpart/form-data'
                 }
             }).then((response) => {
-                console.log('=========');
-                console.log(response.data);
-                console.log('=========');
+                // console.log('=========');
+                // console.log(response.data);
+                // console.log('=========');
                 //上傳完畢時 關閉讀取icon
                 vm.status.fileUploading=false;
                 if(response.data.success){

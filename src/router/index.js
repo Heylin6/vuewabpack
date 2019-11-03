@@ -54,7 +54,7 @@ export default new VueRouter({
                 // },
                 {
                     name:'陣容師資',//呈現的名稱
-                    path:'trainer/:id',//對應的虛擬路徑
+                    path:'trainer/:trainerid',//對應的虛擬路徑
                     component:FrontTeacherDetail,//對應元件     
                 },
                 {
@@ -116,7 +116,7 @@ export default new VueRouter({
                 // },
                 {
                     name:'陣容師資',//呈現的名稱
-                    path:'/trainer/:id',//對應的虛擬路徑
+                    path:'/trainer/:trainerid',//對應的虛擬路徑
                     component:FrontTeacherDetail,//對應元件      
                 },
                 {
