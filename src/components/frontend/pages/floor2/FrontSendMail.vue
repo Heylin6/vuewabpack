@@ -27,8 +27,8 @@
                             </div>
                         </div>  
                         <div class="panel-footer" style="padding:15px 0 0 0">
-                            <input type="submit" class="btn btn-heylin" value="Send">                             
-                            <input type="reset" class="btn btn-secondary" value="Clear">                               
+                            <input type="submit" class="btn btn-heylin" value="送出">                             
+                            <input type="reset" class="btn btn-secondary" value="清除">                               
                         </div>
                     </form>
         </div> 

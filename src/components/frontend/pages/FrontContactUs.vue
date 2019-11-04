@@ -1,17 +1,21 @@
 <template>
-    <div class="container bodypadding">
+    <div >
         <!-- 聯絡我們 -->  
-        <Map></Map>
-        <hr class="featurette-divider">  
-        <SendMail></SendMail>
+        <ImageWall></ImageWall>
+        <div class="container" style="padding: 5% 0 0 0;">
+            <Map></Map>
+            <hr class="featurette-divider">  
+            <SendMail></SendMail>
+        </div>
     </div>
 </template>
 <script>
-import SendMail from './floor2/FrontSendMail';
-import Map from './floor2/FrontMap';
+import SendMail     from './floor2/FrontSendMail';
+import Map          from './floor2/FrontMap';
+import ImageWall    from '../../tools/ImageWall';
 export default {
     components: {
-        SendMail,Map
+        SendMail,Map,ImageWall
     },
 }
 </script>

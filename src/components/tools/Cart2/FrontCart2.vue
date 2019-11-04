@@ -17,7 +17,7 @@
                     <li class="items" :class="{'odd':index%2==0,'even':index%2==1}" v-for="(item,index) in cart.carts" :key="index">                    
                         <div class="infoWrap"> 
                             <div class="cartSection">                            
-                                <img src="http://lorempixel.com/output/technics-q-c-300-300-4.jpg" alt="" class="itemImg" />
+                                <img :src="item.product.imageUrl" alt="" class="itemImg" />
                                 <p class="itemNumber">#{{item.id}}</p>
                                 <h3>{{ item.product.title }}</h3>                                
                                 <p> {{ item.qty }} / {{ item.product.unit }}</p>                                

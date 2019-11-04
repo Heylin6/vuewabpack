@@ -1,6 +1,6 @@
 <template>
-    <div class="tab-content">
-         <div class="row mt-4">
+    <div class="container">
+         <div class="row mt-4 productpadding">
             <a href="#" class="cardpadding" v-for="(item) in getordercard" :key="item.id">
                 <router-link :to="'/product/'+item.id" >                 
                     <figure                     

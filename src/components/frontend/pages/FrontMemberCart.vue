@@ -1,6 +1,7 @@
 <template>
-    <div class="container bodypadding">
+    <div class="container">
         <loading :active.sync="isLoading"></loading>
+        <ImageWallSpace></ImageWallSpace>
         <!--產品類別畫面-->
         <OrderItems
             v-model="filterStr"
@@ -115,10 +116,11 @@ import Pagin                from '../../tools/Pagin';
 import OrderCard2           from '../../tools/OrderCard2/OrderCard2';
 import OrderItems           from '../../tools/Items';
 import _productitem         from '../../../json/productsitem.json';
+import ImageWallSpace       from '../../tools/ImageWallSpace';
 
 export default {
     components: {
-        Pagin,OrderCard2,OrderItems
+        Pagin,OrderCard2,OrderItems,ImageWallSpace
     },
     data(){
         return {
