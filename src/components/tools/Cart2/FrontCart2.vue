@@ -1,7 +1,7 @@
 <template>
     <div>
         <loading :active.sync="isLoading"></loading>              
-        <div class="wrap cf">
+        <div class="wrap ">
             <h1 class="projTitle">MyCART<span>-THE LESSONS</span> 我的購物車</h1>
             <div class="heading cf">
                 <h1>結帳清單</h1>
@@ -288,11 +288,9 @@ img {
   *zoom: 1;
 }
 
-.wrap {
-  width: 75%;
+.wrap {  
   max-width: 960px;
-  margin: 0 auto;
-  padding: 5% 0;
+  margin: 0 auto;  
   margin-bottom: 5em;
 }
 
