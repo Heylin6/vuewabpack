@@ -1,45 +1,65 @@
 <template>
-    <div id='main' class="container">      
-      <div>
-        <div class="calendar"> 
-          <div class="top">               
-            <div class="title">{{this.setYear}} 年 {{this.setMonth}} 月</div>
-            <div class="btns">
-              <button class="today" 
-                      @click.prevent="gonowmonth()">本月</button>
-              <button @click.prevent="gopreventmonth()">
-                      <i class="fas fa-backward"></i>
-                      </button>
-              <button @click.prevent="gonextmonth()">
-                      <i class="fas fa-forward"></i>
-                      </button>
+    <div id='main' class="container">
+        <loading :active.sync="isLoading"></loading>
+        <ImageWallSpace></ImageWallSpace>      
+        <div>
+          <div class="calendar"> 
+            <div class="top">               
+              <div class="title">{{this.setYear}} 年 {{this.setMonth}} 月</div>
+              <div class="btns">
+                <button class="today badge badge-heylin" 
+                        @click.prevent="gonowmonth()">
+                        <span>本月</span>
+                </button>
+                <button @click.prevent="gopreventmonth()">
+                        <i class="fas fa-backward"></i>
+                        </button>
+                <button @click.prevent="gonextmonth()">
+                        <i class="fas fa-forward"></i>
+                        </button>
+              </div>
+            </div>
+            <div class="month">
+                  <div class="weeks">
+                      <div v-for="(item, index) in weeks" :key="index">{{item}}</div>
+                  </div>
+                  <div class="days" v-for="(item, index) in MonthArrInit" :key="index">
+                      
+                            <div 
+                              v-for="(item2, index2) in item" 
+                              :key="index2"
+                              :class="[item2.l ?'':'next-prev-month',item2.t ? 'today' : null]"
+                              :data-y="item2.y"
+                              :data-m="item2.m"
+                              :data-d="item2.d">
+                              <span v-if="item2.d % 5 !== 0" class="badge badge-heylin  ml-2">已預定</span>
+                              <span v-else-if="item2.d % 10 === 0" class="badge badge-danger ml-2">休息日</span> 
+                              <span v-else class="badge badge-success  ml-2">可預約</span>                                                   
+                            </div>
+                      
+                  </div>
             </div>
           </div>
-          <div class="month">
-                <div class="weeks">
-                    <div v-for="(item, index) in weeks" :key="index">{{item}}</div>
-                </div>
-                <div class="days" v-for="(item, index) in MonthArrInit" :key="index">
-                    
-                          <div 
-                            v-for="(item2, index2) in item" 
-                            :key="index2"
-                            :class="[item2.l ?'':'next-prev-month',item2.t ? 'today' : null]"
-                            :data-y="item2.y"
-                            :data-m="item2.m"
-                            :data-d="item2.d">                                                  
-                          </div>
-                    
-                </div>
-          </div>
         </div>
-      </div>
+        <hr class="featurette-divider">
+        <div class="container col-md-6">
+          <h2 
+            style="text-align:center;
+                   padding:0 0 25px 0;
+                   font-weight: 700;">
+            行事曆說明
+          </h2>          
+          <h5>可從此行事曆確認講師們的行程事項，如果您與排好時間，行事曆中也出現可預訂的標示，那太好了，歡迎趕快與我們聯絡。</h5>
+        </div>
     </div>
 </template>
 <script>
-import $ from 'jquery';
-
+import $                    from 'jquery';
+import ImageWallSpace       from '../tools/ImageWallSpace';
 export default {
+  components:{
+      ImageWallSpace,
+  },
   data(){
     return {
         mode:'now',
@@ -53,7 +73,8 @@ export default {
         _nextmonthNum:0,
         weeks:['日', '一', '二', '三', '四', '五', '六'],
         _monthDayCount:0,
-        montharr:[]
+        montharr:[],
+        isLoading:false
     }
   },
   methods:{
@@ -127,7 +148,7 @@ export default {
       MonthArrInit(){
           let vm = this;    
           switch(vm.mode){
-            case 'now':
+            case 'now':              
               this.getYearAndMonth();
               var _year  = this.setYear;
               var _month = this.setMonth;
@@ -167,6 +188,7 @@ export default {
       }
   },
   created() {
+    this.isLoading=true;
     this.getYearAndMonth();
     var _year = this.setYear;
     var _month = this.setMonth;
@@ -175,6 +197,7 @@ export default {
     this.prevMonth(_year,_month);
     this.nextMonth(_year,_month);
     this.createMonthArr(_year,_month);
+    this.isLoading=false;
   },
 }
 </script>
@@ -216,12 +239,11 @@ export default {
       text-align:right
   }
   .calendar .top .btns>button{
-      border:1px solid #c8c8c8;
-      background-color:white;
+      border:1px solid #ffffff;      
       height:25px;
       line-height:25px;
       padding:0 5px;
-      font-size:16px;
+     
       margin-top:8px
   }
   .calendar .month{
