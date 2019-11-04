@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container bodypadding">
         <loading :active.sync="isLoading"></loading>
         <!--產品類別畫面-->
         <OrderItems

@@ -1,5 +1,6 @@
 <template>
     <div class="marketing">
+           <FrontCarousel></FrontCarousel>
            <hr class="featurette-divider">
            <FrontSlogan></FrontSlogan>
            <hr class="featurette-divider">
@@ -13,6 +14,7 @@
     </div>
 </template>
 <script>
+import FrontCarousel    from '../FrontCarousel';
 import FrontTeacher     from './floor1/FrontTeacher';
 import FrontDivider     from './floor1/FrontDivider';
 import FrontActiTricks  from './floor1/FrontActiTricks';
@@ -21,6 +23,7 @@ import FrontLeaveMail   from './floor1/FrontLeaveMail';
 export default {
       name: 'FrontMarketing',
       components:{
+        FrontCarousel,
         FrontTeacher,
         FrontDivider,
         FrontActiTricks,

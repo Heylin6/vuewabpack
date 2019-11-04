@@ -1,7 +1,8 @@
 <template>
     <div>
-        <loading :active.sync="isLoading"></loading>              
-        <div class="wrap ">
+        <loading :active.sync="isLoading"></loading>
+        <ImageWall></ImageWall>
+        <div class="wrap" style="padding: 5% 0;">
             <h1 class="projTitle">MyCART<span>-THE LESSONS</span> 我的購物車</h1>
             <div class="heading cf">
                 <h1>結帳清單</h1>
@@ -72,8 +73,9 @@
 
 
         <!--結帳FORM-->   
-        <div class="my-5 row justify-content-center">
-            <form class="col-md-6" @submit.prevent="createOrder">
+        <div class="container">
+        <div class="my-5 row justify-content-center" >
+            <form class="col-md-8"  @submit.prevent="createOrder">
                 <div class="form-group">
                 <label for="useremail">Email</label>
                 <input type="email" class="form-control" name="email" id="useremail" required
@@ -118,14 +120,19 @@
                 </div>
             </form>
         </div>
-        
+        </div>
         <!--結帳FORM-->     
     </div>
 </template>
 
 <script>
-import $ from 'jquery';
+import $         from 'jquery';
+import ImageWall from '../../tools/ImageWall';
+
 export default {
+    components:{
+        ImageWall
+    },
     data(){
         return {
             //購物車

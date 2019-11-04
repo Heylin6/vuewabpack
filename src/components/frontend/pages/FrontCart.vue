@@ -129,6 +129,7 @@
 
 <script>
 import $ from 'jquery';
+import ImageWall from '../../tools/ImageWall'
 
 export default {
     data(){

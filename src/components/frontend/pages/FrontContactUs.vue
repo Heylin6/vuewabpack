@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container bodypadding">
         <!-- 聯絡我們 -->  
         <Map></Map>
         <hr class="featurette-divider">  

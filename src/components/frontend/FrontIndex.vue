@@ -2,7 +2,6 @@
   <div class="">    
       <FrontHeader/>
       <main role="main">
-        <FrontCarousel></FrontCarousel>
         <router-view>
           
         </router-view>
