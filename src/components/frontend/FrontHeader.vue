@@ -52,7 +52,32 @@
                 <li class="nav-item">
                   <a class="nav-link" href="#">
                     <router-link to="/fcart" > 
+                    <div class="dropdown">
                           <i class="fas fa-cart-arrow-down"></i>
+                          <div class="shopping-cart active dropdown-content" style="transition-delay: 50ms;">
+                              <div class="shopping-cart-header">
+                                  <i class="fa fa-shopping-cart cart-icon"></i><span class="badge">{{ cart.carts.length }}</span>
+                                  <div class="shopping-cart-total" v-if="cart.final_total !== cart.total">
+                                      <span class="lighter-text">優惠價 : </span>
+                                      <span class="main-color-text total"> $ {{ cart.final_total }}</span>
+                                  </div>
+                                  <div class="shopping-cart-total" v-else>
+                                      <span class="lighter-text">總價 : </span>
+                                      <span class="main-color-text total"> $ {{ cart.total }}</span>
+                                  </div>
+                              </div> 
+                              <ul class="shopping-cart-items">
+                                <li class="clearfix" v-for="(item,index) in cart.carts" :key="index">
+                                    <img :src="item.product.imageUrl" :alt="item.product.title">
+                                    <span class="item-name">{{ item.product.title }}</span>
+                                    <span class="item-detail"></span>
+                                    <span class="item-price">${{ item.final_total }}</span>
+                                    <span class="item-quantity">Quantity: {{ item.qty }}</span>
+                                    <hr>
+                                </li>
+                              </ul>                          
+                          </div>
+                    </div>
                     </router-link>
                   </a>      
                 </li>
@@ -72,26 +97,60 @@ export default {
   name: 'FrontHeader',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+        //購物車
+        cart: {},
     }
   },
   methods:{
-    signout(){      
-          const api = `${process.env.APIPATH}/logout`;
-          const vm = this;
-          this.$http.post(api).then((response) => {
-            //console.log(response.data);
-            if(response.data.success)
-            {
-              vm.$router.push('/login');
-            }
-          });
-    }
+      getCart(){
+              const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/cart`;
+              const vm = this;            
+              this.$http.get(api).then((response) => {             
+                  vm.cart = response.data.data;
+                  console.log(response.data);
+              });
+              
+      }
+  },
+  created() {
+      this.getCart();
   }
 }
 </script>
 <style scoped>
   #navbarCollapse > ul > li > a > a {
     color:white;
+  }
+
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+
+  .dropdown-content {
+    display: none;
+    background-color: #f9f9f9;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 16px;
+    z-index: 1;
+    margin: 12px 0 0 0px;
+    color:black
+  }
+
+  .dropdown:hover .dropdown-content {
+    display: block;
+    transition: all .2s ease;
+    -webkit-transition: all .2s ease;
+    background-color: #f5f4f4;
+  }
+
+  .shopping-cart .shopping-cart-items img {
+      float: left;
+      margin-right: 12px;
+      max-width: 70px;
+      max-height: 70px;
+  }
+  ul {
+    list-style: none;
   }
 </style>

@@ -9,8 +9,7 @@
                       <br>
                       {{ item.content }}
                     </p>
-                  </div>
-                  
+                  </div>                  
                   <div class="col-md-5"
                     :class="{'order-md-1' : item.id % 2 === 0}">
                     <div class="imgsetting" 

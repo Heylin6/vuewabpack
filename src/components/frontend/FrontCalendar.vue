@@ -32,7 +32,7 @@
                               :data-y="item2.y"
                               :data-m="item2.m"
                               :data-d="item2.d">
-                              <span v-if="item2.d % 5 !== 0" class="badge badge-heylin  ml-2">已預定</span>
+                              <span v-if="item2.d % 5 !== 0" class="badge badge-heylin  ml-2">已預訂</span>
                               <span v-else-if="item2.d % 10 === 0" class="badge badge-danger ml-2">休息日</span> 
                               <span v-else class="badge badge-success  ml-2">可預約</span>                                                   
                             </div>
