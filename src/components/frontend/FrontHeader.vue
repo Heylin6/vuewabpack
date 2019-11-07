@@ -56,7 +56,7 @@
                           <i class="fas fa-cart-arrow-down"></i>
                           <div class="shopping-cart active dropdown-content" style="transition-delay: 50ms;">
                               <div class="shopping-cart-header">
-                                  <i class="fa fa-shopping-cart cart-icon"></i><span class="badge">{{ cart.carts.length }}</span>
+                                  <i class="fa fa-shopping-cart cart-icon"></i><span class="badge">{{ cartlength }}</span>
                                   <div class="shopping-cart-total" v-if="cart.final_total !== cart.total">
                                       <span class="lighter-text">優惠價 : </span>
                                       <span class="main-color-text total"> $ {{ cart.final_total }}</span>
@@ -99,6 +99,7 @@ export default {
     return {
         //購物車
         cart: {},
+        cartlength:0,
     }
   },
   methods:{
@@ -107,7 +108,10 @@ export default {
               const vm = this;            
               this.$http.get(api).then((response) => {             
                   vm.cart = response.data.data;
-                  console.log(response.data);
+                  vm.cartlength = response.data.data.carts.length;
+                  console.log(response.data.data);
+                  console.log('cartlength',response.data.data.carts.length);
+                  //console.log('cartlength',vm.cartlength);
               });
               
       }
