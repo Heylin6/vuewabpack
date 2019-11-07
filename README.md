@@ -19,3 +19,9 @@ npm run build --report
 ```
 
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+
+
+
+註 : fa-solid-900.ttf fa-solid-900.woff fa-solid-900.woff2 not found 404 解決方法
+
+    https://github.com/NervJS/taro-ui/issues/202
