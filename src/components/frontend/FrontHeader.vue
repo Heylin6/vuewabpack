@@ -2,56 +2,61 @@
     <div>
        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-heylin">
             <a class="navbar-brand" href="#">♣︎ L.T.K.F </a>
-            <button class="navbar-toggler" type="button" 
-                    data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbarCollapse collapse navbar-collapse">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                  <router-link class="nav-link" to="/" > 
+                <li class="nav-item" 
+                   :class="{'active':getnavbaractive===''}">
+                  <router-link 
+                    @click.native="setnavbaractiveStr('')"
+                    class="nav-link" 
+                    to="/"> 
                          首頁
                   </router-link>
                 </li>
-                <!-- <li class="nav-item">
-                 <a class="nav-link" href="#">            
-                  <router-link to="/" > 
+                <!-- <li class="nav-item">          
+                  <router-link class="nav-link" to="/" > 
                          陣容師資
                   </router-link>
-                </a>  
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">            
-                    <router-link to="/" > 
+                <li class="nav-item">         
+                    <router-link class="nav-link" to="/" > 
                           提供內容
-                    </router-link>
-                  </a>                
+                    </router-link>            
                 </li>                                
                 -->
-                <li class="nav-item">
-                  <a class="nav-link" href="#">            
-                    <router-link to="/membercart" > 
+                <li class="nav-item" 
+                   :class="{'active':getnavbaractive==='membercart'}">
+                    <router-link
+                      @click.native="setnavbaractiveStr('membercart')"
+                      class="nav-link"
+                      to="/membercart"> 
                           項目購買
                     </router-link>
-                  </a>    
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">            
-                    <router-link to="/contactus" > 
+                <li class="nav-item" 
+                   :class="{'active':getnavbaractive==='contactus'}">
+                    <router-link
+                      @click.native="setnavbaractiveStr('contactus')"
+                      class="nav-link"                      
+                      to="/contactus"> 
                           聯絡我們
-                    </router-link>
-                  </a>    
+                    </router-link>   
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">            
-                    <router-link to="/calendar" > 
+                <li class="nav-item"                    
+                   :class="{'active':getnavbaractive==='calendar'}">
+                    <router-link 
+                      @click.native="setnavbaractiveStr('calendar')"
+                      class="nav-link" 
+                      to="/calendar" > 
                           行事曆
                     </router-link>
-                  </a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">
-                    <router-link to="/fcart" > 
+                <li class="nav-item" 
+                   :class="{'active':getnavbaractive==='fcart'}">
+                    <router-link 
+                      @click.native="setnavbaractiveStr('fcart')"
+                      class="nav-link" 
+                      to="/fcart" > 
                     <div class="dropdown">
                           <i class="fas fa-cart-arrow-down"></i>
                           <div class="shopping-cart active dropdown-content" style="transition-delay: 50ms;">
@@ -78,8 +83,7 @@
                               </ul>                          
                           </div>
                     </div>
-                    </router-link>
-                  </a>      
+                    </router-link>     
                 </li>
             </ul>
             <!-- 
@@ -94,36 +98,48 @@
 </template>
 <script>
 export default {
+  props:['getnavbaractive'],
   name: 'FrontHeader',
   data () {
     return {
         //購物車
         cart: {},
-        cartlength:0,
+        cartlength:0,       
     }
   },
   methods:{
+      setnavbaractiveStr(item){
+            //console.log('out item',item);
+            this.$emit('navbaractiveChange',item);            
+      },
       getCart(){
               const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/cart`;
               const vm = this;            
               this.$http.get(api).then((response) => {             
                   vm.cart = response.data.data;
                   vm.cartlength = response.data.data.carts.length;
-                  console.log(response.data.data);
-                  console.log('cartlength',response.data.data.carts.length);
+                  //console.log(response.data.data);
+                  //console.log('cartlength',response.data.data.carts.length);
                   //console.log('cartlength',vm.cartlength);
               });
               
       }
   },
-  created() {
+  computed:{
+
+  },
+  created() {      
       this.getCart();
   }
 }
 </script>
 <style scoped>
-  #navbarCollapse > ul > li > a > a {
+  .navbarCollapse > ul > li > a > a {
     color:white;
+  }
+
+  .active{
+    font-weight: 900;    
   }
 
   .dropdown {

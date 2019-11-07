@@ -13,9 +13,17 @@
 import SendMail     from './floor2/FrontSendMail';
 import Map          from './floor2/FrontMap';
 import ImageWall    from '../../tools/ImageWall';
-export default {
+export default { 
     components: {
         SendMail,Map,ImageWall
+    },
+    data() {
+        return {
+            
+        }
+    },
+    created() {
+        
     },
 }
 </script>

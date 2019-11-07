@@ -28,67 +28,78 @@ export default new VueRouter({
     routes:[
         {            
             path:'*',//沒註冊過該路徑的皆為*號
-            redirect:'index',//導向路由位置
+            redirect:'',//導向路由位置
         },
         {
-            name:'首頁',//呈現的名稱
+            name:'首頁index路線',//呈現的名稱
             path:'/index',//對應的虛擬路徑
             component:FrontIndex,//對應元件
             children:[
                 {
-                    name:'首頁',//呈現的名稱
+                    name:'首頁index路線2',//呈現的名稱
                     path:'',//對應的虛擬路徑
-                    component:FrontMarketing,//對應元件      
+                    component:FrontMarketing,//對應元件
+                    props: true
                 },
                 // {
-                //     name:'陣容師資',//呈現的名稱
+                //     name:'陣容師資index路線',//呈現的名稱
                 //     path:'/trainer',//對應的虛擬路徑
-                //     component:FrontTeacher,//對應元件      
+                //     component:FrontTeacher,//對應元件
+                //     props: true
                 // },
                 {
-                    name:'陣容師資',//呈現的名稱
+                    name:'陣容師資index路線',//呈現的名稱
                     path:'trainer/:trainerid',//對應的虛擬路徑
-                    component:FrontTeacherDetail,//對應元件     
+                    component:FrontTeacherDetail,//對應元件
+                    props: true
                 },
                 {
-                    name:'行事曆',//呈現的名稱
+                    name:'行事曆index路線',//呈現的名稱
                     path:'calendar',//對應的虛擬路徑
-                    component:FrontCalendar,//對應元件   
+                    component:FrontCalendar,//對應元件
+                    props: true
                 },                  
                 // {
-                //     name:'提供內容',//呈現的名稱
+                //     name:'提供內容index路線',//呈現的名稱
                 //     path:'/divider',//對應的虛擬路徑
-                //     component:FrontDivider,//對應元件      
+                //     component:FrontDivider,//對應元件
+                //     props: true
                 // },
                 {
-                    name:'聯絡我們',//呈現的名稱
+                    name:'聯絡我們index路線',//呈現的名稱
                     path:'contactus',//對應的虛擬路徑
-                    component:FrontContactUs,//對應元件      
+                    component:FrontContactUs,//對應元件
+                    props: true
                 },
                 {
-                    name:'商品詳細內容',//呈現的名稱
+                    name:'商品詳細內容index路線',//呈現的名稱
                     path:'product/:productid',//對應的虛擬路徑
-                    component:FrontProductDetail,//對應元件      
+                    component:FrontProductDetail,//對應元件
+                    props: true
                 },
                 {
-                    name:'前台會員購物車',//呈現的名稱
+                    name:'前台會員購物車index路線',//呈現的名稱
                     path:'fcart',//對應的虛擬路徑
-                    component:FrontCart,//對應元件      
+                    component:FrontCart,//對應元件
+                    props: true
                 },
                 {
-                    name:'前台會員購物車',//呈現的名稱
+                    name:'前台會員購物車index路線',//呈現的名稱
                     path:'membercart',//對應的虛擬路徑
-                    component:FrontMemberCart,//對應元件      
+                    component:FrontMemberCart,//對應元件
+                    props: true
                 },
                 {
-                    name:'前台會員購物細項',//呈現的名稱
+                    name:'前台會員購物細項index路線',//呈現的名稱
                     path:'membercart/:productid',//對應的虛擬路徑
-                    component:FrontMarketing,//對應元件      
+                    component:FrontMarketing,//對應元件
+                    props: true
                 },
                 {
-                    name:'前台會員結帳',//呈現的名稱
+                    name:'前台會員結帳index路線',//呈現的名稱
                     path:'membercheckout/:orderId',//對應的虛擬路徑
-                    component:FrontMemberCheckOut,//對應元件      
+                    component:FrontMemberCheckOut,//對應元件
+                    props: true
                 },
             ],            
         },
@@ -100,57 +111,68 @@ export default new VueRouter({
                 {
                     name:'首頁',//呈現的名稱
                     path:'',//對應的虛擬路徑
-                    component:FrontMarketing,//對應元件       
+                    component:FrontMarketing,//對應元件
+                    props: true
                 },
                 // {
                 //     name:'陣容師資',//呈現的名稱
                 //     path:'/trainer',//對應的虛擬路徑
-                //     component:FrontTeacher,//對應元件      
+                //     component:FrontTeacher,//對應元件
+                //     props: true
                 // },
                 {
                     name:'陣容師資',//呈現的名稱
                     path:'/trainer/:trainerid',//對應的虛擬路徑
-                    component:FrontTeacherDetail,//對應元件      
+                    component:FrontTeacherDetail,//對應元件
+                    props: true
                 },
                 {
                     name:'行事曆',//呈現的名稱
                     path:'calendar',//對應的虛擬路徑
-                    component:FrontCalendar,//對應元件   
+                    component:FrontCalendar,//對應元件
+                    props: true
                 },                     
                 // {
                 //     name:'提供內容',//呈現的名稱
                 //     path:'/divider',//對應的虛擬路徑
-                //     component:FrontDivider,//對應元件      
+                //     component:FrontDivider,//對應元件
+                //     props: true
                 // },
                 {
                     name:'聯絡我們',//呈現的名稱
                     path:'contactus',//對應的虛擬路徑
-                    component:FrontContactUs,//對應元件      
+                    component:FrontContactUs,//對應元件
+                    props: true
                 },
                 {
                     name:'商品詳細內容',//呈現的名稱
                     path:'product/:productid',//對應的虛擬路徑
-                    component:FrontProductDetail,//對應元件      
+                    component:FrontProductDetail,//對應元件
+                    props: true
                 },
                 {
                     name:'前台會員購物車',//呈現的名稱
                     path:'fcart',//對應的虛擬路徑
-                    component:FrontCart2,//對應元件      
+                    component:FrontCart2,//對應元件
+                    props: true
                 },               
                 {
                     name:'前台會員購物車',//呈現的名稱
                     path:'membercart',//對應的虛擬路徑
-                    component:FrontMemberCart,//對應元件      
+                    component:FrontMemberCart,//對應元件
+                    props: true
                 },
                 {
                     name:'前台會員購物細項',//呈現的名稱
                     path:'membercart/:productid',//對應的虛擬路徑
-                    component:FrontMarketing,//對應元件      
+                    component:FrontMarketing,//對應元件
+                    props: true
                 },
                 {
                     name:'前台會員結帳',//呈現的名稱
                     path:'membercheckout/:orderId',//對應的虛擬路徑
-                    component:FrontMemberCheckOut,//對應元件      
+                    component:FrontMemberCheckOut,//對應元件
+                    props: true
                 },
             ],            
         },

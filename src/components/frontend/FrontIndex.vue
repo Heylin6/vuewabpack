@@ -1,6 +1,10 @@
 <template>  
   <div class="">    
-      <FrontHeader/>
+      <FrontHeader 
+        v-model="navbaractive"
+        :getnavbaractive="navbaractive"
+        @navbaractiveChange="setnavbaractive"
+      />
       <main role="main">
         <router-view>
           
@@ -24,12 +28,20 @@ export default {
   },
   data () {
       return {
-      
+        navbaractive:'',
       }
   },
   methods:{
-
-  }
+        setnavbaractive(item){
+            //console.log('setnavbaractive',item);
+            let vm=this;
+            this.navbaractive = item;
+            //console.log('this.navbaractive',item);
+        },
+  },
+  created() {
+    //console.log('navbaractive',this.navbaractive);
+  },
 }
 </script>
 <style scoped>

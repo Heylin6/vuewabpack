@@ -22,6 +22,11 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 
 
 
-註 : fa-solid-900.ttf fa-solid-900.woff fa-solid-900.woff2 not found 404 解決方法
+1.fa-solid-900.ttf fa-solid-900.woff fa-solid-900.woff2 not found 404 解決方法
 
     https://github.com/NervJS/taro-ui/issues/202
+
+2.Router-Link doesn't support v-on:click
+
+    https://github.com/vuejs/vue-router/issues/800
+

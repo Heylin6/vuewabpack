@@ -98,7 +98,7 @@ export default {
     getActivitytricks(){
         var vm = this;
         vm.activitytricks = activitytricks.data.activity;
-        console.log('vm._activitytricks',vm._activitytricks);
+        //console.log('vm.activitytricks',vm.activitytricks);
     },
     openModal(item){
        this.tempActivity=Object.assign({},item);
