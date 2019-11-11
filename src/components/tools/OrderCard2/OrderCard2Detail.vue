@@ -47,14 +47,15 @@
                         </div>                        
                     </div>
                 </div>
-                
-               <div class="col-md-12">
+               <div class="col-md-2"></div>
+               <div class="col-md-8">     
                         <div class="pd-wrapper d-flex justify-content-center">
                             <div>
-                              {{product.content}}
+                              <p class="contentfont">{{product.content}}</p>
                             </div>
-                        </div>
+                        </div>  
                 </div>
+                <div class="col-md-2"></div>
             </div>
             <hr class="featurette-divider">
             <div class="row">
@@ -65,13 +66,15 @@
                             </div>  
                         </div>
                 </div>
-                <div class="col-md-12">
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
                         <div class="pd-wrapper d-flex justify-content-center">
                             <div>
-                              {{product.description}}
+                              <p class="contentfont">{{product.description}}</p>
                             </div>
                         </div>
                 </div>
+                <div class="col-md-3"></div>
             </div>
     </div>
 </template>
@@ -121,7 +124,7 @@ export default {
                     vm.buynum=1;   
                     vm.isLoading=false;
                     vm.$router.push('/fcart');
-                });
+                });                
             }
         }
     },
@@ -132,3 +135,12 @@ export default {
     },
 }
 </script>
+<style scoped>
+
+.contentfont{
+    font-size: 36px;
+}
+
+</style>
+    
+</style>

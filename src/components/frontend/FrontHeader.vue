@@ -72,7 +72,7 @@
                                   </div>
                               </div> 
                               <ul class="shopping-cart-items">
-                                <li class="clearfix" v-for="(item,index) in cart.carts" :key="index">
+                                <li class="clearfix" v-for="(item,index) in reverscarts" :key="index">
                                     <img :src="item.product.imageUrl" :alt="item.product.title">
                                     <span class="item-name">{{ item.product.title }}</span>
                                     <span class="item-detail"></span>
@@ -80,7 +80,8 @@
                                     <span class="item-quantity">Quantity: {{ item.qty }}</span>
                                     <hr>
                                 </li>
-                              </ul>                          
+                              </ul>  
+                              <div v-if="cartlength > 3">等其他 {{ cartlength - 3 }} 件 (列表顯示最新5件)</div>                        
                           </div>
                     </div>
                     </router-link>     
@@ -102,9 +103,15 @@ export default {
   name: 'FrontHeader',
   data () {
     return {
+        //最大購物車顯示量
+        maxcartcount:5,
+        //扣除最大量後剩餘
+        remaincount:0,
         //購物車
         cart: {},
-        cartlength:0,       
+        reverscarts:{},
+        cartlength:0,
+        
     }
   },
   methods:{
@@ -117,19 +124,49 @@ export default {
               const vm = this;            
               this.$http.get(api).then((response) => {             
                   vm.cart = response.data.data;
+                  vm.reverscarts = response.data.data.carts.slice().reverse();
                   vm.cartlength = response.data.data.carts.length;
                   //console.log(response.data.data);
                   //console.log('cartlength',response.data.data.carts.length);
                   //console.log('cartlength',vm.cartlength);
-              });
-              
+              });              
+      },
+      updateCarts(data){
+          //console.log('updateCarts : ',data);
+          const vm = this;
+          vm.cart = data;
+          vm.reverscarts = data.carts.slice().reverse();
+          vm.cartlength = data.carts.length;
       }
   },
   computed:{
+      CartArrInit(){
+              const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/cart`;
+              const vm = this;  
+              let reslist = {};         
+              this.$http.get(api).then((response) => {               
 
+                  vm.cart = response.data.data;
+                  vm.reverscarts = response.data.data.carts.slice().reverse();                  
+                  vm.cartlength = response.data.data.carts.length;
+
+                  reslist = vm.reverscarts;
+                  console.log(reslist);
+              });
+
+              return reslist;
+      }
   },
-  created() {      
-      this.getCart();
+  created() {  
+      const vm = this;
+    
+      vm.getCart();
+      vm.$bus.$on('carts:push', (data) => {
+          vm.updateCarts(data);
+        });
+  },
+  updated(){
+      
   }
 }
 </script>

@@ -163,8 +163,12 @@ export default {
                     // console.log(response.data);
                     // console.log('=========');                    
                     vm.cart = response.data.data;
-                    vm.isLoading=false;                        
+                    this.$bus.$emit('carts:push',response.data.data);
+                    vm.isLoading=false;
+
                 });
+
+                //this.$bus.$emit('carts:push',response.data.data);
         },
         removeCartItem(pid){
             var del=confirm("確定刪除該項目?");
