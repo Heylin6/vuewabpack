@@ -81,7 +81,7 @@
                                     <hr>
                                 </li>
                               </ul>  
-                              <div v-if="cartlength > 3">等其他 {{ cartlength - 3 }} 件 (列表顯示最新5件)</div>                        
+                              <div v-if="cartlength > maxcartcount">等其他 {{ cartlength - maxcartcount }} 件 (列表顯示最新5件)</div>                        
                           </div>
                     </div>
                     </router-link>     
@@ -163,7 +163,7 @@ export default {
       vm.getCart();
       vm.$bus.$on('carts:push', (data) => {
           vm.updateCarts(data);
-        });
+      });
   },
   updated(){
       
