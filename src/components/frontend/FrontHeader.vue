@@ -122,10 +122,17 @@ export default {
       getCart(){
               const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/cart`;
               const vm = this;            
-              this.$http.get(api).then((response) => {             
-                  vm.cart = response.data.data;
-                  vm.reverscarts = response.data.data.carts.slice().reverse();
+              this.$http.get(api).then((response) => {           
+
+                  vm.cart = response.data.data;                                    
                   vm.cartlength = response.data.data.carts.length;
+                  if(vm.cartlength > vm.maxcartcount && vm.maxcartcount > 1)
+                  {                   
+                    vm.reverscarts = response.data.data.carts.slice().reverse().slice(0,vm.maxcartcount);
+                  }
+                  else{
+                    vm.reverscarts = response.data.data.carts.slice().reverse();
+                  }
                   //console.log(response.data.data);
                   //console.log('cartlength',response.data.data.carts.length);
                   //console.log('cartlength',vm.cartlength);
@@ -146,9 +153,16 @@ export default {
               let reslist = {};         
               this.$http.get(api).then((response) => {               
 
-                  vm.cart = response.data.data;
-                  vm.reverscarts = response.data.data.carts.slice().reverse();                  
+                  vm.cart = response.data.data;                                    
                   vm.cartlength = response.data.data.carts.length;
+                  if(vm.cartlength > vm.maxcartcount && vm.maxcartcount > 1)
+                  {                   
+                    vm.reverscarts = response.data.data.carts.slice().reverse().slice(0,vm.maxcartcount-1);
+                  }
+                  else{
+                    vm.reverscarts = response.data.data.carts.slice().reverse();
+                  }
+                  
 
                   reslist = vm.reverscarts;
                   console.log(reslist);
