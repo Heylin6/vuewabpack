@@ -121,7 +121,11 @@ export default {
       },
       getCart(){
               const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/cart`;
-              const vm = this;            
+              const vm = this;
+
+              vm.maxcartcount = parseInt(`${process.env.MAXCAERCOUNT}`);
+              //console.log('vm.maxcartcount : ',vm.maxcartcount);
+
               this.$http.get(api).then((response) => {           
 
                   vm.cart = response.data.data;                                    
@@ -138,45 +142,30 @@ export default {
                   //console.log('cartlength',vm.cartlength);
               });              
       },
-      updateCarts(data){
+      updateCarts(data,maxcartcount){
           //console.log('updateCarts : ',data);
           const vm = this;
-          vm.cart = data;
-          vm.reverscarts = data.carts.slice().reverse();
-          vm.cartlength = data.carts.length;
+          vm.cart = data;    
+          vm.cartlength = data.carts.length;      
+          if(vm.cartlength > maxcartcount && maxcartcount > 1){ 
+               console.log('maxcartcount',maxcartcount);
+               vm.reverscarts = data.carts.slice().reverse().slice(0,maxcartcount);
+               console.log('vm.reverscarts1',vm.reverscarts);
+          }
+          else{
+               vm.reverscarts = data.carts.slice().reverse();               
+          }          
       }
   },
   computed:{
-      CartArrInit(){
-              const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/cart`;
-              const vm = this;  
-              let reslist = {};         
-              this.$http.get(api).then((response) => {               
 
-                  vm.cart = response.data.data;                                    
-                  vm.cartlength = response.data.data.carts.length;
-                  if(vm.cartlength > vm.maxcartcount && vm.maxcartcount > 1)
-                  {                   
-                    vm.reverscarts = response.data.data.carts.slice().reverse().slice(0,vm.maxcartcount-1);
-                  }
-                  else{
-                    vm.reverscarts = response.data.data.carts.slice().reverse();
-                  }
-                  
-
-                  reslist = vm.reverscarts;
-                  console.log(reslist);
-              });
-
-              return reslist;
-      }
   },
   created() {  
       const vm = this;
     
       vm.getCart();
-      vm.$bus.$on('carts:push', (data) => {
-          vm.updateCarts(data);
+      vm.$bus.$on('carts:push', (data,maxcartcount) => {
+          vm.updateCarts(data,maxcartcount);
       });
   },
   updated(){

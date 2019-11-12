@@ -157,13 +157,16 @@ export default {
         getCart(){
                 const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/cart`;
                 const vm = this;
-                vm.isLoading=true;
+                vm.isLoading=true;                
                 this.$http.get(api).then((response) => {
                     // console.log('=========');
                     // console.log(response.data);
-                    // console.log('=========');                    
-                    vm.cart = response.data.data;
-                    this.$bus.$emit('carts:push',response.data.data);
+                    // console.log('=========');
+                    var maxcartcount = parseInt(`${process.env.MAXCAERCOUNT}`);
+                    //console.log('vm.maxcartcount : ',vm.maxcartcount);
+
+                    vm.cart = response.data.data;                    
+                    this.$bus.$emit('carts:push',response.data.data,maxcartcount);
                     vm.isLoading=false;
 
                 });
