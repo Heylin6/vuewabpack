@@ -164,14 +164,10 @@ export default {
                     // console.log('=========');
                     var maxcartcount = parseInt(`${process.env.MAXCAERCOUNT}`);
                     //console.log('vm.maxcartcount : ',vm.maxcartcount);
-
                     vm.cart = response.data.data;                    
                     this.$bus.$emit('carts:push',response.data.data,maxcartcount);
                     vm.isLoading=false;
-
                 });
-
-                //this.$bus.$emit('carts:push',response.data.data);
         },
         removeCartItem(pid){
             var del=confirm("確定刪除該項目?");
@@ -191,7 +187,6 @@ export default {
             else{
 
             }
-
         },
         addCouponCode(){
             const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/coupon`;

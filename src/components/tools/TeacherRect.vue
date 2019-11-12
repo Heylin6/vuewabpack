@@ -1,6 +1,7 @@
 <template>
     <div class="row">                   
-        <div v-for="(item) in getteachers" :key="item.id"
+        <div v-for="(item) in getteachers" 
+            :key="item.id"
              class="col-lg-4">
                     <img class="rm-thumb" 
                         :src="item.imgurl" 
@@ -8,7 +9,9 @@
                   <h2>{{ item.heading }}</h2>
                   <p>{{ item.content }}</p>
                   <p>                     
-                      <router-link class="btn btn-heylin" :to="'/trainer/'+item.id">
+                      <router-link 
+                        class="btn btn-heylin" 
+                       :to="'/trainer/'+item.id">
                             查看詳情 &raquo;
                       </router-link>                   
                   </p>

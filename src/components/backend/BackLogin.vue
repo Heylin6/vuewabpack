@@ -1,9 +1,11 @@
 <template>
     <div>
         <form class="form-signin" 
-              @submit.prevent="signin">
+             @submit.prevent="signin">
                 <div class="text-center mb-4">
-                    <h1 class="h3 mb-3 font-weight-normal">後台登入介面</h1>
+                    <h1 class="h3 mb-3 font-weight-normal">
+                      後台登入介面
+                    </h1>
                     <p></p>
                 </div>
                 <div class="form-label-group">
@@ -13,7 +15,9 @@
                             placeholder="Email address" 
                             v-model="user.username" 
                             required autofocus>
-                    <label for="inputEmail">Email address</label>
+                    <label for="inputEmail">
+                      Email address
+                    </label>
                 </div>
                 <div class="form-label-group">
                     <input type="password" 
@@ -22,15 +26,24 @@
                             placeholder="Password" 
                             v-model="user.password" 
                             required>
-                    <label for="inputPassword">Password</label>
+                    <label for="inputPassword">
+                      Password
+                    </label>
                 </div>
                 <div class="checkbox mb-3">
                     <label>
-                    <input type="checkbox" value="remember-me"> 記得我
+                    <input type="checkbox"
+                           value="remember-me">
+                           記得我
                     </label>
                 </div>
-                <button class="btn btn-lg btn-primary btn-block" type="submit">登入</button>
-                <p class="mt-5 mb-3 text-muted text-center">&copy; 2017-2019</p>
+                <button class="btn btn-lg btn-primary btn-block" 
+                        type="submit">
+                        登入
+                </button>
+                <p class="mt-5 mb-3 text-muted text-center">
+                  &copy; 2017-2019
+                </p>
         </form>
     </div>
 </template>

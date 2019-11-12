@@ -6,133 +6,172 @@
         <table class="table mt-4">
             <thead>
                 <tr>
-                    <th 
-                    @click="mode='create_at',mode_sec='',isReverse=!isReverse"
-                    >購買時間
-                    <span class="icon isReverse"
+                    <th @click="mode='create_at',mode_sec='',isReverse=!isReverse">
+                        購買時間
+                        <span class="icon isReverse"
                              :class="{'inverse' : isReverse}"
-                             v-if="mode === 'create_at'"                
-                            >
-                        <i class=" fas fa-angle-up text-success"></i> 
-                    </span>
+                              v-if="mode === 'create_at'">
+                             <i class="fas fa-angle-up text-success"></i> 
+                        </span>
                     </th>
-                    <th 
-                    @click="mode='user',mode_sec='name',isReverse=!isReverse"
-                    >聯絡人
-                    <span class="icon isReverse"
+                    <th @click="mode='user',mode_sec='name',isReverse=!isReverse">
+                        聯絡人
+                        <span class="icon isReverse"
                              :class="{'inverse' : isReverse}"
-                             v-if="mode === 'user' && mode_sec==='name'"                
-                            >
-                        <i class=" fas fa-angle-up text-success"></i> 
-                    </span>                    
+                              v-if="mode === 'user' && mode_sec==='name'">
+                             <i class=" fas fa-angle-up text-success"></i> 
+                        </span>
                     </th>
-                    <th 
-                    @click="mode='user',mode_sec='email',isReverse=!isReverse"
-                    >E-Mail
-                    <span class="icon isReverse"
+                    <th @click="mode='user',mode_sec='email',isReverse=!isReverse">
+                        E-Mail
+                        <span class="icon isReverse"
                              :class="{'inverse' : isReverse}"
-                             v-if="mode === 'user' && mode_sec==='email'"              
-                            >
-                        <i class=" fas fa-angle-up text-success"></i> 
-                    </span>
+                              v-if="mode === 'user' && mode_sec==='email'">
+                             <i class=" fas fa-angle-up text-success"></i> 
+                        </span>
                     </th>
-                    <th
-                    >購買款項
+                    <th>
+                        購買款項
                     </th>
-                    <th 
-                    @click="mode='total',mode_sec='',isReverse=!isReverse"
-                    >結帳金額
-                    <span class="icon isReverse"
+                    <th @click="mode='total',mode_sec='',isReverse=!isReverse">
+                        結帳金額
+                        <span class="icon isReverse"
+                                :class="{'inverse' : isReverse}"
+                                v-if="mode === 'total'">
+                             <i class=" fas fa-angle-up text-success"></i> 
+                        </span>
+                    </th>
+                    <th>
+                        買家訊息
+                    </th>
+                    <th @click="mode='is_paid',mode_sec='',isReverse=!isReverse">
+                        是否付款
+                        <span class="icon isReverse"
                              :class="{'inverse' : isReverse}"
-                             v-if="mode === 'total'"                
-                            >
-                        <i class=" fas fa-angle-up text-success"></i> 
-                    </span>
+                              v-if="mode === 'is_paid'">
+                            <i class=" fas fa-angle-up text-success"></i> 
+                        </span>
                     </th>
-                    <th
-                    >買家訊息
-                    </th>     
-                    <th 
-                    @click="mode='is_paid',mode_sec='',isReverse=!isReverse"
-                    >是否付款
-                    <span class="icon isReverse"
-                             :class="{'inverse' : isReverse}"
-                             v-if="mode === 'is_paid'"                
-                            >
-                        <i class=" fas fa-angle-up text-success"></i> 
-                    </span>
+                    <th>
+                        功能
                     </th>
-                    <th
-                    >功能</th>    
-                </tr>                                                                                     
+                </tr>
             </thead>
             <tbody>
-                <tr v-for="(item) in sortdata" :key="item.id">
+                <tr v-for="(item) in sortdata" 
+                   :key="item.id">
                     <td>{{ item.create_at | date }}</td>
                     <td>{{ item.user.name }}</td>
                     <td>{{ item.user.email }}</td>
-                    <th><button class="btn btn-outline-primary btn-sm" @click="openModal(item)">訂單細項</button></th>                    
+                    <td>
+                        <button class="btn btn-outline-primary btn-sm" 
+                               @click="openModal(item)">
+                            訂單細項
+                        </button>
+                    </td>
                     <td>{{ item.total | currency }}</td>
                     <td>{{ item.message }}</td>
                     <td>
-                        <span v-if="item.is_paid" class="badge badge-success">付款完成</span>
-                        <span v-else class="badge badge-secondary">尚未付款</span>
-                        
+                        <span v-if="item.is_paid" 
+                              class="badge badge-success">
+                              付款完成
+                        </span>
+                        <span v-else 
+                              class="badge badge-secondary">
+                              尚未付款
+                        </span>
                     </td>
                     <td>
                         <!-- <button class="btn btn-outline-primary btn-sm" @click="openModal(item)">編輯</button> -->                        
-                        <a class="btn btn-sm" :class="btnColors(item.is_paid)" href="#" @click.prevent="gocheckout(item.id)">                                             
-                                    <span v-if="item.is_paid">查看訂單</span>
-                                    <span v-else>進行付款</span>    
-                        </a>  
+                        <a class="btn btn-sm" 
+                          :class="btnColors(item.is_paid)" 
+                           href="#" 
+                          @click.prevent="gocheckout(item.id)">
+                                    <span v-if="item.is_paid">
+                                        查看訂單
+                                    </span>
+                                    <span v-else>
+                                        進行付款
+                                    </span>
+                        </a>
                     </td>
                 </tr>
             </tbody>
         </table>
 
-        <Pagin @postPage="getOrders" :getpagin="pagination"></Pagin>
+        <Pagin @postPage="getOrders" 
+               :getpagin="pagination">
+        </Pagin>
         <!-- OrdersModal -->
-        <div class="modal fade" id="OrdersModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
+        <div class="modal fade" 
+             id="OrdersModal" 
+             tabindex="-1" 
+             role="dialog" 
+             aria-labelledby="exampleModalLabel" 
+             aria-hidden="true">
+            <div class="modal-dialog" 
+                 role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" 
+                            id="exampleModalLabel">
+                            Modal title
+                        </h5>
+                        <button type="button" 
+                                class="close" 
+                                data-dismiss="modal" 
+                                aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                    <table class="table">
+                                    <thead>
+                                        <th>品名</th>
+                                        <th>數量</th>
+                                        <th>單價</th>
+                                    </thead>
+                                    <tbody>
+                                        <tr v-for="(item) in tempOrder.products" 
+                                           :key="item.id">
+                                            <td class="align-middle">
+                                                {{item.product.category}}
+                                            </td>
+                                            <td class="align-middle">
+                                                {{item.qty}}/{{item.product.unit}}
+                                            </td>
+                                            <td class="align-middle">
+                                                {{item.final_total}}
+                                            </td>                                                                    
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td colspan="2" 
+                                                class="text-right">
+                                                總計
+                                            </td>
+                                            <td class="text-right">
+                                                {{ tempOrder.total }}
+                                            </td> 
+                                        </tr>
+                                    </tfoot>
+                                    </table>
+                            </div>
+                        </div>                
+                    </div>
+                    <div class="modal-footer">            
+                        <!-- <button type="button" class="btn btn-primary" @click="updateOrder">儲存</button> -->
+                        <button type="button" 
+                                class="btn btn-secondary" 
+                                data-dismiss="modal">
+                                關閉
+                        </button>
+                    </div>
+                </div>
             </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-sm-12">
-                            <table class="table">
-                            <thead>
-                                <th>品名</th>
-                                <th>數量</th>
-                                <th>單價</th>
-                            </thead>
-                            <tbody>
-                                <tr v-for="(item) in tempOrder.products" :key="item.id">
-                                    <td class="align-middle">{{item.product.category}}</td>
-                                    <td class="align-middle">{{item.qty}}/{{item.product.unit}}</td>
-                                    <td class="align-middle">{{item.final_total}}</td>                                                                    
-                                </tr>
-                            </tbody>
-                            <tfoot>
-                                <tr>
-                                <td colspan="2" class="text-right">總計</td>
-                                <td class="text-right">{{ tempOrder.total }}</td> 
-                                </tr>
-                            </tfoot>
-                            </table>
-                     </div>
-                </div>                
-            </div>
-            <div class="modal-footer">            
-                <!-- <button type="button" class="btn btn-primary" @click="updateOrder">儲存</button> -->
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button>
-            </div>
-            </div>
-        </div>
         </div>
     </div>
 </template>

@@ -10,16 +10,18 @@
         </div>
     </div>
 </template>
-
 <script>
 export default {
-    name:'BackNavbar',
+    name:'ALertMessage',
     data(){
         return{
             messages: [{
-                message:'訊息內容',
-                status:'danger',
-                timestamp:123,
+                //訊息內容
+                message:'',
+                //css樣式
+                status:'',
+                //時間
+                timestamp:0,
             }],
         };
     },
@@ -55,7 +57,6 @@ export default {
         vm.$bus.$on('message:push', (message, status = 'warning') => {
           vm.updateMessage(message, status);
         });
-        //vm.$bus.$emit('message:push');
     },
 }
 </script>

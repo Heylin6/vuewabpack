@@ -6,8 +6,10 @@
         <div class="row">  
             <BackSidebar :getpermissionmodules="PermissionModules" />
             <main role="main" 
-                class="col-md-9 ml-sm-auto col-lg-10 px-4">
-                <router-view></router-view>
+                  class="col-md-9 ml-sm-auto col-lg-10 px-4">
+                  <router-view>
+
+                  </router-view>
             </main>
         </div>
     </div>
@@ -26,7 +28,7 @@ export default {
     data(){
         return {
             user:{},
-            PermissionModules:{}            
+            PermissionModules:{}
         }
     },
     methods:{
@@ -37,7 +39,7 @@ export default {
         }
     },
     created(){
-        this.getuser();       
+        this.getuser();
     }
 }
 </script>

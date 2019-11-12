@@ -26,9 +26,9 @@ export default {
     methods:{
         getfilterStr(item){
             //丟資料回給老爸
-            //給老爸時的名稱叫postPid  
-            //console.log('in item  :',item);          
+            //給老爸時的名稱叫postPid
             this.$emit('filterChange',item);
+            //console.log('in item  :',item);
         },
     },
     computed:{
