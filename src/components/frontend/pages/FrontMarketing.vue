@@ -6,9 +6,9 @@
            <hr class="featurette-divider">
            <FrontDivider></FrontDivider>
            <hr class="featurette-divider">
-           <FrontTeacher></FrontTeacher>           
+           <FrontTeacher></FrontTeacher>
            <hr class="featurette-divider">
-           <FrontActiTricks></FrontActiTricks>           
+           <FrontActiTricks></FrontActiTricks>
            <hr class="featurette-divider">
            <FrontLeaveMail></FrontLeaveMail>
     </div>
@@ -23,12 +23,12 @@ import FrontLeaveMail   from './floor1/FrontLeaveMail';
 export default {
       name: 'FrontMarketing',
       components:{
-        FrontCarousel,
-        FrontTeacher,
-        FrontDivider,
-        FrontActiTricks,
-        FrontSlogan,
-        FrontLeaveMail
+          FrontCarousel,
+          FrontTeacher,
+          FrontDivider,
+          FrontActiTricks,
+          FrontSlogan,
+          FrontLeaveMail
   },
 }
 </script>

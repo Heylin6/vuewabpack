@@ -2,10 +2,16 @@
     <div class="message-alert">
         <div class="alert alert-dismissable"
             :class="'alert-'+item.status"
-            v-for="(item,i) in messages" :key="i">
+             v-for="(item,i) in messages" 
+            :key="i">
             {{ item.message }}
-            <button type="button" class="close" @click="removeMessage(i)" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
+            <button type="button" 
+                    class="close" 
+                   @click="removeMessage(i)" 
+                    aria-label="Close">
+                    <span aria-hidden="true">
+                        &times;
+                    </span>
             </button>
         </div>
     </div>
@@ -17,11 +23,11 @@ export default {
         return{
             messages: [{
                 //訊息內容
-                message:'',
+                message     : '',
                 //css樣式
-                status:'',
+                status      : '',
                 //時間
-                timestamp:0,
+                timestamp   : 0,
             }],
         };
     },
@@ -62,11 +68,11 @@ export default {
 </script>
 
 <style scope>
-.message-alert {
-  position: fixed;
-  max-width: 50%;
-  top: 56px;
-  right: 20px;
-  z-index: 1100;
-}
+    .message-alert {
+        position: fixed;
+        max-width: 50%;
+        top: 56px;
+        right: 20px;
+        z-index: 1100;
+    }
 </style>

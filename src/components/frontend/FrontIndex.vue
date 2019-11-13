@@ -1,16 +1,16 @@
 <template>  
   <div class="">    
-      <FrontHeader 
-        v-model="navbaractive"
-        :getnavbaractive="navbaractive"
-        @navbaractiveChange="setnavbaractive"
-      />
+      <FrontHeader v-model="navbaractive"
+                  :getnavbaractive="navbaractive"
+                  @navbaractiveChange="setnavbaractive"/>
       <main role="main">
-        <router-view>
-          
-        </router-view>
-        <FrontFooter></FrontFooter>
-      </main>      
+          <router-view>
+            
+          </router-view>
+          <FrontFooter>
+            
+          </FrontFooter>
+      </main>
   </div>
 </template>
 <script>
@@ -20,15 +20,15 @@ import FrontFooter    from './FrontFooter';
 import FrontCarousel  from './FrontCarousel';
 export default {  
   name: 'FrontIndex',
-      components:{
+  components:{
         FrontHeader,
         FrontCarousel,
         FrontFooter,        
         Alert
   },
-  data () {
+  data(){
       return {
-        navbaractive:'',
+          navbaractive:'',
       }
   },
   methods:{
@@ -39,7 +39,7 @@ export default {
             //console.log('this.navbaractive',item);
         },
   },
-  created() {
+  created(){
     //console.log('navbaractive',this.navbaractive);
   },
 }

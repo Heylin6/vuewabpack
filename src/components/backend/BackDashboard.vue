@@ -23,12 +23,14 @@ import BackUser             from '../../json/backenduser.json';
 
 export default {
     components:{
-        BackNavbar,BackSidebar,Alert
+        BackNavbar,
+        BackSidebar,
+        Alert
     },
     data(){
         return {
-            user:{},
-            PermissionModules:{}
+            user                :{},
+            PermissionModules   :{}
         }
     },
     methods:{

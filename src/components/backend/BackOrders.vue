@@ -66,7 +66,7 @@
                     <td>
                         <button class="btn btn-outline-primary btn-sm" 
                                @click="openModal(item)">
-                            訂單細項
+                              訂單細項
                         </button>
                     </td>
                     <td>{{ item.total | currency }}</td>
@@ -129,9 +129,15 @@
                             <div class="col-sm-12">
                                     <table class="table">
                                     <thead>
-                                        <th>品名</th>
-                                        <th>數量</th>
-                                        <th>單價</th>
+                                        <th>
+                                            品名
+                                        </th>
+                                        <th>
+                                            數量
+                                        </th>
+                                        <th>
+                                            單價
+                                        </th>
                                     </thead>
                                     <tbody>
                                         <tr v-for="(item) in tempOrder.products" 
@@ -186,37 +192,37 @@ export default {
     },
     data(){
         return {
-            Orders:[],
-            tempOrder:{},
-            tempOrderProducts:{},
-            pagination:{},
-            isLoading:false,
-            mode:'',
-            mode_sec:'',
-            isReverse:'true',
+            Orders              :[],
+            tempOrder           :{},
+            tempOrderProducts   :{},
+            pagination          :{},
+            isLoading           :false,
+            mode                :'',
+            mode_sec            :'',
+            isReverse           :'true',
         }
     },
     methods:{
-        getOrders(pagenum =1){
+        getOrders(pagenum = 1){
           const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/orders/?page=${pagenum}`;
-          const vm = this;
-          vm.isLoading=true;
+          const vm  = this;
+          vm.isLoading = true;
           this.$http.get(api).then((response) => {
             // console.log('=========');
             // console.log(response.data);
             // console.log('=========');           
-            vm.isLoading=false;
-            vm.Orders=response.data.orders;
-            vm.pagination=response.data.pagination;
+            vm.isLoading  = false;
+            vm.Orders     = response.data.orders;
+            vm.pagination = response.data.pagination;
           });
         },
         openModal(item){
             //用vue的方式開啟modal
             //傳入參數判斷新增還是修改            
             //Object.assign這寫法要估狗一下
-            this.tempOrder=Object.assign({},item);//.filter(a=>a.id==item.id)
-            this.tempOrderProducts=Object.assign({},item.products);
-            this.isNew=false;
+            this.tempOrder         = Object.assign({},item);//.filter(a=>a.id==item.id)
+            this.tempOrderProducts = Object.assign({},item.products);
+            this.isNew             = false;
             // console.log('item -> ',item);
             // console.log('vm.tempOrder -> ',this.tempOrder);
             // console.log('vm.tempOrder -> id',this.tempOrder.id);
@@ -224,9 +230,9 @@ export default {
             $('#OrdersModal').modal('show');
         },
         updateOrder(oid){
-          let api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/admin/order/${oid}`;
-          let httpMethod ='put';
-          const vm = this;
+          let api        = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/admin/order/${oid}`;
+          let httpMethod = 'put';
+          const vm       = this;
           this.$http[httpMethod](api,{data:vm.tempOrder}).then((response) => {
             // console.log('=========');
             // console.log(response.data);

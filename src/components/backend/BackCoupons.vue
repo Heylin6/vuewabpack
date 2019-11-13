@@ -2,7 +2,8 @@
     <div>
         <loading :active.sync="isLoading"></loading>
         <div class="text-right">
-            <button class="btn btn-success mt-4" @click="openModal(true)">
+            <button class="btn btn-success mt-4"
+                   @click="openModal(true)">
                 建立新的優惠
             </button>
         </div>
@@ -131,7 +132,7 @@
                                                            id="is_enabled">
                                                     <label class="form-check-label" 
                                                            for="is_enabled">
-                                                            是否啟用
+                                                           是否啟用
                                                     </label>
                                                 </div>
                                             </div>
@@ -167,64 +168,64 @@ export default {
     },
     data(){
         return {
-            coupons:[],
+            coupons    :[],
             tempCoupon: {
-                title: '',
+                title     : '',
                 is_enabled: 0,
-                percent: 100,
-                due_date: 0,
-                code: '',
+                percent   : 100,
+                due_date  : 0,
+                code      : '',
             },
-            pagination:{},
-            isNew:false,
-            isLoading:false,
+            pagination :{},
+            isNew      :false,
+            isLoading  :false,
         }
     },
     methods:{
         getCoupons(){
           const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/admin/coupons`;
-          const vm = this;
+          const vm  = this;
 
-          vm.isLoading=true;
+          vm.isLoading = true;
           this.$http.get(api).then((response) => {
             // console.log('=========');
             // console.log(response.data);
             // console.log('=========');
-            vm.isLoading=false;
-            vm.coupons=response.data.coupons;
-            vm.pagination=response.data.pagination;
+            vm.isLoading  = false;
+            vm.coupons    = response.data.coupons;
+            vm.pagination = response.data.pagination;
           });
         },
         openModal(isNew,item){
             //用vue的方式開啟modal
             //傳入參數判斷新增還是修改            
             if(isNew){
-                this.tempCoupon={};
-                this.isNew=true;
+                this.tempCoupon = {};
+                this.isNew      = true;
             }
             else{
                 //Object.assign這寫法要估狗一下
-                this.tempCoupon=Object.assign({},item);
-                this.isNew=false;
+                this.tempCoupon = Object.assign({},item);
+                this.isNew      = false;
             }
             $('#couponModal').modal('show');
         },
         updateCoupon() {
             const vm = this;
             if (vm.isNew) {               
-                const url =`${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/admin/coupon`;
-                this.$http.post(url, { data: vm.tempCoupon }).then((response) => {
-                //console.log(response, vm.tempCoupon);
-                $('#couponModal').modal('hide');
-                this.getCoupons();
-                });
+                    const url =`${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/admin/coupon`;
+                    this.$http.post(url, { data: vm.tempCoupon }).then((response) => {
+                        //console.log(response, vm.tempCoupon);
+                        $('#couponModal').modal('hide');
+                        this.getCoupons();
+                    });
             } else {                
-                const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/admin/coupon/${vm.tempCoupon.id}`;
-                vm.due_date = new Date(vm.tempCoupon.due_date * 1000);
-                this.$http.put(url, { data: vm.tempCoupon }).then((response) => {
-                //console.log(response);
-                $('#couponModal').modal('hide');
-                this.getCoupons();
+                    const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/admin/coupon/${vm.tempCoupon.id}`;
+                    vm.due_date = new Date(vm.tempCoupon.due_date * 1000);
+                    this.$http.put(url, { data: vm.tempCoupon }).then((response) => {
+                        //console.log(response);
+                        $('#couponModal').modal('hide');
+                        this.getCoupons();
                 });
             }
         },

@@ -4,30 +4,56 @@
         <div class="text-right">
             <button class="btn btn-success mt-4" 
                    @click="openModal(true)">
-                建立新的活動
+                    建立新的活動
             </button>
         </div>
         <table class="table mt-4">
             <thead>
                 <tr>
-                    <th>編號</th>
-                    <th>分類</th>
-                    <th>標題</th>
-                    <th class="text-right">原價</th>     
-                    <th class="text-right">售價</th>
-                    <th class="text-right">單位</th>
-                    <th>功能</th>    
+                    <th>
+                        編號
+                    </th>
+                    <th>
+                        分類
+                    </th>
+                    <th>
+                        標題
+                    </th>
+                    <th class="text-right">
+                        原價
+                    </th>     
+                    <th class="text-right">
+                        售價
+                    </th>
+                    <th class="text-right">
+                        單位
+                    </th>
+                    <th>
+                        功能
+                    </th>    
                 </tr>                                                                                     
             </thead>
             <tbody>
                 <tr v-for="(item) in products" 
                    :key="item.id">
-                    <td>{{ item.num }}</td>
-                    <td>{{ item.category }}</td>
-                    <td>{{ item.title }}</td>
-                    <td class="text-right">{{ item.origin_price | currency }}</td>
-                    <td class="text-right">{{ item.price | currency }}</td>
-                    <td class="text-right">{{ item.unit }}</td>
+                    <td>
+                        {{ item.num }}
+                    </td>
+                    <td>
+                        {{ item.category }}
+                    </td>
+                    <td>
+                        {{ item.title }}
+                    </td>
+                    <td class="text-right">
+                        {{ item.origin_price | currency }}
+                    </td>
+                    <td class="text-right">
+                        {{ item.price | currency }}
+                    </td>
+                    <td class="text-right">
+                        {{ item.unit }}
+                    </td>
                     <td>
                         <button 
                             class="btn btn-outline-primary btn-sm" 
@@ -72,24 +98,26 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
-                            <label for="image">輸入圖片網址</label>
-                            <input type="text" 
-                                   class="form-control" 
-                                   id="image"
-                                   v-model="tempProduct.imageUrl"
-                                   placeholder="請輸入圖片連結">
+                                <label for="image">
+                                    輸入圖片網址
+                                </label>
+                                <input type="text" 
+                                    class="form-control" 
+                                    id="image"
+                                    v-model="tempProduct.imageUrl"
+                                    placeholder="請輸入圖片連結">
                             </div>
                             <div class="form-group">
-                            <label for="customFile">或 上傳圖片
-                                <i class="fas fa-spinner fa-pulse" 
-                                   v-if="status.fileUploading">
-                                </i>
-                            </label>
-                            <input type="file" 
-                                   id="customFile" 
-                                   class="form-control"
-                                   ref="files"
-                                  @change="uploadFile">
+                                <label for="customFile">或 上傳圖片
+                                    <i class="fas fa-spinner fa-pulse" 
+                                    v-if="status.fileUploading">
+                                    </i>
+                                </label>
+                                <input type="file" 
+                                    id="customFile" 
+                                    class="form-control"
+                                    ref="files"
+                                    @change="uploadFile">
                             </div>
                             <img img="https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=828346ed697837ce808cae68d3ddc3cf&auto=format&fit=crop&w=1350&q=80"
                                 :src="tempProduct.imageUrl"
@@ -130,26 +158,26 @@
                                         </div>
                                     </div>
                                     <div class="form-row">
-                                    <div class="form-group col-md-6">
-                                            <label for="origin_price">
-                                                原價
-                                            </label>
-                                            <input type="number" 
-                                                   class="form-control" 
-                                                   id="origin_price"
-                                                   v-model="tempProduct.origin_price"
-                                                   placeholder="請輸入原價">
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                            <label for="price">
-                                                售價
-                                            </label>
-                                            <input type="number" 
-                                                   class="form-control" 
-                                                   id="price"
-                                                   v-model="tempProduct.price"
-                                                   placeholder="請輸入售價">
-                                    </div>
+                                        <div class="form-group col-md-6">
+                                                <label for="origin_price">
+                                                    原價
+                                                </label>
+                                                <input type="number" 
+                                                    class="form-control" 
+                                                    id="origin_price"
+                                                    v-model="tempProduct.origin_price"
+                                                    placeholder="請輸入原價">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                                <label for="price">
+                                                    售價
+                                                </label>
+                                                <input type="number" 
+                                                    class="form-control" 
+                                                    id="price"
+                                                    v-model="tempProduct.price"
+                                                    placeholder="請輸入售價">
+                                        </div>
                                     </div>
                                     <hr>
                                     <div class="form-group">
@@ -184,7 +212,7 @@
                                                        id="is_enabled">
                                                 <label class="form-check-label" 
                                                        for="is_enabled">
-                                                    是否啟用
+                                                       是否啟用
                                                 </label>
                                             </div>
                                     </div>
@@ -219,52 +247,52 @@ export default {
     },
     data(){
         return {
-            products:[],
-            tempProduct:{},
-            pagination:{},
-            isNew:false,
-            isLoading:false,
+            products            :[],
+            tempProduct         :{},
+            pagination          :{},
+            isNew               :false,
+            isLoading           :false,
             status:{
-                fileUploading:false,
+                fileUploading   :false,
             }
         }
     },
     methods:{
         getProducts(pagenum =1){
           const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/products/?page=${pagenum}`;
-          const vm = this;
-          vm.isLoading=true;
+          const vm  = this;
+          vm.isLoading = true;
           this.$http.get(api).then((response) => {
-            // console.log('=========');
-            // console.log(response.data);
-            // console.log('=========');
-            vm.isLoading=false;
-            vm.products=response.data.products;
-            vm.pagination=response.data.pagination;
+                // console.log('=========');
+                // console.log(response.data);
+                // console.log('=========');
+                vm.isLoading  = false;
+                vm.products   = response.data.products;
+                vm.pagination = response.data.pagination;
           });
         },
         openModal(isNew,item){
             //用vue的方式開啟modal
             //傳入參數判斷新增還是修改            
             if(isNew){
-                this.tempProduct={};
-                this.isNew=true;
+                this.tempProduct = {};
+                this.isNew       = true;
             }
             else{
                 //Object.assign這寫法要估狗一下
-                this.tempProduct=Object.assign({},item);
-                this.isNew=false;
+                this.tempProduct = Object.assign({},item);
+                this.isNew       = false;
             }
             $('#productModal').modal('show');
         },
         updateProduct(){
-            let api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/admin/product`;
+            let api        = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/admin/product`;
             let httpMethod ='post';
-            const vm = this;          
+            const vm       = this;          
                 if(!vm.isNew){
                     //假設不是新增 則為修改
-                    api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/admin/product/${vm.tempProduct.id}`;
-                    httpMethod ='put';
+                    api        =  `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/admin/product/${vm.tempProduct.id}`;
+                    httpMethod = 'put';
                 }
                 this.$http[httpMethod](api,{data:vm.tempProduct}).then((response) => {
                     // console.log('=========');
@@ -282,8 +310,8 @@ export default {
         },
         deleteProduct(item){
             const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/products`;
-            const vm = this;
-            var del=confirm("確定刪除?");
+            const vm  = this;
+            var del   = confirm("確定刪除?");
             if(del){
                 //  this.$http.delete(api).then((response) => {
                 //  console.log('=========');
@@ -299,12 +327,12 @@ export default {
         uploadFile(){
             //console.log(this);
             const uploadedfile = this.$refs.files.files[0];
-            const vm = this;
+            const vm           = this;
             //模擬表單送出形式
-            const formData = new FormData();
+            const formData     = new FormData();
             //塞入檔案
             formData.append('file-to-upload',uploadedfile);
-            const url =`${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/admin/upload`;
+            const url          =`${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/admin/upload`;
             //執行上傳時 開啟讀取icon
             vm.status.fileUploading=true;
             //傳遞時修正他的header
@@ -317,7 +345,7 @@ export default {
                 // console.log(response.data);
                 // console.log('=========');
                 //上傳完畢時 關閉讀取icon
-                vm.status.fileUploading=false;
+                vm.status.fileUploading = false;
                 if(response.data.success){
                      //vm.tempProduct.imageUrl = response.data.imageUrl;
                      //強制寫入圖片名稱的欄位

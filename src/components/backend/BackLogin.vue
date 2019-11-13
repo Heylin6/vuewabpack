@@ -10,22 +10,23 @@
                 </div>
                 <div class="form-label-group">
                     <input type="email" 
-                            id="inputEmail" 
-                            class="form-control" 
-                            placeholder="Email address" 
-                            v-model="user.username" 
-                            required autofocus>
+                           id="inputEmail" 
+                           class="form-control" 
+                           placeholder="Email address" 
+                           v-model="user.username" 
+                           required 
+                           autofocus>
                     <label for="inputEmail">
                       Email address
                     </label>
                 </div>
                 <div class="form-label-group">
                     <input type="password" 
-                            id="inputPassword" 
-                            class="form-control" 
-                            placeholder="Password" 
-                            v-model="user.password" 
-                            required>
+                           id="inputPassword" 
+                           class="form-control" 
+                           placeholder="Password" 
+                           v-model="user.password" 
+                           required>
                     <label for="inputPassword">
                       Password
                     </label>
@@ -51,21 +52,21 @@
 export default {
   data () {
     return {
-      user:{
-        username:'',
-        password:''
-      }
+        user:{
+            username  :'',
+            password  :''
+        }
     }
   },
   methods:{
       signin(){
             const api = `${process.env.APIPATH}/admin/signin`;
-            const vm = this;
+            const vm  = this;
             this.$http.post(api,vm.user).then((response) => {
                 //console.log(response.data);
                 if(response.data.success)
                 {
-                  vm.$router.push('/admin/products');
+                    vm.$router.push('/admin/products');
                 }
             });
       }

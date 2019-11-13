@@ -1,127 +1,230 @@
 <template>
     <div>
         <loading :active.sync="isLoading"></loading>
-        <ImageWall></ImageWall>
-        <div class="wrap" style="padding: 5% 0;">
-            <h1 class="projTitle">MyCART<span>-THE LESSONS</span> 我的購物車</h1>
-            <div class="heading cf">
-                <h1>結帳清單</h1>
-                 <router-link class="continue" style="background: #bb8d66;" to="/membercart" > 
-                            <span>
-                                　　繼續購買　　
-                            </span> 
-                </router-link>
-            </div>
+        <ImageWall>
+
+        </ImageWall>
+        <div class="wrap" 
+             style="padding: 5% 0;">
+              <h1 class="projTitle">
+                MyCART
+                  <span>
+                    -THE LESSONS
+                  </span> 
+                我的購物車
+              </h1>
+              <div class="heading cf">
+                  <h1>
+                    結帳清單
+                  </h1>
+                  <router-link class="continue" 
+                               style="background: #bb8d66;" 
+                               to="/membercart" > 
+                              <span>
+                                  　　繼續購買　　
+                              </span> 
+                  </router-link>
+              </div>
             <div class="cart">
                 <ul class="cartWrap">
-                    <li class="items" :class="{'odd':index%2==0,'even':index%2==1}" v-for="(item,index) in cart.carts" :key="index">                    
-                        <div class="infoWrap"> 
-                            <div class="cartSection">                            
-                                <img :src="item.product.imageUrl" alt="" class="itemImg" />
-                                <p class="itemNumber">#{{item.id}}</p>
-                                <h3>{{ item.product.title }}</h3>                                
-                                <p> {{ item.qty }} / {{ item.product.unit }}</p>                                
-                                <p class="stockStatus" v-if="item.coupon"> 已套用優惠券</p>
-                            </div>
-                            <div class="prodTotal cartSection">
-                                <p>${{ item.final_total }}</p>
-                            </div>
+                    <li class="items" 
+                       :class="{'odd':index%2==0,'even':index%2==1}" 
+                        v-for="(item,index) in cart.carts" 
+                       :key="index">
+                          <div class="infoWrap"> 
+                                <div class="cartSection">
+                                    <img :src="item.product.imageUrl" 
+                                          alt="" 
+                                          class="itemImg" />
+                                    <p class="itemNumber">
+                                      #{{item.id}}
+                                    </p>
+                                    <h3>
+                                      {{ item.product.title }}
+                                    </h3>                                
+                                    <p> 
+                                      {{ item.qty }} / {{ item.product.unit }}
+                                    </p>                                
+                                    <p class="stockStatus" 
+                                       v-if="item.coupon"> 
+                                       已套用優惠券
+                                    </p>
+                                </div>
+                                <div class="prodTotal cartSection">
+                                    <p>
+                                      ${{ item.final_total }}
+                                    </p>
+                                </div>
                                 <div class="cartSection removeWrap">
-                                <a href="#" class="remove" @click="removeCartItem(item.id)">x</a>
-                            </div>
-                        </div>
-                    </li>               
+                                    <a href="#" 
+                                       class="remove" 
+                                       @click="removeCartItem(item.id)">
+                                       x
+                                    </a>
+                                </div>
+                          </div>
+                    </li>
                 </ul>
+            </div>            
+            <div class="promoCode">
+              <label for="promo">
+                有優惠碼嗎 ?
+              </label>
+                <input type="text" 
+                       name="promo" 
+                       v-model="coupon_code" 
+                       placholder="請輸入優惠碼" />
+                <a href="#" 
+                   class="btn" 
+                   style="background: #bb8d66;color:white;" 
+                  @click="addCouponCode">
+                </a>
             </div>
-            
-            <div class="promoCode"><label for="promo">有優惠碼嗎 ?</label>
-                <input type="text" name="promo" v-model="coupon_code" placholder="請輸入優惠碼" />
-                <a href="#" class="btn" style="background: #bb8d66;color:white;" @click="addCouponCode"></a>
-            </div>
-            
             <div class="subtotal cf">
                 <ul v-if="cart.final_total !== cart.total">
                     <li class="totalRow">
-                        <span class="label">折扣價</span>
-                        <span class="value">${{ cart.final_total }}</span>
+                        <span class="label">
+                          折扣價
+                        </span>
+                        <span class="value">
+                          ${{ cart.final_total }}
+                        </span>
                     </li>  
                     <li class="totalRow">
-                        <span class="label">稅金</span>
-                        <span class="value">$0.00</span></li>
-                    <li class="totalRow final">
-                        <span class="label">總計</span>
-                        <span class="value">${{ cart.final_total }}</span>
+                        <span class="label">
+                          稅金
+                        </span>
+                        <span class="value">
+                          $0.00
+                        </span>
                     </li>
-                   
+                    <li class="totalRow final">
+                        <span class="label">
+                          總計
+                        </span>
+                        <span class="value">
+                          ${{ cart.final_total }}
+                        </span>
+                    </li>                   
                 </ul>
                 <ul v-else>
                     <li class="totalRow">
-                        <span class="label">總價</span>
-                        <span class="value">${{ cart.total }}</span>
+                        <span class="label">
+                          總價
+                        </span>
+                        <span class="value">
+                          ${{ cart.total }}
+                        </span>
                     </li>  
                     <li class="totalRow">
-                        <span class="label">稅金</span>
-                        <span class="value">$0.00</span></li>
+                        <span class="label">
+                          稅金
+                        </span>
+                        <span class="value">
+                          $0.00
+                        </span>
+                    </li>
                     <li class="totalRow final">
-                        <span class="label">總計</span>
-                        <span class="value">${{ cart.total }}</span>                        
+                        <span class="label">
+                          總計
+                        </span>
+                        <span class="value">
+                          ${{ cart.total }}
+                        </span>                        
                     </li>                   
                 </ul>
             </div>
-            </div>   
-
-
-
+        </div> 
         <!--結帳FORM-->   
         <div class="container">
-        <div class="my-5 row justify-content-center" >
-            <form class="col-md-8"  @submit.prevent="createOrder">
-                <div class="form-group">
-                <label for="useremail">Email</label>
-                <input type="email" class="form-control" name="email" id="useremail" required
-                    v-validate="'required|email'"
-                    :class="{'is-invalid': errors.has('email')}"
-                    v-model="form.user.email" placeholder="請輸入 Email">
-                <span class="text-danger" v-if="errors.has('email')">
-                    {{ errors.first('email') }}
-                </span>
-                </div>
-
-                <div class="form-group">
-                <label for="username">收件人姓名</label>
-                <input type="text" class="form-control" name="name" id="username" required
-                    :class="{'is-invalid': errors.has('name')}"
-                    v-model="form.user.name" v-validate="'required'" placeholder="輸入姓名">
-                <span class="text-danger" v-if="errors.has('name')">姓名必須輸入</span>
-                </div>
-
-                <div class="form-group">
-                <label for="usertel">收件人電話</label>
-                <input type="tel" class="form-control" id="usertel"
-                    v-model="form.user.tel" placeholder="請輸入電話">
-                </div>
-
-                <div class="form-group">
-                <label for="useraddress">收件人地址</label>
-                <input type="address" class="form-control" name="address"
-                    :class="{'is-invalid': errors.has('address')}"
-                    id="useraddress" v-model="form.user.address" v-validate="'required'"
-                    placeholder="請輸入地址">
-                <span class="text-danger" v-if="errors.has('address')">地址欄位不得留空</span>
-                </div>
-
-                <div class="form-group">
-                <label for="useraddress">留言</label>
-                <textarea name="" id="" class="form-control" cols="30" rows="10"
-                    v-model="form.message"></textarea>
-                </div>
-                <div class="text-right" style="padding: 25px 0 0 0;">
-                    <button class="btn btn-heylin">送出訂單</button>
-                </div>
-            </form>
+            <div class="my-5 row justify-content-center" >
+                <form class="col-md-8"  
+                     @submit.prevent="createOrder">
+                      <div class="form-group">
+                          <label for="useremail">
+                            Email
+                          </label>
+                          <input type="email" 
+                                class="form-control" 
+                                name="email" 
+                                id="useremail" 
+                                required
+                                v-validate="'required|email'"
+                                :class="{'is-invalid': errors.has('email')}"
+                                v-model="form.user.email" 
+                                placeholder="請輸入 Email">
+                          <span class="text-danger" 
+                                v-if="errors.has('email')">
+                                {{ errors.first('email') }}
+                          </span>
+                      </div>
+                      <div class="form-group">
+                          <label for="username">
+                            收件人姓名
+                          </label>
+                          <input type="text" 
+                                class="form-control" 
+                                name="name" 
+                                id="username" 
+                                required
+                                :class="{'is-invalid': errors.has('name')}"
+                                v-model="form.user.name" 
+                                v-validate="'required'" 
+                                placeholder="輸入姓名">
+                          <span class="text-danger" 
+                                v-if="errors.has('name')">
+                                姓名必須輸入
+                          </span>
+                      </div>
+                      <div class="form-group">
+                          <label for="usertel">
+                            收件人電話
+                          </label>
+                          <input type="tel" 
+                                class="form-control" 
+                                id="usertel"
+                                v-model="form.user.tel" 
+                                placeholder="請輸入電話">
+                      </div>
+                      <div class="form-group">
+                          <label for="useraddress">
+                            收件人地址
+                          </label>
+                          <input type="address" 
+                                class="form-control" 
+                                name="address"
+                                :class="{'is-invalid': errors.has('address')}"
+                                id="useraddress" 
+                                v-model="form.user.address" 
+                                v-validate="'required'"
+                                placeholder="請輸入地址">
+                          <span class="text-danger" 
+                                v-if="errors.has('address')">
+                                地址欄位不得留空
+                          </span>
+                      </div>
+                      <div class="form-group">
+                          <label for="useraddress">
+                            留言
+                          </label>
+                          <textarea name="" 
+                                    id="" 
+                                    class="form-control" 
+                                    cols="30" 
+                                    rows="10"
+                                    v-model="form.message">
+                          </textarea>
+                      </div>
+                      <div class="text-right" 
+                          style="padding: 25px 0 0 0;">
+                            <button class="btn btn-heylin">
+                              送出訂單
+                            </button>
+                      </div>
+                </form>
+            </div>
         </div>
-        </div>
-        <!--結帳FORM-->     
+        <!--結帳FORM-->
     </div>
 </template>
 
@@ -135,53 +238,53 @@ export default {
     },
     data(){
         return {
-            //購物車
-            cart: {},          
-            //付款人資訊
-            form: {
-                user: {
-                    name: '',
-                    email: '',
-                    tel: '',
-                    address: '',
-                },
-                message: '',
-            },
-            //是否讀取中
-            isLoading:false,
-            status:{},
-            coupon_code:'',
+              //購物車
+              cart            : {},
+              //付款人資訊
+              form: {
+                  user: {
+                      name    : '',
+                      email   : '',
+                      tel     : '',
+                      address : '',
+                  },
+                  message     : '',
+              },
+              //是否讀取中
+              isLoading       : false,
+              status          : {},
+              coupon_code     : '',
         }
     },
     methods:{
         getCart(){
-                const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/cart`;
-                const vm = this;
-                vm.isLoading=true;                
+                const api    = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/cart`;
+                const vm     = this;
+                vm.isLoading = true;
                 this.$http.get(api).then((response) => {
                     // console.log('=========');
                     // console.log(response.data);
                     // console.log('=========');
                     var maxcartcount = parseInt(`${process.env.MAXCAERCOUNT}`);
                     //console.log('vm.maxcartcount : ',vm.maxcartcount);
-                    vm.cart = response.data.data;                    
+                    vm.cart          = response.data.data;
                     this.$bus.$emit('carts:push',response.data.data,maxcartcount);
-                    vm.isLoading=false;
+                    vm.isLoading     = false;
                 });
         },
         removeCartItem(pid){
-            var del=confirm("確定刪除該項目?");
+            var del          = confirm("確定刪除該項目?");
             if(del){
-                const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/cart/${pid}`;
-                const vm = this;
-                vm.isLoading=true;
+                const api    = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/cart/${pid}`;
+                const vm     = this;
+                vm.isLoading = true;
                 this.$http.delete(api).then((response) => {
                     // console.log('=========');
                     // console.log(response.data);
                     // console.log('=========');
                     //刪除完畢後重整購物車
                     vm.getCart();
-                    vm.isLoading=false;                        
+                    vm.isLoading = false;                        
                 });
             }
             else{
@@ -189,28 +292,28 @@ export default {
             }
         },
         addCouponCode(){
-            const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/coupon`;
-            const vm = this;
+            const api    = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/coupon`;
+            const vm     = this;
             const coupon = {
                 code:vm.coupon_code
             }
-            vm.isLoading=true;
+            vm.isLoading = true;
             this.$http.post(api,{data:coupon}).then((response) => {
                 // console.log('=========');
                 // console.log(response.data);
                 // console.log('=========');
                 //刪除完畢後重整購物車
                 vm.getCart();
-                vm.isLoading=false;                        
+                vm.isLoading = false;
             });
         },
         createOrder(){
-            const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/order`;
-            const vm = this;
-            const form = vm.form;            
+            const api   = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/order`;
+            const vm    = this;
+            const form  = vm.form;            
             this.$validator.validate().then((result)=>{
                 if(result){
-                    vm.isLoading=true;
+                    vm.isLoading = true;
                     this.$http.post(api,{data:form}).then((response) => {
                         // console.log('=========');
                         // console.log('訂單已建立',response);
@@ -221,7 +324,7 @@ export default {
                         }
                         //刪除完畢後重整購物車
                         vm.getCart();
-                        vm.isLoading=false;                                    
+                        vm.isLoading = false;
                     });
                 }
                 else{

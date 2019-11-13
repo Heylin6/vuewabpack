@@ -4,8 +4,10 @@
         <ImageWallSpace></ImageWallSpace>      
         <div>
           <div class="calendar"> 
-            <div class="top">               
-              <div class="title">{{this.setYear}} 年 {{this.setMonth}} 月</div>
+            <div class="top">
+              <div class="title">
+                  {{this.setYear}} 年 {{this.setMonth}} 月
+              </div>
               <div class="btns">
                 <button class="today badge badge-heylin" 
                         @click.prevent="gonowmonth()">
@@ -21,35 +23,48 @@
             </div>
             <div class="month">
                   <div class="weeks">
-                      <div v-for="(item, index) in weeks" :key="index">{{item}}</div>
+                      <div v-for="(item, index) in weeks" 
+                          :key="index">
+                          {{item}}
+                      </div>
                   </div>
-                  <div class="days" v-for="(item, index) in MonthArrInit" :key="index">
-                      
-                            <div 
-                              v-for="(item2, index2) in item" 
-                              :key="index2"
-                              :class="[item2.l ?'':'next-prev-month',item2.t ? 'today' : null]"
-                              :data-y="item2.y"
-                              :data-m="item2.m"
-                              :data-d="item2.d">
-                              <span v-if="item2.d % 5 !== 0" class="badge badge-heylin  ml-2">已預訂</span>
-                              <span v-else-if="item2.d % 10 === 0" class="badge badge-danger ml-2">休息日</span> 
-                              <span v-else class="badge badge-success  ml-2">可預約</span>                                                   
+                  <div class="days" 
+                       v-for="(item, index) in MonthArrInit" 
+                      :key="index">
+                            <div v-for="(item2, index2) in item" 
+                                :key="index2"
+                                :class="[item2.l ?'':'next-prev-month',item2.t ? 'today' : null]"
+                                :data-y="item2.y"
+                                :data-m="item2.m"
+                                :data-d="item2.d">
+                                <!-- 之後撈後端這邊邏輯會修改 -->
+                                <span v-if="item2.d % 5 !== 0" 
+                                      class="badge badge-heylin ml-2">
+                                      已預訂
+                                </span>
+                                <span v-else-if="item2.d % 10 === 0" 
+                                      class="badge badge-danger ml-2">
+                                      休息日
+                                </span> 
+                                <span v-else 
+                                      class="badge badge-success  ml-2">
+                                      可預約
+                                </span>
                             </div>
-                      
                   </div>
             </div>
           </div>
         </div>
         <hr class="featurette-divider">
         <div class="container col-md-6">
-          <h2 
-            style="text-align:center;
-                   padding:0 0 25px 0;
-                   font-weight: 700;">
-            行事曆說明
-          </h2>          
-          <h5>可從此行事曆確認講師們的行程事項，如果您與排好時間，行事曆中也出現可預訂的標示，那太好了，歡迎趕快與我們聯絡。</h5>
+            <h2 style="text-align:center;
+                      padding:0 0 25px 0;
+                      font-weight: 700;">
+                      行事曆說明
+            </h2>
+            <h5>
+                可從此行事曆確認講師們的行程事項，如果您與排好時間，行事曆中也出現可預訂的標示，那太好了，歡迎趕快與我們聯絡。
+            </h5>
         </div>
     </div>
 </template>
@@ -62,54 +77,59 @@ export default {
   },
   data(){
     return {
-        mode:'now',
-        setYear:0,
-        setMonth:0,
-        _prevmonth:{},
-        _prevyearNum:0,
-        _prevmonthNum:0,
-        _nextmonth:{},
-        _nextyearNum:0,
-        _nextmonthNum:0,
-        weeks:['日', '一', '二', '三', '四', '五', '六'],
-        _monthDayCount:0,
-        montharr:[],
-        isLoading:false
+        mode            : 'now',
+        setYear         : 0,
+        setMonth        : 0,
+        _prevmonth      : {},
+        _prevyearNum    : 0,
+        _prevmonthNum   : 0,
+        _nextmonth      : {},
+        _nextyearNum    : 0,
+        _nextmonthNum   : 0,
+        weeks           : ['日', '一', '二', '三', '四', '五', '六'],
+        _monthDayCount  : 0,
+        montharr        : [],
+        isLoading       : false
     }
   },
   methods:{
     gonowmonth(){
-        this.mode='now';        
+        this.mode = 'now';
     },
     gopreventmonth(){
-        this.mode='prev';        
+        this.mode = 'prev';
     },
     gonextmonth(){
-        this.mode='next';        
+        this.mode = 'next';
     },
     getYearAndMonth(){
         var dt = new Date();
-        this.setYear = dt.getFullYear();
+        this.setYear  = dt.getFullYear();
         this.setMonth = dt.getMonth()+1;
     },
     monthDayCount(y, m){
-        this._monthDayCount = (--m == 1) ? ((y % 4) === 0) && ((y % 100) !== 0) || ((y % 400) === 0) ? 29 : 28 : [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31][m];
+        this._monthDayCount = (--m == 1) ?
+                                  ((y % 4) === 0) && ((y % 100) !== 0) || ((y % 400) === 0) ?
+                                      29 : 28 : [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31][m];
     },
     prevMonth(y, m) {
-        this._prevmonth = { y: m == 1 ? y - 1 : y, m: m == 1 ? 12 : (m - 1) };
-        this._prevyearNum=this._prevmonth.y;
-        this._prevmonthNum=this._prevmonth.m;
+        this._prevmonth    = { y: m == 1 ? 
+                                y - 1 : y, m: m == 1 ? 
+                                      12 : (m - 1) };
+        this._prevyearNum  = this._prevmonth.y;
+        this._prevmonthNum = this._prevmonth.m;
     },
     nextMonth(y, m) {
-        this._nextmonth = { y: m == 12 ? y + 1 : y, m: m == 12 ? 1 : (m + 1) };
-        this._nextyearNum=this._nextmonth.y;
-        this._nextmonthNum=this._nextmonth.m;
+        this._nextmonth = { y: m == 12 ? 
+                              y + 1 : y, m: m == 12 ?
+                                     1 : (m + 1) };
+        this._nextyearNum  = this._nextmonth.y;
+        this._nextmonthNum = this._nextmonth.m;
     },
     createMonthArr (y, m){
-
         var firstDayWeek = new Date(y, m - 1, 1).getDay();
-        var monthCount = this._monthDayCount;
-        var weekCount = parseInt ((firstDayWeek + monthCount) / 7, 10) + (((firstDayWeek + monthCount) % 7) ? 1 : 0);
+        var monthCount   = this._monthDayCount;
+        var weekCount    = parseInt((firstDayWeek + monthCount) / 7, 10) + (((firstDayWeek + monthCount) % 7) ? 1 : 0);
 
         var p = this._prevmonth;
         var prevMonthCount = this._monthDayCount;
@@ -117,106 +137,106 @@ export default {
 
         var date = new Date(); 
         this.montharr = Array.apply (null, Array (weekCount)).map (function (_, i) {
-        return Array.apply (null, Array (7)).map (function (_, j) {
-              var d = i * 7 + j - firstDayWeek + 1;
-              var m2 = m;
-              var y2 = y;
-              var l = true; // 是否為本月份
-      
-              if (d > monthCount) {
-                d = d - monthCount;
-                m2 = n.m;
-                y2 = n.y;
-                l = false;
-              }
-      
-              if (d <= 0) {
-                d = d + prevMonthCount;
-                m2 = p.m;
-                y2 = p.y;
-                l = false;
-              }
-              var t = y2 == date.getFullYear () && m2 == date.getMonth () + 1 && d == date.getDate ();     
-              return {
-                y: y2,m: m2,d: d,l: l,t: t
-              };
-            });
+            return Array.apply (null, Array (7)).map (function (_, j) {
+                  var d = i * 7 + j - firstDayWeek + 1;
+                  var m2 = m;
+                  var y2 = y;
+                  var l = true; // 是否為本月份
+          
+                  if (d > monthCount) {
+                    d = d - monthCount;
+                    m2 = n.m;
+                    y2 = n.y;
+                    l = false;
+                  }
+          
+                  if (d <= 0) {
+                    d = d + prevMonthCount;
+                    m2 = p.m;
+                    y2 = p.y;
+                    l = false;
+                  }
+                  var t = y2 == date.getFullYear () && m2 == date.getMonth () + 1 && d == date.getDate ();     
+                  return {
+                      y: y2,m: m2,d: d,l: l,t: t
+                  };
+                });
           }); 
     },
   },   
   computed: {
       MonthArrInit(){
-          let vm = this;    
+          let vm = this;
           switch(vm.mode){
-            case 'now':              
-              this.getYearAndMonth();
-              var _year  = this.setYear;
-              var _month = this.setMonth;
+            case 'now':
+                this.getYearAndMonth();
+                var _year  = this.setYear;
+                var _month = this.setMonth;
 
-              this.monthDayCount(_year,_month);    
-              this.prevMonth(_year,_month);
-              this.nextMonth(_year,_month);
-              this.createMonthArr(_year,_month);              
-              return this.montharr;
+                this.monthDayCount(_year,_month);    
+                this.prevMonth(_year,_month);
+                this.nextMonth(_year,_month);
+                this.createMonthArr(_year,_month);              
+                return this.montharr;
             case 'prev':              
-              var y = parseInt(this._prevyearNum, 10);
-              var m = parseInt(this._prevmonthNum, 10);
+                var y = parseInt(this._prevyearNum, 10);
+                var m = parseInt(this._prevmonthNum, 10);
 
-              this.setYear  = this._prevyearNum;
-              this.setMonth = this._prevmonthNum;
+                this.setYear  = this._prevyearNum;
+                this.setMonth = this._prevmonthNum;
 
-              this.monthDayCount(y,m);    
-              this.prevMonth(y,m);
-              this.nextMonth(y,m);
-              this.createMonthArr(y,m);
-              this.mode='none';
-              return this.montharr;
+                this.monthDayCount(y,m);    
+                this.prevMonth(y,m);
+                this.nextMonth(y,m);
+                this.createMonthArr(y,m);
+                this.mode = 'none';
+                return this.montharr;
             case 'next':              
-              var y = parseInt(this._nextyearNum, 10);
-              var m = parseInt(this._nextmonthNum, 10);
+                var y = parseInt(this._nextyearNum, 10);
+                var m = parseInt(this._nextmonthNum, 10);
 
-              this.setYear  = this._nextyearNum;
-              this.setMonth = this._nextmonthNum;
+                this.setYear  = this._nextyearNum;
+                this.setMonth = this._nextmonthNum;
 
-              this.monthDayCount(y,m);    
-              this.prevMonth(y,m);
-              this.nextMonth(y,m);
-              this.createMonthArr(y,m);
-              this.mode='none';
-              return this.montharr;
+                this.monthDayCount(y,m);    
+                this.prevMonth(y,m);
+                this.nextMonth(y,m);
+                this.createMonthArr(y,m);
+                this.mode = 'none';
+                return this.montharr;
           }     
       }
   },
   created() {
-    this.isLoading=true;
-    this.getYearAndMonth();
-    var _year = this.setYear;
-    var _month = this.setMonth;
+      this.isLoading=true;
+      this.getYearAndMonth();
+      var _year  = this.setYear;
+      var _month = this.setMonth;
 
-    this.monthDayCount(_year,_month);    
-    this.prevMonth(_year,_month);
-    this.nextMonth(_year,_month);
-    this.createMonthArr(_year,_month);
-    this.isLoading=false;
+      this.monthDayCount(_year,_month);    
+      this.prevMonth(_year,_month);
+      this.nextMonth(_year,_month);
+      this.createMonthArr(_year,_month);
+      this.isLoading = false;
   },
 }
 </script>
 <style scoped>
-.calendar{
-    display:inline-block;
-    width:100%;
-    background-color:white;
-    padding:16px;
-    -moz-box-shadow:0 1px 3px rgba(0,0,0,0.1);
-    -webkit-box-shadow:0 1px 3px rgba(0,0,0,0.1);
-    box-shadow:0 1px 3px rgba(0,0,0,0.1)
+  .calendar{
+      display:inline-block;
+      width:100%;
+      background-color:white;
+      padding:16px;
+      -moz-box-shadow:0 1px 3px rgba(0,0,0,0.1);
+      -webkit-box-shadow:0 1px 3px rgba(0,0,0,0.1);
+      box-shadow:0 1px 3px rgba(0,0,0,0.1)
   }
   .calendar .top{
-    display:inline-block;
-    width:100%;
-    height:40px;
-    line-height:40px;
-    *zoom:1
+      display:inline-block;
+      width:100%;
+      height:40px;
+      line-height:40px;
+      *zoom:1
   }
   .calendar .top:after{
       display:table;
@@ -239,60 +259,94 @@ export default {
       text-align:right
   }
   .calendar .top .btns>button{
-      border:1px solid #ffffff;      
+      border:1px solid #ffffff;
       height:25px;
       line-height:25px;
-      padding:0 5px;
-     
+      padding:0 5px;     
       margin-top:8px
   }
   .calendar .month{
-    display:table;border-spacing:0;border-collapse:collapse;table-layout:fixed;width:100%;margin-top:16px
+      display:table;
+      border-spacing:0;
+      border-collapse:collapse;
+      table-layout:fixed;
+      width:100%;
+      margin-top:16px
     }
   .calendar .month .weeks,.calendar .month .days{
-    display:table-row
+      display:table-row
   }
   .calendar .month .weeks>div,.calendar .month .days>div{
-    display:table-cell;width:calc(100% / 7);border:1px solid #c8c8c8
+      display:table-cell;
+      width:calc(100% / 7);
+      border:1px solid #c8c8c8
   }
   .calendar .month .weeks>div{
-    height:35px;line-height:35px;text-align:center;background-color:#f0f0f0;font-weight:bold
+      height:35px;
+      line-height:35px;
+      text-align:center;
+      background-color:#f0f0f0;
+      font-weight:bold
   }
   .calendar .month .days>div{
-    position:relative;
-    height:100px;
-    -moz-transition:background-color .3s;
-    -o-transition:background-color .3s;
-    -webkit-transition:background-color .3s;
-    transition:background-color .3s
+      position:relative;
+      height:100px;
+      -moz-transition:background-color .3s;
+      -o-transition:background-color .3s;
+      -webkit-transition:background-color .3s;
+      transition:background-color .3s
   }
   .calendar .month .days>div[data-y][data-m][data-d]:after{
-    content:attr(data-y) "/" attr(data-m) "/" attr(data-d);
-    position:absolute;top:0;right:0;display:inline-block
+      content:attr(data-y) "/" attr(data-m) "/" attr(data-d);
+      position:absolute;
+      top:0;
+      right:0;
+      display:inline-block
   }
   .calendar .month .days>div.next-prev-month{
-    background-image:-webkit-gradient(linear, 0 0, 100% 100%, 
-                                      color-stop(0.25, #e1e1e1), 
-                                      color-stop(0.25, transparent), 
-                                      color-stop(0.5, transparent), 
-                                      color-stop(0.5, #e1e1e1), 
-                                      color-stop(0.75, #e1e1e1), 
-                                      color-stop(0.75, transparent), 
-                                      to(transparent));
-    -webkit-background-size:20px 20px
+      background-image:-webkit-gradient(linear, 0 0, 100% 100%, 
+                                        color-stop(0.25, #e1e1e1), 
+                                        color-stop(0.25, transparent), 
+                                        color-stop(0.5, transparent), 
+                                        color-stop(0.5, #e1e1e1), 
+                                        color-stop(0.75, #e1e1e1), 
+                                        color-stop(0.75, transparent), 
+                                        to(transparent));
+      -webkit-background-size:20px 20px
   }
   .calendar .month .days>div.today{
-    border:3px solid #508ef5
+      border:3px solid #508ef5
   }
-  .calendar .month .days>div:hover{background-color:rgba(0,0,0,0.05)}
+  .calendar .month .days>div:hover{
+      background-color:rgba(0,0,0,0.05)
+  }
   @media screen and (max-width: 499px) and (min-width: 0){
-    .calendar .month{display:inline-block}
-    .calendar .month .weeks,.calendar .month .days{display:inline-block;width:100%}
-    .calendar .month .weeks>div,.calendar .month .days>div{display:inline-block;width:100%}
-    .calendar .month .weeks{display:none}.calendar .month .days>div{height:auto;min-height:100px;border:0;border-top:1px solid #c8c8c8}
-    .calendar .month .days>div[data-y][data-m][data-d]:after{top:4px;right:4px}
-    .calendar .month .days>div.next-prev-month{display:none}
+      .calendar .month{
+          display:inline-block
+      }
+      .calendar .month .weeks,.calendar .month .days{
+          display:inline-block;
+          width:100%
+      }
+      .calendar .month .weeks>div,.calendar .month .days>div{
+          display:inline-block;
+          width:100%
+      }
+      .calendar .month .weeks{
+          display:none
+      }
+      .calendar .month .days>div{
+          height:auto;
+          min-height:100px;
+          border:0;
+          border-top:1px solid #c8c8c8
+      }
+      .calendar .month .days>div[data-y][data-m][data-d]:after{
+          top:4px;
+          right:4px
+      }
+      .calendar .month .days>div.next-prev-month{
+          display:none
+      }
   }
-
-  
 </style>

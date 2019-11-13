@@ -23,8 +23,8 @@
 </template>
 <script>
 export default {
-  name: 'BackNavbar',
-  props:['getuser'],
+  name  : 'BackNavbar',
+  props : ['getuser'],
   data () {
       return {
       
@@ -33,7 +33,7 @@ export default {
   methods:{
       signout(){
             const api = `${process.env.APIPATH}/logout`;
-            const vm = this;
+            const vm  = this;
             this.$http.post(api).then((response) => {
                 //console.log(response.data);
                 if(response.data.success)

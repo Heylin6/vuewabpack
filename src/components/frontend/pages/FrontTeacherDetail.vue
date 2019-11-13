@@ -4,21 +4,31 @@
             <!-- 頁面建置中 -->
             <section class="aboutme bg-heylin" id="aboutme">
                 <div class="container">
-                <div class="heading">
-                    <h2>關於我</h2>
-                    <p>講師們的小簡介</p>
-                </div>
-                <div class="row">
-                    <div class=" col-xs-12 col-sm-12 col-md-7 col-lg-9">
-                    <h3 class="trainnerpadding">{{this.trainer[0].heading}}</h3>
-                    <h4 class="subHeading"></h4>                                        
-                    <p class="wordpadding col-lg-8">{{this.trainer[0].content}}</p>
-                    <!-- <a href="#" class="bntDownload">Download Printable Resume</a> --> 
-                </div>
-                    <div class=" col-xs-12 col-sm-12 col-md-4 col-lg-2 col-md-offset-1 col-lg-offset-1 proPic">
-                         <img :src="this.trainer[0].imgurl" alt="May Li" class="rm-thumb">
+                    <div class="heading">
+                        <h2>
+                            關於我
+                        </h2>
+                        <p>
+                            講師們的小簡介
+                        </p>
                     </div>
-                </div>
+                    <div class="row">
+                        <div class=" col-xs-12 col-sm-12 col-md-7 col-lg-9">
+                                <h3 class="trainnerpadding">
+                                    {{this.trainer[0].heading}}
+                                </h3>
+                                <h4 class="subHeading"></h4>
+                                <p class="wordpadding col-lg-8">
+                                    {{this.trainer[0].content}}
+                                </p>
+                                <!-- <a href="#" class="bntDownload">Download Printable Resume</a> --> 
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-2 col-md-offset-1 col-lg-offset-1 proPic">
+                                <img :src="this.trainer[0].imgurl" 
+                                    alt="May Li" 
+                                    class="rm-thumb">
+                        </div>
+                    </div>
                 </div>
             </section>
         </div>
@@ -30,16 +40,16 @@ import trainerdata  from '../../../json/teacher.json';
 export default {
     data() {
         return {
-            trainerid:'',
-            trainer:{}
+            trainerid   : '',
+            trainer     : {}
         }
     },
     methods: {
         getTrainer(){
-            var vm = this;
+            var vm     = this;
             var result = trainerdata.data.teacher.filter(item => item.id === parseInt(this.trainerid));
             vm.trainer = Object.assign({},result);
-            console.log(' this.trainer : ',this.trainer);
+            //console.log(' this.trainer : ',this.trainer);
         }
     },
     created() {
@@ -58,7 +68,6 @@ export default {
 	padding-top:85px ;
 	padding-bottom:93px ;
 }
-
 .aboutTop{
 	background:#00bdbd;
 	height:60px;
@@ -66,7 +75,6 @@ export default {
 .spHeight .aboutTop{
 	margin-top:-62px !important;
 }
-
 .bntDownload{
 	font-size:16px;
 	font-family: 'Open Sans', sans-serif;

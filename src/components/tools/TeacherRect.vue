@@ -6,22 +6,22 @@
                     <img class="rm-thumb" 
                         :src="item.imgurl" 
                         :alt="item.heading">
-                  <h2>{{ item.heading }}</h2>
-                  <p>{{ item.content }}</p>
-                  <p>                     
-                      <router-link 
-                        class="btn btn-heylin" 
-                       :to="'/trainer/'+item.id">
+                    <h2>{{ item.heading }}</h2>
+                    <p>{{ item.content }}</p>
+                    <p>                     
+                        <router-link 
+                            class="btn btn-heylin" 
+                           :to="'/trainer/'+item.id">
                             查看詳情 &raquo;
-                      </router-link>                   
-                  </p>
+                        </router-link>
+                    </p>
          </div>
     </div>
 </template>
 <script>
 export default {
-    name:'TeacherRect',
-    props:['getteachers'],
+    name    : 'TeacherRect',
+    props   : ['getteachers'],
     data(){
         return {
 

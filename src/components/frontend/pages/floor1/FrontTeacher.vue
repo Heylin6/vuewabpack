@@ -21,15 +21,15 @@ export default {
         }
     },
     methods:{
-        getTeachers(){          
-           this.Teachers=teachers.data.teacher;
-          // this.$http.get('../json/divide.json').then(response => {
-          //     console.log("json資料為:" + response);
-          //     //此處的res物件包含了json的檔案資訊和資料
-          // })
+        getTeachers(){
+            this.Teachers=teachers.data.teacher;
+            // this.$http.get('../json/divide.json').then(response => {
+            //     console.log("json資料為:" + response);
+            //     //此處的res物件包含了json的檔案資訊和資料
+            // })
         }
     },
-    created() {
+    created(){
         this.getTeachers();
     },
 }

@@ -4,13 +4,19 @@
              @submit.prevent="payOrder">
                 <table class="table">
                     <thead>
-                        <th>品名</th>
-                        <th>數量</th>
-                        <th>單價</th>
+                        <th>
+                            品名
+                        </th>
+                        <th>
+                            數量
+                        </th>
+                        <th>
+                            單價
+                        </th>
                     </thead>
                     <tbody>
                         <tr v-for="item in order.products" 
-                        :key="item.id">
+                           :key="item.id">
                             <td class="align-middle">
                                 {{ item.product.title }}
                             </td>
@@ -45,25 +51,33 @@
                             </td>
                         </tr>
                         <tr>
-                            <th>姓名</th>
+                            <th>
+                                姓名
+                            </th>
                             <td>
                                 {{ order.user.name }}
                             </td>
                         </tr>
                         <tr>
-                            <th>收件人電話</th>
+                            <th>
+                                收件人電話
+                            </th>
                             <td>
                                 {{ order.user.tel }}
                             </td>
                         </tr>
                         <tr>
-                            <th>收件人地址</th>
+                            <th>
+                                收件人地址
+                            </th>
                             <td>
                                 {{ order.user.address }}
                             </td>
                         </tr>
                         <tr>
-                            <th>付款狀態</th>
+                            <th>
+                                付款狀態
+                            </th>
                         <td>
                             <span v-if="!order.is_paid">
                                   尚未付款
@@ -99,9 +113,9 @@ export default {
     },
     methods:{
         getOrder(){
-                const vm = this;
+                const vm  = this;
                 const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/order/${vm.orderId}`;
-                vm.isLoading=true;
+                vm.isLoading = true;
                 this.$http.get(api).then((response) => {
                     // console.log('=========');
                     // console.log(response.data);
@@ -111,9 +125,9 @@ export default {
                 });
         },
         payOrder(){
-                const vm = this;
+                const vm  = this;
                 const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/pay/${vm.orderId}`;
-                vm.isLoading=true;
+                vm.isLoading = true;
                 this.$http.post(api).then((response) => {
                     // console.log('=========');
                     // console.log(response.data);
@@ -122,7 +136,7 @@ export default {
                         this.getOrder();
                     }
                     vm.order = response.data.order;
-                    vm.isLoading=false;
+                    vm.isLoading = false;
                 });
         }
     },
