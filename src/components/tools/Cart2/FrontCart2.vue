@@ -52,7 +52,7 @@
                                 </div>
                                 <div class="prodTotal cartSection">
                                     <p>
-                                      ${{ item.final_total }}
+                                      {{ item.final_total | currency }}
                                     </p>
                                 </div>
                                 <div class="cartSection removeWrap">
@@ -103,7 +103,7 @@
                           總計
                         </span>
                         <span class="value">
-                          ${{ cart.final_total }}
+                          {{ cart.final_total | currency }}
                         </span>
                     </li>                   
                 </ul>
@@ -113,7 +113,7 @@
                           總價
                         </span>
                         <span class="value">
-                          ${{ cart.total }}
+                          {{ cart.total | currency }}
                         </span>
                     </li>  
                     <li class="totalRow">
@@ -129,7 +129,7 @@
                           總計
                         </span>
                         <span class="value">
-                          ${{ cart.total }}
+                          {{ cart.total | currency }}
                         </span>                        
                     </li>                   
                 </ul>
@@ -284,7 +284,7 @@ export default {
                     // console.log('=========');
                     //刪除完畢後重整購物車
                     vm.getCart();
-                    vm.isLoading = false;                        
+                    vm.isLoading = false;
                 });
             }
             else{

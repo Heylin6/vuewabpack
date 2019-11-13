@@ -36,7 +36,7 @@
                         <div class="row no-gutters mt-3">
                             <div class="col-6 d-flex my-4">
                                 <span class="h5 align-self-center">
-                                    總計　${{ buynum * product.price }}
+                                    總計 {{ buynum * product.price | currency }}
                                 </span>
                             </div>
                             <div class="col-6 text-right my-4">

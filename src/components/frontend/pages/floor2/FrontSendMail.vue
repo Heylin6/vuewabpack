@@ -24,7 +24,7 @@
                                              <input class="form-control" 
                                                     name="email" 
                                                     placeholder="您的E-mail" 
-                                                    type="text" 
+                                                    type="email" 
                                                     required="">
                                         </div>
                                     </div>

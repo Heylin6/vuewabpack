@@ -13,7 +13,7 @@
                         </p>
                     </div>
                     <div class="row">
-                        <div class=" col-xs-12 col-sm-12 col-md-7 col-lg-9">
+                        <div class="col-sm-12 col-md-7 col-lg-9">
                                 <h3 class="trainnerpadding">
                                     {{this.trainer[0].heading}}
                                 </h3>
@@ -23,7 +23,7 @@
                                 </p>
                                 <!-- <a href="#" class="bntDownload">Download Printable Resume</a> --> 
                         </div>
-                        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-2 col-md-offset-1 col-lg-offset-1 proPic">
+                        <div class="col-sm-12 col-md-4 col-lg-2 col-md-offset-1 col-lg-offset-1 proPic">
                                 <img :src="this.trainer[0].imgurl" 
                                     alt="May Li" 
                                     class="rm-thumb">

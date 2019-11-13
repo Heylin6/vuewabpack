@@ -2,10 +2,9 @@
 @import "./helpers/_variables";
 @import "~bootstrap/scss/bootstrap";
 
-@import "../assets/carousel.scss";
-@import "../assets/iconinverse.scss";
+@import "./carousel.scss";
+@import "./iconinverse.scss";
 @import "./dashboard";
 @import "./frontpadding.scss";
 @import "./ordercard2.scss";
 @import "./carticon.scss";
-// @import url("@fortawesome/fontawesome-free/css/all.css");

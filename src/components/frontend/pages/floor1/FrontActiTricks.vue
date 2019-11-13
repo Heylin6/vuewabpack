@@ -7,7 +7,7 @@
               <div class="row">
                     <div v-for="item in activitytricks" 
                         :key="item.id"
-                         class="col-lg-3 col-sm-6 col-xs-12">
+                         class="col-lg-3 col-sm-6 -12">
                       <div class="card card-block">
                           <a href="#" 
                             @click.prevent="openModal(item)">
