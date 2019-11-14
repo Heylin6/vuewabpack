@@ -124,23 +124,7 @@
             </Pagin>
         </div>
         <hr class="featurette-divider">
-        <div class="d-flex justify-content-center">
-            <div class="py-12">
-                <h2 class="mb-3">
-                    選好了嗎?
-                </h2>
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                         <router-link class="rounded-right btn btn-heylin" 
-                                      to="/fcart"> 
-                            <span>
-                                　　結帳去　　
-                            </span> 
-                         </router-link>
-                    </div> 
-                </div>
-            </div>  
-        </div>    
+        <CartConfirm></CartConfirm>
     </div>    
 </template>
 
@@ -151,13 +135,15 @@ import OrderCard2           from '../../tools/OrderCard2/OrderCard2';
 import OrderItems           from '../../tools/Items';
 import _productitem         from '../../../json/productsitem.json';
 import ImageWallSpace       from '../../tools/ImageWallSpace';
+import CartConfirm          from '../../tools/CartConfirm';
 
 export default {
     components: {
             Pagin,
             OrderCard2,
             OrderItems,
-            ImageWallSpace
+            ImageWallSpace,
+            CartConfirm
     },
     data(){
         return {

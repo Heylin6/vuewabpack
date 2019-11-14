@@ -96,12 +96,22 @@
                 </div>
                 <div class="col-md-3"></div>
             </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <hr class="featurette-divider">
+                    <CartConfirm></CartConfirm>
+                </div>
+            </div>
     </div>
 </template>
 <script>
 import $                    from 'jquery';
+import CartConfirm          from '../../tools/CartConfirm';
 
 export default {
+    components:{
+        CartConfirm
+    },
     data(){
         return{
             //購買數量
@@ -142,7 +152,7 @@ export default {
                         // console.log('=========');
                         vm.buynum    = 1;   
                         vm.isLoading = false;
-                        vm.$router.push('/fcart');
+                        //vm.$router.push('/fcart');
                 });
             }
         }
