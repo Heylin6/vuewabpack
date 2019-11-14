@@ -39,8 +39,7 @@ export default {
 }
 </script>
 <style scoped>
-  .imgsetting {
-      width:445px;
+  .imgsetting {      
       height:445px;
       background-repeat:no-repeat;
       border:1px #ccc solid;

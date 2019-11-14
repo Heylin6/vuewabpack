@@ -232,7 +232,7 @@ export default {
       box-shadow:0 1px 3px rgba(0,0,0,0.1)
   }
   .calendar .top{
-      display:inline-block;
+      
       width:100%;
       height:40px;
       line-height:40px;
@@ -349,4 +349,6 @@ export default {
           display:none
       }
   }
+
+  
 </style>

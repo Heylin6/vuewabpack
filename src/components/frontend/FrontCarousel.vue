@@ -10,7 +10,7 @@
                  <div v-for="(item) in Carousels" :key="item.id"
                         class="carousel-item"
                         :class="{'active': item.id-1 === 0}">
-                        <img class="bd-placeholder-img" height="100%" 
+                        <img class="bd-placeholder-img"
                             :src="item.imgurl" 
                              alt="xmas_orchestra">
                         <svg class="bd-placeholder-img" 

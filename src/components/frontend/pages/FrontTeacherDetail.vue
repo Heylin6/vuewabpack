@@ -2,7 +2,7 @@
         <div>
             <!--師資陣容 個人介紹-->
             <!-- 頁面建置中 -->
-            <section class="aboutme bg-heylin" id="aboutme">
+            <section class="aboutme bg-heylin">
                 <div class="container">
                     <div class="heading">
                         <h2>
@@ -25,8 +25,8 @@
                         </div>
                         <div class="col-sm-12 col-md-4 col-lg-2 col-md-offset-1 col-lg-offset-1 proPic">
                                 <img :src="this.trainer[0].imgurl" 
-                                    alt="May Li" 
-                                    class="rm-thumb">
+                                      alt="" 
+                                      class="rm-thumb">
                         </div>
                     </div>
                 </div>

@@ -1,11 +1,20 @@
 <template>
     <div>
-       <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-heylin">
+       <nav class="navbar navbar-expand-md navbar-dark bg-heylin">
             <a class="navbar-brand" 
                href="#">
                ♣︎ L.T.K.F
             </a>
-            <div class="navbarCollapse collapse navbar-collapse">
+            <button class="navbar-toggler collapsed" 
+                    type="button" 
+                    data-toggle="collapse" 
+                    data-target="#navbarCollapse" 
+                    aria-controls="navbarCollapse" 
+                    aria-expanded="false" 
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbarCollapse collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item" 
                    :class="{'active':getnavbaractive===''}">

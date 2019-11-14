@@ -373,10 +373,6 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   display: block;
 }
 
-* {
-  box-sizing: border-box;
-}
-
 body {
   color: #333;
   -webkit-font-smoothing: antialiased;
@@ -740,7 +736,8 @@ a.remove:hover {
     font-size: .75em;
   }
   .cart .items .cartSection.prodTotal, .cart .items .cartSection.removeWrap {
-    display: none;
+    /* display: none; */
+    text-align: center;
   }
   .cart .items .cartSection .itemImg {
     width: 25%;

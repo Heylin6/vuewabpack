@@ -4,7 +4,7 @@
       <div>     
         <!-- <img src="./assets/logo.png"> -->
         <!-- <FrontIndex/> -->
-     <router-view></router-view>
+        <router-view></router-view>
      </div>
   </div>
 </template>
