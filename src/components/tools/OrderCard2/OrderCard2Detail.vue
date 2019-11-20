@@ -40,6 +40,9 @@
                                 </span>
                             </div>
                             <div class="col-6 text-right my-4">
+                                 <span class="messagealert">
+                                     {{message}}
+                                 </span>
                                  <button type="button" 
                                          class="btn btn-heylin"
                                         @click.prevent="addtoCart(product.id, buynum)">
@@ -119,13 +122,14 @@ export default {
             productId   : '',
             product     : [],
             status      : {},
+            message     : '',
             //是否讀取中
             isLoading   : false,
         }
     },
     methods: {
         getProduct(pid){           
-            const api    = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/product/${pid}`;
+            const api    = `${process.env.VUE_APP_APIPATH}/api/${process.env.CUSTOMPATH}/product/${pid}`;
             const vm     = this;
             vm.isLoading = true;
             this.$http.get(api).then((response) => {
@@ -133,6 +137,7 @@ export default {
                     // console.log(response.data);
                     // console.log('=========');
                     vm.isLoading = false;
+                    vm.message   = '';
                     vm.product   = response.data.product;
                     //console.log(vm.product);
             });
@@ -142,7 +147,7 @@ export default {
                 this.$bus.$emit('message:push','數量錯誤,不得為零或負數','danger');
             }
             else{
-                const api    = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/cart`;
+                const api    = `${process.env.VUE_APP_APIPATH}/api/${process.env.CUSTOMPATH}/cart`;
                 const vm     = this;
                 vm.isLoading = true;
                 const cart   = { product_id:pid, qty };
@@ -152,6 +157,7 @@ export default {
                         // console.log('=========');
                         vm.buynum    = 1;   
                         vm.isLoading = false;
+                        vm.message   = '已加到購物車!';
                         //vm.$router.push('/fcart');
                 });
             }
@@ -167,5 +173,9 @@ export default {
 <style scoped>
     .contentfont{
         font-size: 36px;
+    }
+    .messagealert{
+        color: red;
+        padding: 4.5%;
     }
 </style>

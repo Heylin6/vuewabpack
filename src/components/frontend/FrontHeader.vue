@@ -65,64 +65,78 @@
                 </li>
                 <li class="nav-item" 
                    :class="{'active':getnavbaractive==='fcart'}">
-                    <router-link 
+                   <a class="nav-link"
+                     @click="setnavbaractiveStr('fcart');opennav=!opennav;"
+                      href="#">                     
+                   
+                    <!-- <router-link 
                       @click.native="setnavbaractiveStr('fcart')"
-                      class="nav-link" 
-                      to="/fcart" > 
-                      <div class="dropdown">
-                            <i class="fas fa-cart-arrow-down"></i>
-                            <div class="shopping-cart active dropdown-content" style="transition-delay: 50ms;">
-                                <div class="shopping-cart-header">
-                                    <i class="fa fa-shopping-cart cart-icon"></i>
-                                    <span class="badge">
-                                        {{ cartlength }}
-                                    </span>
-                                    <div class="shopping-cart-total" 
-                                         v-if="cart.final_total !== cart.total">
-                                          <span class="lighter-text">
-                                            優惠價 : 
-                                          </span>
-                                          <span class="main-color-text total">
-                                            $ {{ cart.final_total }}
-                                          </span>
-                                    </div>
-                                    <div class="shopping-cart-total" 
-                                         v-else>
-                                        <span class="lighter-text">
-                                            總價 : 
+                       class="nav-link" 
+                       to="/fcart" >  -->
+                        <div class="dropdown">
+                              <i class="fas fa-cart-arrow-down"></i>
+                              <div class="shopping-cart active dropdown-content" 
+                                   style="transition-delay: 50ms;"
+                                  :class="{'dropdownOpen' : opennav}">
+                                    <div class="shopping-cart-header">
+                                        <i class="fa fa-shopping-cart cart-icon"></i>
+                                        <span class="badge">
+                                            {{ cartlength }}
                                         </span>
-                                        <span class="main-color-text total">
-                                            $ {{ cart.total }}
-                                        </span>
-                                    </div>
-                                </div> 
-                                <ul class="shopping-cart-items">
-                                    <li class="clearfix" 
-                                        v-for="(item,index) in reverscarts" 
-                                       :key="index">
-                                          <img :src="item.product.imageUrl" 
-                                               :alt="item.product.title">
-                                          <span class="item-name">
-                                              {{ item.product.title }}
-                                          </span>
-                                          <span class="item-detail">
+                                        <div class="shopping-cart-total" 
+                                            v-if="cart.final_total !== cart.total">
+                                              <span class="lighter-text">
+                                                優惠價 : 
+                                              </span>
+                                              <span class="main-color-text total">
+                                                $ {{ cart.final_total }}
+                                              </span>
+                                        </div>
+                                        <div class="shopping-cart-total" 
+                                            v-else>
+                                            <span class="lighter-text">
+                                                總價 : 
+                                            </span>
+                                            <span class="main-color-text total">
+                                                $ {{ cart.total }}
+                                            </span>
+                                        </div>
+                                    </div> 
+                                    <ul class="shopping-cart-items">
+                                        <li class="clearfix" 
+                                            v-for="(item,index) in reverscarts" 
+                                           :key="index">
+                                                <img :src="item.product.imageUrl" 
+                                                    :alt="item.product.title">
+                                                <span class="item-name">
+                                                    {{ item.product.title }}
+                                                </span>
+                                                <span class="item-detail">
 
-                                          </span>
-                                          <span class="item-price">
-                                              ${{ item.final_total }}
-                                          </span>
-                                          <span class="item-quantity">
-                                              Quantity: {{ item.qty }}
-                                          </span>
-                                          <hr>
-                                    </li>
-                                </ul>  
-                                <div v-if="cartlength > maxcartcount">
-                                    等其他 {{ cartlength - maxcartcount }} 件 (列表顯示最新5件)
-                                </div>                        
-                            </div>
-                      </div>
-                    </router-link>     
+                                                </span>
+                                                <span class="item-price">
+                                                    ${{ item.final_total }}
+                                                </span>
+                                                <span class="item-quantity">
+                                                    Quantity: {{ item.qty }}
+                                                </span>
+                                                <hr>
+                                        </li>
+                                    </ul>  
+                                    <div v-if="cartlength > maxcartcount">
+                                        等其他 {{ cartlength - maxcartcount }} 件 (列表顯示最新{{maxcartcount}}件)
+                                    </div>
+                                    <hr>
+                                    <div>
+                                        <router-link class="col-md-12 btn btn-heylin"
+                                                     to="/fcart">
+                                                     檢視購物車
+                                        </router-link>
+                                    </div>
+                              </div>
+                        </div>
+                        </a>
+                    <!-- </router-link> -->
                 </li>
             </ul>
             <!-- 
@@ -142,13 +156,14 @@ export default {
   data () {
       return {
           //最大購物車顯示量
-          maxcartcount  : 5,
+          maxcartcount  : 3,
           //扣除最大量後剩餘
           remaincount   : 0,
           //購物車
           cart          : {},
           reverscarts   : {},
-          cartlength    : 0,        
+          cartlength    : 0,
+          opennav       : false,
       }
   },
   methods:{
@@ -157,7 +172,7 @@ export default {
             this.$emit('navbaractiveChange',item);
       },
       getCart(){
-              const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/cart`;
+              const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.CUSTOMPATH}/cart`;
               const vm  = this;
               vm.maxcartcount = parseInt(`${process.env.MAXCAERCOUNT}`);
               //console.log('vm.maxcartcount : ',vm.maxcartcount);
@@ -228,15 +243,31 @@ export default {
     padding: 12px 16px;
     z-index: 1;
     margin: 12px 0 0 0px;
-    color:black
+    color:black;
+
+    transform: translateY(-2em);  
+    transition: all 0.3s ease-in-out 0s, visibility 0s linear 0.3s, z-index 0s linear 0.01s;
   }
 
-  .dropdown:hover .dropdown-content {
+  .dropdownOpen {
+    display: block;
+    transition: all .5s ease;
+    -webkit-transition: all .5s ease;
+    background-color: #f5f4f4;
+    z-index: 1000;
+
+    transform: translateY(0%);
+    transition-delay: 0s, 0s, 0.3s;
+  }
+
+
+
+  /* .dropdown:hover .dropdown-content {
     display: block;
     transition: all .2s ease;
     -webkit-transition: all .2s ease;
     background-color: #f5f4f4;
-  }
+  } */
 
   .shopping-cart .shopping-cart-items img {
       float: left;

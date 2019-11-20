@@ -194,7 +194,7 @@ export default {
             //console.log(this.productitem);
         },
         getAllProducts(){
-            const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/products/all`;
+            const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.CUSTOMPATH}/products/all`;
             const vm  = this;
             vm.isLoading=true;
             this.$http.get(api).then((response) => {
@@ -206,7 +206,7 @@ export default {
             vm.isLoading=false;
         },
         getProducts(pagenum =1){
-            const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/products/?page=${pagenum}`;
+            const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.CUSTOMPATH}/products/?page=${pagenum}`;
             const vm  = this;
             vm.isLoading=true;
             this.$http.get(api).then((response) => {
@@ -220,7 +220,7 @@ export default {
             });
         },
         getProduct(pid){
-            const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/product/${pid}`;
+            const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.CUSTOMPATH}/product/${pid}`;
             const vm  = this;
             vm.isLoading=true;
             this.$http.get(api).then((response) => {
@@ -242,7 +242,7 @@ export default {
                     this.$bus.$emit('message:push','數量錯誤,不得為零或負數','danger');
             }
             else{
-                    const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/cart`;
+                    const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.CUSTOMPATH}/cart`;
                     const vm  = this;
                     vm.isLoading=true;
                     const cart = { product_id:pid, qty };
@@ -258,7 +258,7 @@ export default {
             }
         },
         getCart(){
-                    const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/cart`;
+                    const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.CUSTOMPATH}/cart`;
                     const vm  = this;
                     vm.isLoading=true;
                     this.$http.get(api).then((response) => {
@@ -272,7 +272,7 @@ export default {
         removeCartItem(pid){
             var del=confirm("確定刪除該項目?");
             if(del){
-                    const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/cart/${pid}`;
+                    const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.CUSTOMPATH}/cart/${pid}`;
                     const vm = this;
                     vm.isLoading=true;
                     this.$http.delete(api).then((response) => {
@@ -289,7 +289,7 @@ export default {
             }
         },
         addCouponCode(){
-            const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/coupon`;
+            const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.CUSTOMPATH}/coupon`;
             const vm  = this;
             const coupon = {
                     code:vm.coupon_code
@@ -305,7 +305,7 @@ export default {
             });
         },
         createOrder(){
-            const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/order`;
+            const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.CUSTOMPATH}/order`;
             const vm = this;
             const form = vm.form;            
             this.$validator.validate().then((result)=>{

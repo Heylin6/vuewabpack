@@ -251,7 +251,7 @@ export default {
     },
     methods:{
         getCart(){
-                const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/cart`;
+                const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.CUSTOMPATH}/cart`;
                 const vm  = this;
                 vm.isLoading = true;
                 this.$http.get(api).then((response) => {
@@ -265,7 +265,7 @@ export default {
         removeCartItem(pid){
             var del=confirm("確定刪除該項目?");
             if(del){
-                const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/cart/${pid}`;
+                const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.CUSTOMPATH}/cart/${pid}`;
                 const vm  = this;
                 vm.isLoading=true;
                 this.$http.delete(api).then((response) => {
@@ -282,7 +282,7 @@ export default {
             }
         },
         addCouponCode(){
-            const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/coupon`;
+            const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.CUSTOMPATH}/coupon`;
             const vm  = this;
             const coupon = {
                 code:vm.coupon_code
@@ -298,7 +298,7 @@ export default {
             });
         },
         createOrder(){
-            const api  = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/order`;
+            const api  = `${process.env.VUE_APP_APIPATH}/api/${process.env.CUSTOMPATH}/order`;
             const vm   = this;
             const form = vm.form;
             this.$validator.validate().then((result)=>{
