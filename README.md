@@ -30,3 +30,7 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 
     https://github.com/vuejs/vue-router/issues/800
 
+3.npm build dist 以後打開是空白頁面
+
+    https://blog.csdn.net/shaleilei/article/details/79158973
+
